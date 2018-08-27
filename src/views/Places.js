@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios/index";
 import {Row} from 'react-bootstrap';
-import Role from '../components/Role';
+import Place from '../components/Place';
 
 class Places extends React.Component {
     state = {json:[]};
@@ -17,12 +17,12 @@ class Places extends React.Component {
                 <p>List all them places! Ne voisi generoitua "laattoina" tai riveinä ja tähän voisi tulla vaikka karttanäkymä mukaan. Mahdollista lisätä kuva?</p>
                 <p>Add, update, delete. Muuta toiminnallisuutta ei tarvita tänne.</p>
                 <Row>
-                    <Role id="1" name="Musapaikka"/>
-                    <Role id="2" name="mezzosopraano"/>
-                    <Role id="3" name="alttoviulu"/>
-                    <Role id="4" name="sello"/>
+                    <Place id="1" name="Musapaikka"/>
+                    <Place id="2" name="mezzosopraano"/>
+                    <Place id="3" name="alttoviulu"/>
+                    <Place id="4" name="sello"/>
                     {this.state.json.map((line, index) =>
-                        <Role key={index} data={line}/>)}
+                        <Place key={index} data={line}/>)}
                 </Row>
             </div>
         )

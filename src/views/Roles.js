@@ -1,10 +1,13 @@
 import React from 'react';
 import axios from "axios/index";
 import {Row} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 import Role from '../components/Role';
+import NewRole from "../components/NewRole";
 
 class Roles extends React.Component {
     state = {json:[]};
+
     render () {
         console.log(this.state.json);
 
@@ -17,11 +20,11 @@ class Roles extends React.Component {
                     (tämä div näyttää käytönaikaisia ohjeita: Kuvailee mitä roolit on jne. Käyttäjän profiilissa on täppä
                     jolla nämä saa piiloon.)
                 </div>
-                <p>Tarviiko rooleilla olla kuvaukset? Tai mahdollisuus liittää kuvia? Mikrofoni, saksofoni.</p>
                 <p>Add, update, delete. Muuta toiminnallisuutta ei tarvita tänne.</p>
                 <p>Rooleja voi poistaa helposti, mutta pitää olla varmistusdialogi.</p>
                 <Row>
                     {this.state.json.map((data, index) => <Role key={index} data={data}/>)}
+                    <NewRole/>
                 </Row>
             </div>
         )

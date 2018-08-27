@@ -8,17 +8,6 @@ class QuoteForm extends React.Component {
 
         axios.post('/afos/uusi', { quote:this.state.quote, author:this.state.author })
             .then(res => {})
-
-        // JA FETCH TAAS:
-        // return fetch('/afos/uusi', {
-        //     method: 'post',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({quote:this.state.quote,author:this.state.author})
-        // })
-        //     .then(response => response.json());
     };
     handleAuthorChange= (event) => {
         this.setState({author: event.target.value});
@@ -29,13 +18,12 @@ class QuoteForm extends React.Component {
 
     render() {
         return(
-            <fieldset><legend>QuoteForm</legend>
             <form>
                 <input type="text "placeholder="author" value={this.state.author} onChange={this.handleAuthorChange}/>
                 <input type="text" placeholder="quote" value={this.state.quote} onChange={this.handleQuoteChange}/>
                 <input type="submit" value="Create" onClick={this.handleCreateClick}/>
             </form>
-            </fieldset>);
+            );
     }
 }
 

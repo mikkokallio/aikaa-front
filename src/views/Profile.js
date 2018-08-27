@@ -31,8 +31,6 @@ class Profile extends React.Component {
                 </Row>
                 Roolit: Tänne + nappi ja "tägi-pilvi"
                 <Row>
-                    <Role id="1" name="laulu (baritoni)"/>
-                    <Role id="2" name="kitara"/>
                     {this.state.json.map((line, index) =>
                         <Role key={index} data={line}/>)}
                 </Row>
@@ -47,7 +45,7 @@ class Profile extends React.Component {
     componentDidMount()
     {
         this.setState({isLoading: true});
-        axios.get('/afos')
+        axios.get('/api/roles')
             .then(response => {
                 const json = response.data;
                 this.setState({json});
