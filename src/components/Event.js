@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Row} from 'react-bootstrap';
-import {Col} from 'react-bootstrap';
+import Work from './Work';
 
 class Event extends React.Component {
 
@@ -8,6 +7,9 @@ class Event extends React.Component {
         return (
             <tr>
                 <td><span className="glyphicon glyphicon-tag"></span> {this.props.data.name}</td>
+                <td>
+                    {this.props.data.works.map((data, index) => <Work key={index} data={data}/>)}
+                </td>
             </tr>
         )
     }

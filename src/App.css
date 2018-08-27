@@ -78,6 +78,29 @@ li span.glyphicon {
     visibility: visible;
     text-shadow: 1px 1px #fff;
 }
+
+.role1 {
+    color: red;
+}
+.role2 {
+    color: blue;
+}
+.role3 {
+    color: green;
+}
+.role4 {
+    color: yellow;
+}
+.role5 {
+    color: brown;
+}
+.role6 {
+    color: purple;
+}
+.role7 {
+    color: silver;
+}
+
 .role.fadeout {
     opacity: 0.5;
     visibility: hidden;

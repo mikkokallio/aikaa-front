@@ -24,25 +24,10 @@ class Events extends React.Component {
             <p>-Kopioi</p>
             <p>-Pitäiskö olla haitarinäkymä headeina tapahtumat, alla osat?</p>
             <p>-Mahdollisuus klikata tapahtuman henkilöt/tarvitut roolit näkyviin? Tämä on oma näkymä.</p>
-            <h4>Kaarlepyyn Laulujuhlat</h4>
             <table>
                 <tbody>
                     {this.state.json.map((data, index) => <Event key={index} data={data}/>)}
                 </tbody>
-                {/*<tr>*/}
-                    {/*<td>Nimi</td>*/}
-                    {/*<td>Päivä</td>*/}
-                    {/*<td>Aika</td>*/}
-                    {/*<td>Paikka</td>*/}
-                    {/*<td>Osoite</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                    {/*<td>Treeni</td>*/}
-                    {/*<td>25.8.2018</td>*/}
-                    {/*<td>12:00-15:00</td>*/}
-                    {/*<td>Treenipaikka X</td>*/}
-                    {/*<td>Treenikatu 5</td>*/}
-                {/*</tr>*/}
             </table>
         </div>
     )

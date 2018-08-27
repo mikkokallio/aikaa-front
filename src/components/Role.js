@@ -6,7 +6,7 @@ import axios from "axios/index";
 class Role extends React.Component {
     //state = {redirect: false};
     poistaAfo = () => {
-        axios.delete('/afos/poista/' + this.props.data.id)
+        axios.delete('/api/xx/' + this.props.data.id)
             .then(res => {});
         var elem = document.getElementById(this.props.data.id);
         elem.style.textDecoration = "line-through";
@@ -20,15 +20,15 @@ class Role extends React.Component {
         //elem.style.textDecoration = "line-through";
     };
 
-
     handleClick = () => {
         //this.setState({redirect: true});
     };
 
     render() {
+
         return (
-            <Col xs={2} md={2} className="boxx alert alert-success role">
-                <span className="glyphicon glyphicon-tag"></span> {this.props.data.name}
+            <Col xs={2} md={2} className={"boxx alert alert-success role role"+this.props.data.categoryId}>
+                <span className="glyphicon glyphicon-tag"></span> {this.props.data.name} {this.props.data.categoryId}
                 <div className="circle" onClick={this.remove}><span className="glyphicon glyphicon-remove"></span></div></Col>
         )
     }
