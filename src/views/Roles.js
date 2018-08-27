@@ -4,7 +4,7 @@ import {Row} from 'react-bootstrap';
 import Role from '../components/Role';
 
 class Roles extends React.Component {
-    state = {json:[{"id":1,"name":"Viulisti"},{"id":2,"name":"Sopraano"},{"id":3,"name":"Alttoviulisti"},{"id":4,"name":"Sellisti"},{"id":5,"name":"Mezzosopraano"},{"id":6,"name":"Pianisti"},{"id":7,"name":"Konserttisihteeri"},{"id":8,"name":"Järjestäjä"},{"id":9,"name":"Autonkuljettaja"},{"id":10,"name":"Kontrabasisti"},{"id":11,"name":"Lyömäsoittaja"},{"id":12,"name":"Klarinetisti"},{"id":13,"name":"Sivunkääntäjä"}]};
+    state = {json:[]};
     render () {
         console.log(this.state.json);
 
@@ -29,13 +29,12 @@ class Roles extends React.Component {
     }
     componentDidMount()
     {
-
-        // this.setState({isLoading: true});
-        // axios.get('/api/roles')
-        //     .then(response => {
-        //         const json = response.data;
-        //         this.setState({json});
-        //     });
+        this.setState({isLoading: true});
+        axios.get('/api/roles')
+            .then(response => {
+                const json = response.data;
+                this.setState({json});
+            });
     }
 
 }
