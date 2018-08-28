@@ -17,11 +17,6 @@ class Roles extends React.Component {
             });
     };
 
-    update = () => {
-        this.load();
-        this.setState({refresh:true});
-    };
-
     render () {
         console.log(this.state.json);
 
@@ -37,14 +32,15 @@ class Roles extends React.Component {
                 <p>Add, update, delete. Muuta toiminnallisuutta ei tarvita tänne.</p>
                 <p>Rooleja voi poistaa helposti, mutta pitää olla varmistusdialogi.</p>
                 <Row>
-                    {this.state.json.map((data, index) => <Role callBack={this.update} key={index} data={data}/>)}
-                    <NewRole callBack={this.update}/>
+                    {this.state.json.map((data, index) => <Role callBack={this.load} key={index} data={data}/>)}
+                    <NewRole callBack={this.load}/>
                 </Row>
             </div>
         )
 
     }
-    componentDidMount() {this.load();}
+    componentDidMount() {this.load();
+    }
 }
 
 export default Roles;

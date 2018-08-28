@@ -16,7 +16,9 @@ class Role extends React.Component {
         //elem.style.textDecoration = "line-through";
 
         axios.delete('/api/roles/' + this.props.data.id)
-            .then(res => {});
+            .then(res => {
+                this.props.callBack();
+            });
         //var elem = document.getElementById(this.props.data.id);
         //elem.style.textDecoration = "line-through";
 

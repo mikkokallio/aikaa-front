@@ -8,8 +8,9 @@ class NewRole extends React.Component {
         //event.preventDefault();
 
         axios.post('/api/roles', { name:this.state.name, categoryId:this.state.categoryId })
-            .then(res => {});
-        this.props.callBack();
+            .then(res => {
+                this.props.callBack();
+            });
     };
     handleNameChange= (event) => {
         this.setState({name: event.target.value});
