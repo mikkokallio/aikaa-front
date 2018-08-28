@@ -1,9 +1,34 @@
 import React from 'react';
 import Sidebar from 'react-bootstrap';
+import axios from "axios/index";
 
 class SideNav extends React.Component {
 
     render() {
+        function onSignIn (googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            // console.log(googleUser);
+            // console.log("Käykö täällä?");
+            var id_token = googleUser.getAuthResponse().id_token;
+            //Then, send the ID token to your server with an HTTPS POST request:
+            axios.post('/auth', {idtoken: id_token})
+                .then(res => {});
+        };
+
+        // XHR version
+            //var xhr = new XMLHttpRequest();
+            //xhr.open('POST', 'https://yourbackend.example.com/tokensignin');
+            //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //xhr.onload = function() {
+                //console.log('Signed in as: ' + xhr.responseText);
+            //};
+            //xhr.send('idtoken=' + id_token);
+        //}
+
         function signOut() {
             var auth2 = window.gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
@@ -33,6 +58,7 @@ class SideNav extends React.Component {
                                     className="glyphicon glyphicon-chevron-down"></span></a>
                             </li>
                             <li><a href="#" onClick={signOut}>Kirjaudu ulos</a></li>
+                            <li><a href="#" onClick={onSignIn}>Lähetä tunnistetiedot</a></li>
                             {/*<ul className="sub-menu collapse" id="products">*/}
                                 {/*<li className="active"><a href="#">Admin-asetukset</a></li>*/}
                             {/*</ul>*/}
@@ -41,6 +67,21 @@ class SideNav extends React.Component {
                 </div>
             </div>
         )
+    }
+    componentDidMount () {
+        window.addEventListener('google-auth-loaded',
+            this.renderGoogleSignInButton);
+    }
+
+    renderGoogleSignInButton = () => {
+        window.gapi.signin2.render('g-signin2', {
+            'scope': 'https://www.googleapis.com/auth/plus.login',
+            'width': 300,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'light',
+            'data-onsuccess': this.onSignIn
+        });
     }
 }
 

@@ -16,12 +16,12 @@ class Main extends React.Component {
     }
     componentDidMount()
     {
-        this.setState({isLoading: true});
-        axios.get('/afos')
-            .then(response => {
-                const json = response.data;
-                this.setState({json});
-            });
+        // this.setState({isLoading: true});
+        // axios.get('/afos')
+        //     .then(response => {
+        //         const json = response.data;
+        //         this.setState({json});
+        //     });
     }
 
 }

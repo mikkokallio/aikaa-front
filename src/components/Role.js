@@ -4,9 +4,6 @@ import {Col} from 'react-bootstrap';
 import axios from "axios/index";
 
 class Role extends React.Component {
-    //state = {redirect: false};
-    poistaAfo = () => {
-    };
 
     remove =() => {
         //console.log("click!");
