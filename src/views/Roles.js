@@ -8,6 +8,20 @@ import NewRole from "../components/NewRole";
 class Roles extends React.Component {
     state = {json:[]};
 
+    load = () => {
+        this.setState({isLoading: true});
+        axios.get('/api/roles')
+            .then(response => {
+                const json = response.data;
+                this.setState({json});
+            });
+    };
+
+    update = () => {
+        this.load();
+        this.setState({refresh:true});
+    };
+
     render () {
         console.log(this.state.json);
 
@@ -23,23 +37,14 @@ class Roles extends React.Component {
                 <p>Add, update, delete. Muuta toiminnallisuutta ei tarvita tänne.</p>
                 <p>Rooleja voi poistaa helposti, mutta pitää olla varmistusdialogi.</p>
                 <Row>
-                    {this.state.json.map((data, index) => <Role key={index} data={data}/>)}
-                    <NewRole/>
+                    {this.state.json.map((data, index) => <Role callBack={this.update} key={index} data={data}/>)}
+                    <NewRole callBack={this.update}/>
                 </Row>
             </div>
         )
 
     }
-    componentDidMount()
-    {
-        this.setState({isLoading: true});
-        axios.get('/api/roles')
-            .then(response => {
-                const json = response.data;
-                this.setState({json});
-            });
-    }
-
+    componentDidMount() {this.load();}
 }
 
 export default Roles;
