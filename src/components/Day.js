@@ -1,0 +1,1 @@
+// Yksi pystysuunnassa oleva laari, johon tulee 96 Slot-komponenttia
