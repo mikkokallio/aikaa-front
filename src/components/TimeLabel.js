@@ -6,7 +6,7 @@ class TimeLabel extends React.Component {
 
     render() {
         return (
-            <div className="timeTable">
+            <div className="timeTable timeLabel">
                 {this.props.data}
             </div>
         )

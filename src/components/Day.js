@@ -8,9 +8,9 @@ class Day extends React.Component {
     render() {
         return (
             <div id="day" style={{display:'inline-block'}}>
+                <div style={{textAlign:'center',fontWeight:'bold'}}>{this.props.label}</div>
                 {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
             </div>
-
         )
     }
 
@@ -38,7 +38,7 @@ class Day extends React.Component {
 
     componentDidMount() {
         this.setState({isLoading: true});
-        axios.get('/api/bookings/user/1')
+        axios.get('/api/bookings/day/user/'+this.props.user+'?day='+this.props.day)
             .then(response => {
                 const json = response.data;
                 this.setState({json});
@@ -55,7 +55,7 @@ class Day extends React.Component {
                         var boxClass='middle';
                         var text = '.';
                         if (x==start) {
-                            boxClass+=' first';
+                            boxClass='first';
                             text = json[i].type;
                         }
                         if (x==end-1) boxClass+=' last';
