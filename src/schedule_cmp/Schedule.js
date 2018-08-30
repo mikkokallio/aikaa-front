@@ -1,6 +1,22 @@
 import React from 'react';
 import TimeLabel from "./TimeLabel";
 import Week from "./Week";
+import LocalizedStrings from 'react-localization';
+
+const strings = new LocalizedStrings({
+    fi:{
+        heading:"Aikataulu",
+        description:"Tässä näkymässä voit tarkastella mitä\n" +
+        "                    tapahtumia ja aktiviteetteja sinulle\n" +
+        "                    on tarjottu ja mitä olet hyväksynyt aikatauluusi.",
+        time:"Aika"
+    },
+    sv: {
+        heading:"Tidtabell",
+        description:"I den här vyn kan du se vilka evenemang som du har bokat osv.",
+        time:"Tid"
+    }
+});
 
 class Schedule extends React.Component {
     state = {labels: []};
@@ -8,16 +24,14 @@ class Schedule extends React.Component {
     render() {
         return (
             <div className="boxx">
-                <h1>Aikataulu / Tidtabell</h1>
+                <h1>{strings.heading}</h1>
                 <div className="alert alert-info">
-                    <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit tarkastella mitä
-                    tapahtumia ja aktiviteetteja sinulle
-                    on tarjottu ja mitä olet hyväksynyt aikatauluusi.
+                    <span className="glyphicon glyphicon-info-sign"></span> {strings.description}
                 </div>
                 <p>JS-kalenteri, joka värikoodaa päivät sen mukaan mitä agendalla on.</p>
                 <p><input type="date" placeholder="Valitse päivä"></input></p>
                 <div id="times" style={{display:'inline-block'}}>
-                    <div className="header">Aika</div>
+                    <div className="header">{strings.time}</div>
                     {this.state.labels.map((data, index) => <TimeLabel key={index} data={data}/>)}
                 </div>
                 <Week user="6" />

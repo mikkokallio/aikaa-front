@@ -9,12 +9,13 @@ import './App.css';
 import SideNav from "./layout/SideNav";
 // View components
 import Main from './main_cmp/Main';
-import Events from "./views/Events";
+import Events from "./events_cmp/Events";
 import Roles from "./roles_cmp/Roles";
 import Places from "./places_cmp/Places";
 import Profile from "./views/Profile";
 import Schedule from "./schedule_cmp/Schedule";
 import Users from "./views/Users";
+import EventListing from "./events_cmp/EventListing";
 
 const App = appProps => (
     <Router>
@@ -35,7 +36,7 @@ const App = appProps => (
                         <Route path="/profile/" component={Profile}/>
                         <Route path="/schedule/" component={Schedule}/>
                         <Route path="/users/" component={Users}/>
-                        <Route path="/x/" component={Profile}/>
+                        <Route path="/event/" component={EventListing}/>
                     </Switch>
                 </Col>
             </Row>
