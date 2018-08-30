@@ -3,13 +3,13 @@ import axios from 'axios';
 
 class NewSubEvent extends React.Component {
     state= { name: '', begin:'', end:'',
-        placeid:'', eventid:'1', type:'', workid:'1'};
+        placeId:'', eventId:'1', type:'', workId:'1'};
 
     handleCreateClick= (event) => {
         //event.preventDefault();
 
         axios.post('/api/subevents', { name:this.state.name, begin:this.state.begin, end:this.state.end,
-        placeid:this.state.placeid, eventid:this.state.eventid, type:this.state.type, workid:this.state.workid})
+        placeId:this.state.placeId, eventId:this.state.eventId, type:this.state.type, workId:this.state.workId})
         // name, begin, end, placeid, eventid, type, workid
             .then(res => {
                 this.props.callBack();
@@ -22,13 +22,13 @@ class NewSubEvent extends React.Component {
         this.setState({type: event.target.value});
     };
     handleBeginChange= (event) => {
-        this.setState({begin: event.target.value});
+        this.setState({begin: event.target.value+":00"});
     };
     handleEndChange= (event) => {
-        this.setState({end: event.target.value});
+        this.setState({end: event.target.value+":00"});
     };
     handlePlaceChange= (event) => {
-        this.setState({placeid: event.target.value});
+        this.setState({placeId: event.target.value});
     };
 
     render() {
@@ -38,7 +38,7 @@ class NewSubEvent extends React.Component {
                 <td><input type="text" placeholder="tyyppi" value={this.state.type} onChange={this.handleTypeChange}/></td>
                 <td><input type="datetime-local" placeholder="alkaa" value={this.state.begin} onChange={this.handleBeginChange}/></td>
                 <td><input type="datetime-local" placeholder="loppuu" value={this.state.end} onChange={this.handleEndChange}/></td>
-                <td><input type="text" placeholder="sijainti" value={this.state.placeid} onChange={this.handlePlaceChange}/></td>
+                <td><input type="text" placeholder="sijainti" value={this.state.placeId} onChange={this.handlePlaceChange}/></td>
                 <td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
         );
     }
