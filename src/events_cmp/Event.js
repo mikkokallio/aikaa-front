@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import Work from './Work';
 import SubEvent from './SubEvent';
 import axios from "axios/index";
+import NewSubEvent from "./NewSubEvent";
 
 class Event extends React.Component {
     state = { json: {subEvents:[],works:[]} };
 
     componentDidMount()
     {
+        this.load();
+    }
+
+    load = () => {
         this.setState({isLoading: true});
         axios.get('/api/events/1')
             .then(response => {
                 const json = response.data;
                 this.setState({json});
             });
-    }
+    };
 
     render() {
         return (
@@ -23,6 +28,7 @@ class Event extends React.Component {
                 <table className="boxx">
                     <tr><td>Tapahtuma</td><td>Tyyppi</td><td>Alkaa</td><td>Päättyy</td><td>Sijainti</td></tr>
                     {this.state.json.subEvents.map((data, index) => <SubEvent key={index} data={data}/>)}
+                    <NewSubEvent callBack={this.load}/>
                 </table>
                 <table className="boxx">
                     <tr><td>Teos</td><td>Säveltäjä</td><td>Kesto</td><td>Muusikot</td><td>Instrumentaatio</td></tr>
