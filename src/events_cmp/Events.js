@@ -2,6 +2,8 @@ import React from 'react';
 import EventListing from "./EventListing";
 import axios from "axios/index";
 import Event from "./Event";
+import EventEdit from "./EventEdit";
+import NewEvent from "./NewEvent";
 
 class Events extends React.Component {
     state = {json:[]};
@@ -34,6 +36,7 @@ class Events extends React.Component {
             <table className="boxx">
                 <tr><td>Tapahtuma</td><td>Osat</td><td>Säveltäjät</td></tr>
             {this.state.json.map((data, index) => <EventListing key={index} data={data}/>)}
+                <NewEvent callBack={this.load}/>
             </table>
             <Event/>
         </div>
@@ -41,13 +44,17 @@ class Events extends React.Component {
 
     componentDidMount()
     {
+        this.load();
+    }
+
+    load = () => {
         this.setState({isLoading: true});
         axios.get('/api/events')
             .then(response => {
                 const json = response.data;
                 this.setState({json});
             });
-    }
+    };
 
 }
 
