@@ -6,7 +6,7 @@ class Slot extends React.Component {
 
     render() {
         return (
-            <div className={"timeTable timeSlot "+this.props.data.box} id={this.props.data.id}>
+            <div style={{textAlign:'center',fontWeight:'bold'}} className={"timeTable timeSlot "+this.props.data.box} id={this.props.data.id}>
                 {this.props.data.text}
             </div>
         )
