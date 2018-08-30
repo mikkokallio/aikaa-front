@@ -1,6 +1,6 @@
 import React from 'react';
-import TimeLabel from "../components/TimeLabel";
-import Week from "../components/Week";
+import TimeLabel from "./TimeLabel";
+import Week from "./Week";
 
 class Schedule extends React.Component {
     state = {labels: []};

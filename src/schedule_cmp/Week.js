@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Day from "../components/Day";
+import Day from "./Day";
 
 class Week extends React.Component {
 

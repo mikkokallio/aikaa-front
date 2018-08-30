@@ -2,8 +2,8 @@ import React from 'react';
 import axios from "axios/index";
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
-import Role from '../components/Role';
-import NewRole from "../components/NewRole";
+import Role from './Role';
+import NewRole from "./NewRole";
 
 class Roles extends React.Component {
     state = {json:[]};

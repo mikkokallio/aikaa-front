@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from "axios/index";
 import {Row} from 'react-bootstrap';
-import Place from '../components/Place';
-import NewPlace from '../components/NewPlace';
+import Place from './Place';
+import NewPlace from './NewPlace';
 
 class Places extends React.Component {
     state = {json: []};

@@ -7,14 +7,13 @@ import {Col} from 'react-bootstrap';
 import './App.css';
 // Layout components
 import SideNav from "./layout/SideNav";
-import Top from "./layout/Top";
 // View components
-import Main from './views/Main';
+import Main from './main_cmp/Main';
 import Events from "./views/Events";
-import Roles from "./views/Roles";
-import Places from "./views/Places";
+import Roles from "./roles_cmp/Roles";
+import Places from "./places_cmp/Places";
 import Profile from "./views/Profile";
-import Schedule from "./views/Schedule";
+import Schedule from "./schedule_cmp/Schedule";
 import Users from "./views/Users";
 
 const App = appProps => (

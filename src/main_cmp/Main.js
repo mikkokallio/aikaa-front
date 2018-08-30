@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from "../components/Carousel";
+import Carousel from "./Carousel";
 import axios from "axios/index";
 
 class Main extends React.Component {

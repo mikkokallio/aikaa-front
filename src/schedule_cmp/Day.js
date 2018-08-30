@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Slot from "../components/Slot";
+import Slot from "./Slot";
 import axios from "axios/index";
 
 class Day extends React.Component {
