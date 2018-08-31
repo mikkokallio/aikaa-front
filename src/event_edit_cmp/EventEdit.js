@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Work from './Work';
-import SubEvent from './SubEvent';
+import Work from '../event_view_cmp/Work';
+import SubEvent from '../event_view_cmp/SubEvent';
 import axios from "axios/index";
 
 class EventEdit extends React.Component {

@@ -6,16 +6,17 @@ import {Col} from 'react-bootstrap';
 
 import './App.css';
 // Layout components
-import SideNav from "./layout/SideNav";
+import SideNav from "./layout_cmp/SideNav";
 // View components
 import Main from './main_cmp/Main';
-import Events from "./events_cmp/Events";
+import Events from "./events_list_cmp/Events";
 import Roles from "./roles_cmp/Roles";
 import Places from "./places_cmp/Places";
-import Profile from "./views/Profile";
+import Profile from "./users_cmp/Profile";
 import Schedule from "./schedule_cmp/Schedule";
-import Users from "./views/Users";
-import EventListing from "./events_cmp/EventListing";
+import Users from "./users_cmp/Users";
+import Event from "./event_view_cmp/Event";
+
 
 const App = appProps => (
     <Router>
@@ -30,13 +31,13 @@ const App = appProps => (
                 <Col xs={10} md={10}>
                     <Switch>
                         <Route exact path="/" component={Main}/>
-                        <Route path="/events/" component={Events}/>
+                        <Route exact path="/events/" component={Events}/>
+                        <Route path="/events/" component={Event}/>
                         <Route path="/roles/" component={Roles}/>
                         <Route path="/places/" component={Places}/>
                         <Route path="/profile/" component={Profile}/>
                         <Route path="/schedule/" component={Schedule}/>
                         <Route path="/users/" component={Users}/>
-                        <Route path="/event/" component={EventListing}/>
                     </Switch>
                 </Col>
             </Row>
