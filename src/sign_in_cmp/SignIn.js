@@ -18,6 +18,7 @@ class SignIn extends React.Component {
                 console.log(localStorage.getItem("token"));
                 var decoded = jwt.decode(res.data, { complete: true });
                 console.log(decoded.payload.auth);
+                console.log(decoded.payload);
             });
     };
     handleNameChange = (event) => {
