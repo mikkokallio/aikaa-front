@@ -74,6 +74,9 @@ li span.glyphicon {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    -webkit-box-shadow: 0 0 4px #000;
+    -moz-box-shadow: 0 0 4px #000;
+    box-shadow: 0 0 4px #000;
 }
 
 .role {

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Col} from 'react-bootstrap';
 
 class NewRole extends React.Component {
-    state= { name: '', categoryId: ''};
+    state= { json: [], name: '', categoryId: ''};
     handleCreateClick= (event) => {
         //event.preventDefault();
 
@@ -19,14 +19,31 @@ class NewRole extends React.Component {
         this.setState({categoryId: event.target.value});
     };
 
-    render() {
+componentDidMount() {this.load();
+}
+    load = () => {
+        this.setState({isLoading: true});
+        axios.get('/api/rolecategories')
+            .then(response => {
+                const json = response.data;
+                this.setState({json});
+            });
+    };
+
+
+
+render() {
         return(
-            <Col xs={2} md={2} className="boxx alert alert-warning"><span className="glyphicon glyphicon-tag"></span>
-                    <input type="text" style={{width:'80px'}} placeholder="nimi" value={this.state.name} onChange={this.handleNameChange}/>
-                    <input type="text" style={{width:'40px'}} placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}/>
-                <div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></Col>
+            <div className="role alert alert-success"><span className="glyphicon glyphicon-tag"></span>
+                    <input type="text" style={{width:'120px'}} placeholder="uusi rooli" value={this.state.name} onChange={this.handleNameChange}/>
+                <div style={{display:'inline-block'}}><select placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}>
+                    {this.state.json.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                </select></div>
+
+                <div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></div>
         );
     }
+
 }
 
 export default NewRole;
