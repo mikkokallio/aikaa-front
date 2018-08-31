@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios/index";
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
-import User from "../components/User";
+import User from "./User";
 
 class Schedule extends React.Component {
     state = {json: []};

@@ -58,9 +58,9 @@ li span.glyphicon {
 .boxx {
     background-color: #fff;
     border-radius: 2px;
-    -webkit-box-shadow: 0 0 8px #d8dbe3;
-    -moz-box-shadow: 0 0 8px #d8dbe3;
-    box-shadow: 0 0 8px #d8dbe3;
+    -webkit-box-shadow: 0 0 8px #666;
+    -moz-box-shadow: 0 0 8px #666;
+    box-shadow: 0 0 8px #666;
     padding: 20px;
     margin: 20px;
     -webkit-transition: 0.5s;
@@ -180,23 +180,22 @@ h1 {
 }
 
 th {
-    background-color: #ddd;
+    background-image: -webkit-linear-gradient(top,#d9edf7 0,#b9def0 100%);
+    background-image: -o-linear-gradient(top,#d9edf7 0,#b9def0 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#d9edf7),to(#b9def0));
+    background-image: linear-gradient(to bottom,#d9edf7 0,#b9def0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
 }
-tr {
-    border-bottom: #2e353d 1px solid;
-}
-td {
+/*tr {*/
+    /*border-bottom: #2e353d 1px solid;*/
+/*}*/
+td,th {
     padding:5px;
 }
 
 body {
     background-color: #d8dbe3;
 }
-
-/*Nav {*/
-    /*margin:50%;*/
-    /*text-align:right;*/
-/*}*/
 
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
@@ -295,9 +294,8 @@ body {
     .nav-side-menu .menu-list .menu-content {
         display: block;
     }
-    #main {
-        width:calc(100% - 300px);
-        float: right;
-    }
+    /*#main {*/
+        /*width:calc(100% - 300px);*/
+        /*float: right;*/
+    /*}*/
 }
-
