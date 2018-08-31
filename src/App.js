@@ -16,7 +16,7 @@ import Profile from "./users_cmp/Profile";
 import Schedule from "./schedule_cmp/Schedule";
 import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
-
+import SignIn from "./sign_in_cmp/SignIn";
 
 const App = appProps => (
     <Router>
@@ -38,6 +38,7 @@ const App = appProps => (
                         <Route path="/profile/" component={Profile}/>
                         <Route path="/schedule/" component={Schedule}/>
                         <Route path="/users/" component={Users}/>
+                        <Route path="/signin/" component={SignIn}/>
                     </Switch>
                 </Col>
             </Row>

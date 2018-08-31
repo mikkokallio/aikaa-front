@@ -5,6 +5,7 @@ import LocalizedStrings from 'react-localization';
 
 const strings = new LocalizedStrings({
     fi:{
+        signin:"Sisäänkirjautuminen",
         dashboard:"Yhteenveto",
         profile:"Profiili",
         users:"Käyttäjät",
@@ -16,6 +17,7 @@ const strings = new LocalizedStrings({
         bookings:"Varaukset"
     },
     sv: {
+        signin:"Inloggning",
         dashboard:"???",
         profile:"Profil",
         users:"Användare",
@@ -83,6 +85,7 @@ class SideNav extends React.Component {
                     <div className="menu-list">
                         <div className="g-signin2" data-onsuccess="onSignIn"></div>
                         <ul id="menu-content" className="menu-content collapse out">
+                            <li><span className="glyphicon glyphicon-dashboard"></span><a href="/signin">{strings.signin}</a></li>
                             <li><span className="glyphicon glyphicon-dashboard"></span><a href="/">{strings.dashboard}</a></li>
                             <li><span className="glyphicon glyphicon-user"></span><a href="/profile">{strings.profile}</a></li>
                             <li><span className="glyphicon glyphicon-list-alt"></span><a href="/users">{strings.users}</a></li>
