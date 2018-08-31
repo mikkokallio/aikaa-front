@@ -24,6 +24,7 @@ class Profile extends React.Component {
     };
 
     render() {
+        console.log(this.state.user.roles);
         return (
             <div className="boxx">
                 <h1>Profiili / Profil</h1>
@@ -43,6 +44,8 @@ class Profile extends React.Component {
                     <Col xs={2} md={2}><input type="text" placeholder="email" value={this.state.user.email} onChange={this.handleEmailChange}/></Col>
                 </Row>
                 <Row>
+                    <Col xs={2} md={2}>Kuvan osoite</Col>
+                    <Col xs={2} md={2}><input type="text"/></Col>
                     <Col xs={2} md={2}>Osoite</Col>
                     <Col xs={2} md={2}><input type="text"/></Col>
                     <Col xs={2} md={2}>Puhelinnumero</Col>
@@ -63,11 +66,10 @@ class Profile extends React.Component {
                 {/*]*/}
                 {/*<td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>*/}
 
-        Roolit: Tänne + nappi ja "tägi-pilvi"
-                <Row>
-                    {this.state.user.roles.map((line, index) =>
-                        <Role key={index} data={line}/>)}
-                </Row>
+                <p>Roolit: Tänne + nappi ja "tägi-pilvi"</p>
+                {this.state.user.name}
+                {/*{this.state.user.roles.map((line, index) => <Role key={index} data={line}/>)}*/}
+
                 <p>TÄHÄN toinen dropdown, josta valitaan ensin roolien kategoria (esim. jouset)!</p>
                 <td><select placeholder="rooli" value={this.state.placeId} onChange={this.handleRoleChange}>
                 {this.state.roleList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
