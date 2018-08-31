@@ -17,7 +17,7 @@ class NewEvent extends React.Component {
 
     render() {
         return(
-            <tr><td><span className="glyphicon glyphicon-tag"></span>
+            <tr><td><span className="glyphicon glyphicon-flag"></span>
                 <input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange}/></td>
                 <td colspan="2"><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
         );

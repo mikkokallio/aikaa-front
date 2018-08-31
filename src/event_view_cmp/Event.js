@@ -41,7 +41,7 @@ class Event extends React.Component {
                     </thead>
                     <tbody>
                     {this.state.json.subEvents.map((data, index) => <SubEvent key={index} data={data}/>)}
-                    <NewSubEvent callBack={this.load}/>
+                    <NewSubEvent event={this.state.json.id} callBack={this.load}/>
                     </tbody>
                 </table>
                 <table className="boxx table-striped">
