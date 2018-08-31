@@ -24,9 +24,9 @@ class NewRole extends React.Component {
             <Col xs={2} md={2} className="boxx alert alert-warning"><span className="glyphicon glyphicon-tag"></span>
                     <input type="text" style={{width:'80px'}} placeholder="nimi" value={this.state.name} onChange={this.handleNameChange}/>
                     <input type="text" style={{width:'40px'}} placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}/>
-                {/*<td><select placeholder="luokka" value={this.state.placeId} onChange={this.handleCategoryChange}>*/}
-                    {/*{this.state.categories.map((data, index) => <option value={data.categoryId} label={data.category} data={data}/>)}*/}
-                {/*</select></td>*/}
+                <td><select placeholder="luokka" value={this.state.placeId} onChange={this.handleCategoryChange}>
+                    {this.state.categories.map((data, index) => <option value={data.categoryId} label={data.category} data={data}/>)}
+                </select></td>
 
                 <div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></Col>
         );
