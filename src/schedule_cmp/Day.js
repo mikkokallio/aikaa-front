@@ -50,16 +50,16 @@ class Day extends React.Component {
 
                 for (var i = 0; i < json.length; i++) {
                     let start = this.convertToSlots(json[i].begin.substring(11));
-                    let end = this.convertToSlots(json[i].end.substring(11));
-                    for (var x = start; x < end; x++) {
+                    let ending = this.convertToSlots(json[i].ending.substring(11));
+                    for (var x = start; x < ending; x++) {
                         var boxClass='middle';
                         var text = '';
                         if (x==start) {
                             boxClass='first';
                             text = json[i].type;
                         }
-                        if (x==end-1) boxClass+=' last';
-                        console.log(start+","+end+","+x+","+boxClass);
+                        if (x==ending-1) boxClass+=' last';
+                        console.log(start+","+ending+","+x+","+boxClass);
 
                         slots[x] = {id:json[i].id,text:text,box:boxClass};
                     }

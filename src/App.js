@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Grid} from 'react-bootstrap';
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
+import axios from "axios/index";
 
 import './App.css';
 // Layout components
@@ -17,6 +18,8 @@ import Schedule from "./schedule_cmp/Schedule";
 import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
 import SignIn from "./sign_in_cmp/SignIn";
+
+axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("token");
 
 const App = appProps => (
     <Router>
