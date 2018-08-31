@@ -13,12 +13,13 @@ class SignIn extends React.Component {
         axios.post('/signin', { username:this.state.username, password:this.state.password })
             .then(res => {
                 //this.props.callBack();
+                console.log(res);
             });
     };
     handleNameChange= (event) => {
         this.setState({username: event.target.value});
     };
-    handleEmailChange= (event) => {
+    handlePswChange= (event) => {
         this.setState({password: event.target.value});
     };
 
@@ -33,9 +34,11 @@ class SignIn extends React.Component {
                 <p>Formi antaa palautetta virheellisestä syötteestä?</p>
                 <Row>
                     <Col xs={2} md={2}>Nimi</Col>
-                    <Col xs={2} md={2}><input type="text" placeholder="nimi" value={this.state.username} onChange={this.handleNameChange}/></Col>
+                    <Col xs={2} md={2}><input type="text" value={this.state.username} onChange={this.handleNameChange}/></Col>
+                </Row>
+                <Row>
                     <Col xs={2} md={2}>Salasana</Col>
-                    <Col xs={2} md={2}><input type="text" placeholder="email" value={this.state.password} onChange={this.handleEmailChange}/></Col>
+                    <Col xs={2} md={2}><input type="password" value={this.state.password} onChange={this.handlePswChange}/></Col>
                 </Row>
                 <Row>
                     <Col xs={2} md={2}><input className="btn btn-primary" type="submit"

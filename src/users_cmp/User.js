@@ -15,7 +15,7 @@ class User extends React.Component {
 
     render() {
         return (
-            <div className="boxx"><img src="https://canvas.academy.se/images/thumbnails/13228/JlTtwjt204DcoyviW8mkENZGz2NHmUFvnEsClWqF" alt="Avatar" className="avatar"/>
+            <div className="boxx"><img src={this.props.data.picurl} alt="Avatar" className="avatar"/>
                 <div style={{display:'inline-block', marginLeft:'1em', width:'12em'}}>{this.props.data.name}</div>
                 {this.props.data.roles.map((line, index) =>
                     <Role key={index} data={line}/>)}
