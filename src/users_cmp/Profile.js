@@ -5,7 +5,7 @@ import {Col} from 'react-bootstrap';
 import Role from '../roles_cmp/Role';
 
 class Profile extends React.Component {
-    state = {roleList: [], user: []};
+    state = {categories: [], roleList: [], user: []};
 
     handleNameChange = (event) => {
         this.setState({user:{name: event.target.value}});
@@ -22,6 +22,10 @@ class Profile extends React.Component {
     handleRoleChange = (event) => {
         this.setState({roleId: event.target.value});
     };
+    handleCategoryChange= (event) => {
+        this.setState({categoryId: event.target.value});
+    };
+
 
     render() {
         console.log(this.state.user.roles);
@@ -66,13 +70,16 @@ class Profile extends React.Component {
                 {/*]*/}
                 {/*<td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>*/}
 
-                <p>Roolit: Tänne + nappi ja "tägi-pilvi"</p>
+                <p>Roolit: Tänne + nappi</p>
                 {this.state.user.roles?this.state.user.roles.map((line, index) => <Role key={index} data={line}/>):'LOADING, oh my!'}
 
-                <p>TÄHÄN toinen dropdown, josta valitaan ensin roolien kategoria (esim. jouset)!</p>
-                <td><select placeholder="rooli" value={this.state.placeId} onChange={this.handleRoleChange}>
+                <div style={{display:'inline-block'}}><select placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}>
+                    {this.state.categories.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                </select></div>
+
+                <div><select placeholder="rooli" value={this.state.placeId} onChange={this.handleRoleChange}>
                 {this.state.roleList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
-                </select></td>
+                </select></div>
 
                 <Row>
                     <Col xs={2} md={2}><input className="btn btn-primary" type="submit"
@@ -98,6 +105,11 @@ class Profile extends React.Component {
             .then(response => {
                 const user = response.data;
                 this.setState({user});
+            });
+        axios.get('/api/rolecategories')
+            .then(response => {
+                const categories = response.data;
+                this.setState({categories});
             });
     }
 
