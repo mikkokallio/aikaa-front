@@ -67,8 +67,7 @@ class Profile extends React.Component {
                 {/*<td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>*/}
 
                 <p>Roolit: Tänne + nappi ja "tägi-pilvi"</p>
-                {this.state.user.name}
-                {/*{this.state.user.roles.map((line, index) => <Role key={index} data={line}/>)}*/}
+                {this.state.user.roles?this.state.user.roles.map((line, index) => <Role key={index} data={line}/>):'LOADING, oh my!'}
 
                 <p>TÄHÄN toinen dropdown, josta valitaan ensin roolien kategoria (esim. jouset)!</p>
                 <td><select placeholder="rooli" value={this.state.placeId} onChange={this.handleRoleChange}>
