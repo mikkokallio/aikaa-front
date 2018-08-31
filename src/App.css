@@ -69,6 +69,13 @@ li span.glyphicon {
     transition: 0.5s;
 }
 
+.avatar {
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
 .role {
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
@@ -77,28 +84,38 @@ li span.glyphicon {
     opacity: 1;
     visibility: visible;
     text-shadow: 1px 1px #fff;
+    width:12em;
+    display:inline-block;
+    margin-left:15px;
+    padding:3px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 8px #666;
+    -moz-box-shadow: 0 0 8px #666;
+    box-shadow: 0 0 8px #666;
+    overflow:hidden;
+    vertical-align:middle;
 }
 
 .role1 {
-    color: red;
+    background-color: azure;
 }
 .role2 {
-    color: blue;
+    background-color: bisque;
 }
 .role3 {
-    color: green;
+    background-color: coral;
 }
 .role4 {
-    color: yellow;
+    background-color: darkkhaki;
 }
 .role5 {
-    color: brown;
+    background-color: lightblue;
 }
 .role6 {
-    color: purple;
+    background-color: floralwhite;
 }
 .role7 {
-    color: silver;
+    background-color: greenyellow;
 }
 
 .role.fadeout {

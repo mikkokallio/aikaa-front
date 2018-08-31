@@ -24,9 +24,9 @@ class Role extends React.Component {
     render() {
 
         return (
-            <Col xs={2} md={2} className={"boxx alert alert-success role role"+this.props.data.categoryId}>
-                <span className="glyphicon glyphicon-tag"></span> {this.props.data.name} {this.props.data.categoryId}
-                <div className="circle" onClick={this.remove}><span className="glyphicon glyphicon-remove"></span></div></Col>
+            <div className={"role role"+this.props.data.categoryId}>
+                <span className="glyphicon glyphicon-tag"></span> {this.props.data.name}
+                <div className="circle" onClick={this.remove}><span className="glyphicon glyphicon-remove"></span></div></div>
         )
     }
 }

@@ -20,12 +20,6 @@ class Schedule extends React.Component {
                 <p>Listaa, filtteröi, poista, muokkaa.</p>
                 <p>Täältä linkki jokaisesta profiili-kortista itse profiiliin, joka vastaa Profile-palikkaa.</p>
                 <Row>
-                    <User name="Testi"/>
-                    <User name="Jorma"/>
-                    <User name="Liisa"/>
-                    <User name="Janne"/>
-                    <User name="Teuvo"/>
-
                     {this.state.json.map((line, index) =>
                         <User key={index} data={line}/>)}
                 </Row>
@@ -36,13 +30,12 @@ class Schedule extends React.Component {
 
     componentDidMount() {
         this.setState({isLoading: true});
-        axios.get('/afos')
+        axios.get('/api/users')
             .then(response => {
                 const json = response.data;
                 this.setState({json});
             });
     }
-
 }
 
 export default Schedule;

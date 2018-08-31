@@ -1,29 +1,25 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router';
-import {Col} from 'react-bootstrap';
+import Role from '../roles_cmp/Role';
 
 import axios from "axios/index";
 
 class User extends React.Component {
-    state = {redirect: false};
-    poistaAfo = () => {
-        axios.delete('/afos/poista/' + this.props.data.id)
-            .then(res => {});
-        var elem = document.getElementById(this.props.data.id);
-        elem.style.textDecoration = "line-through";
-    };
-
-    handleClick = () => {
-        this.setState({redirect: true});
-    };
+    state = {user:[]};
+    // poistaAfo = () => {
+    //     axios.delete('/afos/poista/' + this.props.data.id)
+    //         .then(res => {});
+    //     var elem = document.getElementById(this.props.data.id);
+    //     elem.style.textDecoration = "line-through";
+    // };
 
     render() {
-        // Redirect needed if clicking a user opens a different view?
-        if (this.state.redirect) {
-            return <Redirect push to="/aforismi" data={this.props.data.quote}/>;
-        }
         return (
-            <Col xs={3} md={3} className="boxx"><span className="glyphicon glyphicon-user"></span>{this.props.name}</Col>
+            <div className="boxx"><img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" className="avatar"/>
+                <div style={{display:'inline-block', marginLeft:'1em', width:'12em'}}>{this.props.data.name}</div>
+                {this.props.data.roles.map((line, index) =>
+                    <Role key={index} data={line}/>)}
+            </div>
         )
     }
 }
