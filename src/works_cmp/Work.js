@@ -3,8 +3,7 @@ import React, {Component} from 'react';
 class Work extends React.Component {
 
     openWork = (evt) => {
-        console.log("Hiphei!");
-        const url = '/events/' + this.props.data.id;
+        const url = '/works/' + this.props.data.id;
         this.props.history.push(url);
     };
 
