@@ -14,7 +14,7 @@ class WorksList extends React.Component {
                 {/*Alla oleva varmaankin vaaditaan jollekin tasolle jos haluaa mennä juuri tiettyyn workkiin!*/}
                 {/*{this.state.json.map((data, index) => <Work {...this.props} id={this.state.json.id} key={index} data={data}/>)}*/}
 
-                <NewWork callBack={this.load} eventid={this.props.eventid}/>
+                <NewWork {...this.props} callBack={this.props.callBack} eventid={this.props.eventid}/>
                 {/*Tähän tulee nappi jolla voi lisätä biisejä subeihin. Näkyy vain tietyssä kontekstissa.*/}
                 {/*<AddWork/>*/}
                 </tbody>

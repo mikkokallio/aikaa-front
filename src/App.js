@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Grid} from 'react-bootstrap';
-import {Row} from 'react-bootstrap';
-import {Col} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Grid } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import axios from "axios/index";
 
 import './App.css';
@@ -25,7 +25,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
 
 //`Bearer ${token}`;
 class App extends Component {
-    state = {mode: localStorage.getItem("mode")};
+    state = { mode: localStorage.getItem("mode") };
 
     render() {
         return (
@@ -33,23 +33,24 @@ class App extends Component {
                 <div className="App">
                     {/*<Grid>*/}
                     <Row>
-                        <Col xs={2} md={2}><SideNav mode={this.state.mode}/></Col>
+                        <Col xs={2} md={2}><SideNav mode={this.state.mode} /></Col>
                         <Col xs={10} md={10}>
                             <Switch>
-                                <Route exact path="/" component={Main}/>
-                                <Route exact path="/events/" component={Events}/>
-                                <Route path="/events/" component={Event}/>
-                                <Route path="/profile/" component={Profile}/>
-                                <Route path="/schedule/" component={Schedule}/>
+                                <Route exact path="/" component={Main} />
+                                <Route exact path="/events/" component={Events} />
+                                <Route path="/events/:id" render={(props) =>
+                                    (<Event {...props} />)} />
+                                <Route path="/profile/" component={Profile} />
+                                <Route path="/schedule/" component={Schedule} />
                                 {this.state.mode === 'unknown' &&
-                                <Route path="/signin/" component={SignIn}/>
+                                    <Route path="/signin/" component={SignIn} />
                                 }
                                 {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN') && <div>
-                                    <Route path="/roles/" component={Roles}/>
-                                    <Route path="/places/" component={Places}/>
-                                    <Route path="/users/" component={Users}/>
-                                    <Route exact path="/works/" component={Works}/>
-                                    <Route path="/works/" component={EditWork}/>
+                                    <Route path="/roles/" component={Roles} />
+                                    <Route path="/places/" component={Places} />
+                                    <Route path="/users/" component={Users} />
+                                    <Route exact path="/works/" component={Works} />
+                                    <Route path="/works/" component={EditWork} />
                                 </div>}
                             </Switch>
                         </Col>

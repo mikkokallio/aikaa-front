@@ -9,15 +9,15 @@ class NewWork extends React.Component {
 		if (this.props.eventid) {
 			requestparam += '?event=true&eventid='+this.props.eventid;
         }
-        console.log(requestparam);
-
         axios.post('/api/works'+requestparam, { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
             durationInMinutes:this.state.durationInMinutes, roleList:null, instrumentation:this.state.instrumentation})
             .then(res => {
-                //this.props.callBack();
+                this.props.callBack();
+                this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
             });
-        this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
+        // this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
     };
+
     handleNameChange= (event) => {
         this.setState({work: event.target.value});
     };

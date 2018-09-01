@@ -42,10 +42,10 @@ class Event extends React.Component {
                     </thead>
                     <tbody>
                     {this.state.json.subEvents.map((data, index) => <SubEvent key={index} data={data}/>)}
-                    <NewSubEvent event={this.state.json.id} callBack={this.load}/>
+                    <NewSubEvent eventid={this.state.json.id} event={this.state.json.id} callBack={this.load}/>
                     </tbody>
                 </table>
-                <WorksList data={this.state.json.works} eventid={this.state.json.id}/>
+                <WorksList {...this.props} data={this.state.json.works} eventid={this.state.json.id} callBack={this.load}/>
             </div>
         )
     }

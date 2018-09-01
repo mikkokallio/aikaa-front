@@ -24,7 +24,7 @@ class Events extends React.Component {
                 </thead>
                 <tbody>
             {this.state.json.map((data, index) => <EventListing {...this.props} id={this.state.json.id} key={index} data={data}/>)}
-                <NewEvent callBack={this.load}/>
+                <NewEvent {...this.props} callBack={this.load}/>
                 </tbody>
             </table>
             {/*<Event/>*/}
