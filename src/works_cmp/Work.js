@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 
 class Work extends React.Component {
 
-    handleCreateClick () {
-
-    }
+    openWork = (evt) => {
+        console.log("Hiphei!");
+        const url = '/events/' + this.props.data.id;
+        this.props.history.push(url);
+    };
 
     render() {
+        const { history } = this.props;
         console.log(this.props);
         return (
             <tr>
@@ -15,7 +18,7 @@ class Work extends React.Component {
                 <td>{this.props.data.durationInMinutes}</td>
                 <td>{this.props.data.musicians}</td>
                 <td>{this.props.data.instrumentation}</td>
-                <td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-edit"></span></div></td>
+                <td><div className="circle" onClick={this.openWork}><span className="glyphicon glyphicon-edit"></span></div></td>
             </tr>
         )
     }
