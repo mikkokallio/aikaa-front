@@ -44,7 +44,7 @@ class App extends Component {
                                 {this.state.mode === 'unknown' &&
                                 <Route path="/signin/" component={SignIn}/>
                                 }
-                                {(this.state.mode === 'admin' || this.state.mode === 'superadmin') && <div>
+                                {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN') && <div>
                                     <Route path="/roles/" component={Roles}/>
                                     <Route path="/places/" component={Places}/>
                                     <Route path="/users/" component={Users}/>

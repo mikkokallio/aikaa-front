@@ -66,13 +66,13 @@ class SideNav extends React.Component {
                     <div className="brand"><span className="redeye glyphicon glyphicon-eye-open"></span> Red-I</div>
                     <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
                     <div className="menu-list">
-                        <div className="g-signin2" data-onsuccess="onSignIn"></div>
+                        {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
                         <ul id="menu-content" className="menu-content collapse out">
                             {(this.props.mode === 'unknown') &&
                             <li><span className="glyphicon glyphicon-dashboard"></span><a
                                 href="/signin">{strings.signin}</a></li>
                             }
-                            {(this.props.mode === 'user' || this.props.mode === 'admin' || this.props.mode === 'superadmin') && <div>
+                            {(this.props.mode === 'ROLE_USER' || this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') && <div>
                             <li><span className="glyphicon glyphicon-dashboard"></span><a
                                 href="/">{strings.front}</a></li>
                             <li><span className="glyphicon glyphicon-user"></span><a
@@ -84,7 +84,7 @@ class SideNav extends React.Component {
                             <li><span className="glyphicon glyphicon-flag"></span><a href="/events">{strings.events}</a>
                             </li>
                             </div>}
-                            {(this.props.mode === 'admin' || this.props.mode === 'superadmin') &&
+                            {(this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') &&
                             <div>
                                 <li><span className="glyphicon glyphicon-music"></span><a
                                     href="/works">{strings.works}</a></li>
@@ -111,9 +111,9 @@ class SideNav extends React.Component {
                             {/*</ul>*/}
                             <li>
                                 <a href="#" onClick={() => this.setMode('unknown')}>unknown</a>/
-                                <a href="#" onClick={() => this.setMode('user')}>user</a>/
-                                <a href="#" onClick={() => this.setMode('admin')}>admin</a>/
-                                <a href="#" onClick={() => this.setMode('superadmin')}>superadmin</a>
+                                <a href="#" onClick={() => this.setMode('ROLE_USER')}>user</a>/
+                                <a href="#" onClick={() => this.setMode('ROLE_ADMIN')}>admin</a>/
+                                <a href="#" onClick={() => this.setMode('ROLE_SUPERADMIN')}>superadmin</a>
                             </li>
                         </ul>
                     </div>

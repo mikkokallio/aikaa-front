@@ -1,16 +1,22 @@
 import React from 'react';
 import axios from 'axios';
 
-class NewEvent extends React.Component {
-    state= { work: '',composer: ''};
+class NewWork extends React.Component {
+    state= { work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''};
     handleCreateClick= (event) => {
         //event.preventDefault();
+        let requestparam = '';
+		if (this.props.eventid) {
+			requestparam += '?event=true&eventid='+this.props.eventid;
+        }
+        console.log(requestparam);
 
-        axios.post('/api/works', { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
+        axios.post('/api/works'+requestparam, { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
             durationInMinutes:this.state.durationInMinutes, roleList:null, instrumentation:this.state.instrumentation})
             .then(res => {
                 //this.props.callBack();
             });
+        this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
     };
     handleNameChange= (event) => {
         this.setState({work: event.target.value});
@@ -36,9 +42,9 @@ class NewEvent extends React.Component {
                 <td><input style={{width:'20px'}} type="text" placeholder="" value={this.state.durationInMinutes} onChange={this.handleDurationChange}/></td>
                 <td><input style={{width:'20px'}} type="text" placeholder="" value={this.state.musicians} onChange={this.handleMusChange}/></td>
                 <td><input type="text" placeholder="" value={this.state.instrumentation} onChange={this.handleInstChange}/></td>
-                <td colspan="2"><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
+                <td colSpan="2"><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
         );
     }
 }
 
-export default NewEvent;
+export default NewWork;

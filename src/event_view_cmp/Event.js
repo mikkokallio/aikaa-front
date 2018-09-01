@@ -45,7 +45,7 @@ class Event extends React.Component {
                     <NewSubEvent event={this.state.json.id} callBack={this.load}/>
                     </tbody>
                 </table>
-                <WorksList data={this.state.json.works}/>
+                <WorksList data={this.state.json.works} eventid={this.state.json.id}/>
             </div>
         )
     }

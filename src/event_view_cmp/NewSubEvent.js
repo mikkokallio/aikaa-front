@@ -51,7 +51,7 @@ class NewSubEvent extends React.Component {
                 <td><input type="datetime-local" placeholder="alkaa" value={this.state.begin} onChange={this.handleBeginChange}/></td>
                 <td><input type="datetime-local" placeholder="loppuu" value={this.state.ending} onChange={this.handleEndChange}/></td>
                 <td><select placeholder="sijainti" value={this.state.placeId} onChange={this.handlePlaceChange}>
-                    {this.state.json.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                    {this.state.json.map((data, index) => <option key={data.id} value={data.id} label={data.name} data={data}/>)}
                 </select></td>
                 <td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
         );
