@@ -19,7 +19,7 @@ import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
 import SignIn from "./sign_in_cmp/SignIn";
 
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
 
 //`Bearer ${token}`;
 class App extends React.Component {
