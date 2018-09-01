@@ -15,7 +15,8 @@ class SignIn extends React.Component {
         axios.post('/signin', { username: this.state.username, password: this.state.password })
             .then(res => {
                 console.log(res);
-                localStorage.setItem("token", "Bearer " + res.data);
+                let token = res.data;
+                localStorage.setItem("token", "Bearer " + token);
                 console.log(localStorage.getItem("token"));
                 var decoded = jwt.decode(res.data, { complete: true });
                 console.log(decoded.payload.auth);
