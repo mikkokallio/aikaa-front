@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Work from './Work';
+import Work from '../works_cmp/Work';
 import SubEvent from './SubEvent';
 import axios from "axios/index";
 import NewSubEvent from "./NewSubEvent";
+import WorksList from "../works_cmp/WorksList";
 
 class Event extends React.Component {
     state = { json: {subEvents:[],works:[]} };
@@ -44,35 +45,10 @@ class Event extends React.Component {
                     <NewSubEvent event={this.state.json.id} callBack={this.load}/>
                     </tbody>
                 </table>
-                <table className="boxx table-striped">
-                    <thead>
-                    <tr><th>Teos</th><th>Säveltäjä</th><th>Kesto</th><th>Muusikot</th><th>Instrumentaatio</th></tr>
-                    </thead>
-                    <tbody>{this.state.json.works.map((data, index) => <Work key={index} data={data}/>)}
-                    </tbody>
-                </table>
+                <WorksList data={this.state.json.works}/>
             </div>
         )
     }
 }
 
 export default Event;
-
-// TÄMÄ on mielenkiintoinen -- näytä jotain sillä välin kun lataa!! Ehkä position: fixed -aikajuttu?
-//     render() {
-//                 {maa ?
-//                     <ListGroup>
-//                         <ListGroupItem>Nimi: {maa.name}</ListGroupItem>
-//                         <ListGroupItem>Paikallinen nimi: {maa.localName||'-'}</ListGroupItem>
-//                         <ListGroupItem>Maanosa: {maa.continent}</ListGroupItem>
-//                         <ListGroupItem>Pääkaupunki: {maa.capital ? maa.capital.name : '-'}</ListGroupItem>
-//                         <ListGroupItem>Asukasluku: {maa.population}</ListGroupItem>
-//                         <ListGroupItem>Päämies: {maa.headOfState}</ListGroupItem>
-//                     </ListGroup>
-//                     :
-//                     <p>Haetaan dataa</p>
-//                 }
-//             </div>
-//         );
-//     }
-// }

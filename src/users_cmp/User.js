@@ -2,16 +2,8 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router';
 import Role from '../roles_cmp/Role';
 
-import axios from "axios/index";
-
 class User extends React.Component {
     state = {user:[]};
-    // poistaAfo = () => {
-    //     axios.delete('/afos/poista/' + this.props.data.id)
-    //         .then(res => {});
-    //     var elem = document.getElementById(this.props.data.id);
-    //     elem.style.textDecoration = "line-through";
-    // };
 
     render() {
         return (
@@ -25,11 +17,3 @@ class User extends React.Component {
 }
 
 export default User;
-
-{/*<div>*/}
-{/*<dl style={{"background-color":"#EEE"}} onClick={this.handleClick} id={this.props.data.id}>*/}
-{/*<dt><b>{this.props.data.quote}</b></dt>*/}
-{/*<dd>{this.props.data.author}<button style={{"margin-bottom":"30px","margin-top":"0px"}} onClick={this.poistaAfo}><span className="glyphicon glyphicon-trash"*/}
-{/*aria-hidden="true"></span></button></dd>*/}
-{/*</dl>*/}
-{/*</div>*/}

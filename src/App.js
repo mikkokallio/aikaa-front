@@ -17,12 +17,13 @@ import Profile from "./users_cmp/Profile";
 import Schedule from "./schedule_cmp/Schedule";
 import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
+import Works from "./works_cmp/Works";
 import SignIn from "./sign_in_cmp/SignIn";
 
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+//axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
 
 //`Bearer ${token}`;
-class App extends React.Component {
+class App extends Component {
     state = {mode: localStorage.getItem("mode")};
 
     render() {
@@ -42,10 +43,11 @@ class App extends React.Component {
                                 {this.state.mode === 'unknown' &&
                                 <Route path="/signin/" component={SignIn}/>
                                 }
-                                {this.state.mode === 'admin' && <div>
+                                {(this.state.mode === 'admin' || this.state.mode === 'superadmin') && <div>
                                     <Route path="/roles/" component={Roles}/>
                                     <Route path="/places/" component={Places}/>
                                     <Route path="/users/" component={Users}/>
+                                    <Route path="/works/" component={Works}/>
                                 </div>}
                             </Switch>
                         </Col>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Work from '../event_view_cmp/Work';
+import Work from '../works_cmp/Work';
 import SubEvent from '../event_view_cmp/SubEvent';
 import axios from "axios/index";
 
