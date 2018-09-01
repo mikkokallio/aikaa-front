@@ -3,41 +3,46 @@ import axios from 'axios';
 import Role from '../roles_cmp/Role';
 
 class EditWork extends React.Component {
-    state = {json: ''};
+    state = { allRoles: [], chosenRoles: [] };
 
     componentDidMount() {
         this.load();
     }
 
     load = () => {
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
         axios.get('/api' + this.props.location.pathname)
             .then(response => {
                 const json = response.data;
-                this.setState({json});
-                console.log(json);
+                this.setState(json);//täällä sisällä "roleList", joka sisältää teoksen roolit
+                let chosenList = this.state.roleList?this.state.roleList:[];
+                this.setState({chosenRoles : chosenList});
+                console.log("chosenRoles", this.state.chosenRoles) 
             });
-        axios.get('/api/roles')
+        axios.get('/api/roles')//kaikki olemassaolevat roolit eli allRoles
             .then(response => {
-                const roleList = response.data;
-                this.setState({roleList});
+                const allRoles = response.data;
+                this.setState({ allRoles: allRoles });
             });
 
     };
 
-    handleCreateClick = (event) => {
+    handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
         //event.preventDefault();
-
-        axios.post('/api/works', {name: this.state.name})
+        axios.post('/api/workroles/'+this.state.id, this.state.roleList)
             .then(res => {
-                this.props.callBack();
+                this.setState(this.state);
             });
     };
     handleNameChange = (event) => {
-        this.setState({name: event.target.value});
+        this.setState({ name: event.target.value });
     };
     handleRoleChange = (event) => {
-        this.setState({name: event.target.value});
+        let roleList = [];
+        roleList.push(event.target.value);
+        let chosenList = this.state.chosenRoles?this.state.chosenRoles:[];
+        chosenList.push(this.state.allRoles.filter((role)=>role.id===event.target.value));
+        this.setState({ roleList: roleList, chosenRoles: chosenList });
     };
 
     render() {
@@ -51,38 +56,38 @@ class EditWork extends React.Component {
                 </div>
                 <table className="boxx table-striped">
                     <thead>
-                    <tr><th colSpan={2}><span className="glyphicon glyphicon-music"></span><span> </span>{this.state.json.work}</th></tr>
+                        <tr><th colSpan={2}><span className="glyphicon glyphicon-music"></span><span> </span>{this.state.work}</th></tr>
                     </thead>
                     <tbody>
-                <tr>
-                    <td>Säveltäjä</td>
-                    <td>{this.state.json.composer}</td>
-                </tr>
-                <tr><td>Kesto</td>
-                    <td>{this.state.json.durationInMinutes}</td>
-                </tr>
-                <tr><td>Muusikot</td>
-                    <td>{this.state.json.musicians}</td>
-                </tr>
-                <tr><td>Instrumentaatio</td>
-                    <td>{this.state.json.instrumentation}</td>
-                </tr>
-                </tbody>
+                        <tr>
+                            <td>Säveltäjä</td>
+                            <td>{this.state.composer}</td>
+                        </tr>
+                        <tr><td>Kesto</td>
+                            <td>{this.state.durationInMinutes}</td>
+                        </tr>
+                        <tr><td>Muusikot</td>
+                            <td>{this.state.musicians}</td>
+                        </tr>
+                        <tr><td>Instrumentaatio</td>
+                            <td>{this.state.instrumentation}</td>
+                        </tr>
+                    </tbody>
                 </table>
-                {/*{this.state.roleList?this.state.roleList.map((line, index) => <Role key={index} data={line}/>):'LOADING, oh my!'}*/}
-                {/*<div><select placeholder="rooli" value={this.state.placeId} onChange={this.handleRoleChange}>*/}
-                    {/*{this.state.roleList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}*/}
-                {/*</select></div>*/}
+                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={line.id} data={line} />) : 'LOADING, oh my!'}
+                <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
+                    {this.state.allRoles.map((data, index) => <option value={data.id} label={data.name} data={data} />)}
+                </select></div>
 
-                {/*<tr>*/}
-                    {/*<td><span className="glyphicon glyphicon-music"></span>*/}
-                        {/*<input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange}/>*/}
-                    {/*</td>*/}
-                    {/*<td colSpan="2">*/}
-                        {/*<div className="circle" onClick={this.handleCreateClick.bind(this)}><span*/}
-                            {/*className="glyphicon glyphicon-plus"></span></div>*/}
-                    {/*</td>*/}
-                {/*</tr>*/}
+                <tr>
+                    <td><span className="glyphicon glyphicon-music"></span>
+                        <input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange} />
+                    </td>
+                    <td colSpan="2">
+                        <div className="circle" onClick={this.handleCreateClick.bind(this)}><span
+                            className="glyphicon glyphicon-plus"></span></div>
+                    </td>
+                </tr>
             </div>
 
         );

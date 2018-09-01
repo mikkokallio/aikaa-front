@@ -10,7 +10,7 @@ class NewWork extends React.Component {
 			requestparam += '?event=true&eventid='+this.props.eventid;
         }
         axios.post('/api/works'+requestparam, { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
-            durationInMinutes:this.state.durationInMinutes, roleList:null, instrumentation:this.state.instrumentation})
+            durationInMinutes:this.state.durationInMinutes, instrumentation:this.state.instrumentation})
             .then(res => {
                 this.props.callBack();
                 this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});

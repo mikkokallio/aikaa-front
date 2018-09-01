@@ -28,7 +28,7 @@ class App extends Component {
     state = { mode: localStorage.getItem("mode") };
 
     handleModeChange = () => {
-        this.setState({mode: localStorage.getItem("mode")});
+        this.setState({ mode: localStorage.getItem("mode") });
     }
 
     render() {
@@ -55,7 +55,8 @@ class App extends Component {
                                     <Route path="/places/" component={Places} />
                                     <Route path="/users/" component={Users} />
                                     <Route exact path="/works/" component={Works} />
-                                    <Route path="/works/" component={EditWork} />
+                                    <Route path="/works/:id" render={(props) =>
+                                        (<EditWork {...props} />)} />
                                 </div>}
                             </Switch>
                         </Col>
