@@ -14,7 +14,7 @@ class Works extends React.Component {
                     <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit lisätä ja muokata teoksia.
                 </div>
                 <p>-Listaa filtteröidyt teokset?</p>
-                <WorksList data={this.state.json}/>
+                <WorksList {...this.props} data={this.state.json}/>
             </div>
         )}
 
