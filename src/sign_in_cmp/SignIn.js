@@ -20,15 +20,25 @@ class SignIn extends React.Component {
                 localStorage.setItem("token", "Bearer " + token);
                 var decoded = jwt.decode(res.data, { complete: true });
                 localStorage.setItem("mode", decoded.payload.auth[0].authority);
-                console.log(localStorage.getItem("mode"));
+                console.log("mode sisäänkirjauduttua ", localStorage.getItem("mode"));
+            })
+            .then(res => {
+                console.log(this.props);
+                this.props.callBack();
+                this.loadHomePage();
             });
     };
+
     handleNameChange = (event) => {
         this.setState({ username: event.target.value });
     };
-    handleEmailChange = (event) => {
+    handlePswdChange = (event) => {
         this.setState({ password: event.target.value });
     };
+
+    loadHomePage = () => {
+        this.props.history.push('/');
+    }
 
     render() {
         return (
@@ -42,14 +52,16 @@ class SignIn extends React.Component {
                 <Row>
                     <Col xs={2} md={2}>Nimi</Col>
                     <Col xs={2} md={2}><input type="text" placeholder="nimi" value={this.state.username} onChange={this.handleNameChange} /></Col>
+                </Row>
+                <Row>
                     <Col xs={2} md={2}>Salasana</Col>
-                    <Col xs={2} md={2}><input type="text" placeholder="email" value={this.state.password} onChange={this.handleEmailChange} /></Col>
+                    <Col xs={2} md={2}><input type="password" placeholder="salasana" value={this.state.password} onChange={this.handlePswdChange} /></Col>
                 </Row>
                 <Row>
                     <Col xs={2} md={2}><input className="btn btn-primary" type="submit"
                         value="Kirjaudu Sisään" onClick={this.handleCreateClick} /></Col>
                 </Row>
-            </div>
+            </div >
         )
     }
 }

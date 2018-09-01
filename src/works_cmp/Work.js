@@ -9,7 +9,6 @@ class Work extends React.Component {
 
     render() {
         const { history } = this.props;
-        console.log(this.props);
         return (
             <tr>
                 <td><span className="glyphicon glyphicon-music"></span> {this.props.data.work}</td>

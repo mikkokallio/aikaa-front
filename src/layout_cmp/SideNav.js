@@ -6,6 +6,7 @@ import LocalizedStrings from 'react-localization';
 const strings = new LocalizedStrings({
     fi: {
         signin: "Sisäänkirjautuminen",
+        signout: "Uloskirjautuminen",
         front: "Etusivu",
         profile: "Profiili",
         users: "Käyttäjät",
@@ -19,6 +20,7 @@ const strings = new LocalizedStrings({
     },
     sv: {
         signin: "Inloggning",
+        signout: "Utloggning",
         front: "Framsidan",
         profile: "Profil",
         users: "Användare",
@@ -27,38 +29,41 @@ const strings = new LocalizedStrings({
         events: "Evenemang",
         places: "Platser",
         roles: "Roller",
-        bookings: "Bokningar"
+        bookings: "Bokningar",
+        works: "Verk"
     }
 });
 
 class SideNav extends React.Component {
 
     setLanguageToSwedish = () => {
-        localStorage.setItem("language","sv");
+        localStorage.setItem("language", "sv");
         this.setState({});
     };
 
     setLanguageToFinnish = () => {
-        localStorage.setItem("language","fi");
+        localStorage.setItem("language", "fi");
         this.setState({});
     };
 
     setMode = (mode) => {
-        localStorage.setItem("mode",mode);
+        localStorage.setItem("mode", mode);
         this.setState();
     };
+
+    handleSignOut = () => {
+        this.setMode("unknown");
+        localStorage.setItem("token", "");
+        console.log("mode ",localStorage.getItem("mode"));
+        console.log("token ",localStorage.getItem("token"));
+        console.log(this.props.mode);
+        this.setState();
+    }
 
 
     render() {
         console.log(localStorage.getItem('token'));
-        if (localStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
-
-        function signOut() {
-            var auth2 = window.gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
+        if (localStorage.getItem("language") !== null) strings.setLanguage(localStorage.getItem("language"));
 
         return (
             <div className="wrapper">
@@ -66,37 +71,38 @@ class SideNav extends React.Component {
                     <div className="brand"><span className="redeye glyphicon glyphicon-eye-open"></span> Red-I</div>
                     <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
                     <div className="menu-list">
-                        {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
                         <ul id="menu-content" className="menu-content collapse out">
                             {(this.props.mode === 'unknown') &&
-                            <li><span className="glyphicon glyphicon-dashboard"></span><a
-                                href="/signin">{strings.signin}</a></li>
+                                <li><span className="glyphicon glyphicon-dashboard"></span><a
+                                    href="/signin">{strings.signin}</a></li>
                             }
                             {(this.props.mode === 'ROLE_USER' || this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') && <div>
-                            <li><span className="glyphicon glyphicon-dashboard"></span><a
-                                href="/">{strings.front}</a></li>
-                            <li><span className="glyphicon glyphicon-user"></span><a
-                                href="/profile">{strings.profile}</a></li>
-                            <li><span className="glyphicon glyphicon-comment"></span><a
-                                href="/messages">{strings.messages}</a></li>
-                            <li><span className="glyphicon glyphicon-time"></span><a
-                                href="/schedule">{strings.schedule}</a></li>
-                            <li><span className="glyphicon glyphicon-flag"></span><a href="/events">{strings.events}</a>
-                            </li>
+                                <li onClick={this.handleSignOut}><span className="glyphicon glyphicon-dashboard" ></span><a
+                                    href="/">{strings.signout}</a></li>
+                                <li><span className="glyphicon glyphicon-dashboard"></span><a
+                                    href="/">{strings.front}</a></li>
+                                <li><span className="glyphicon glyphicon-user"></span><a
+                                    href="/profile">{strings.profile}</a></li>
+                                <li><span className="glyphicon glyphicon-comment"></span><a
+                                    href="/messages">{strings.messages}</a></li>
+                                <li><span className="glyphicon glyphicon-time"></span><a
+                                    href="/schedule">{strings.schedule}</a></li>
+                                <li><span className="glyphicon glyphicon-flag"></span><a href="/events">{strings.events}</a>
+                                </li>
                             </div>}
                             {(this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') &&
-                            <div>
-                                <li><span className="glyphicon glyphicon-music"></span><a
-                                    href="/works">{strings.works}</a></li>
-                                <li><span className="glyphicon glyphicon-list-alt"></span><a
-                                    href="/users">{strings.users}</a></li>
-                                <li><span className="glyphicon glyphicon-map-marker"></span><a
-                                    href="/places">{strings.places}</a></li>
-                                <li><span className="glyphicon glyphicon-tags"></span><a
-                                    href="/roles">{strings.roles}</a></li>
-                                <li><span className="glyphicon glyphicon-calendar"></span><a
-                                    href="/calendar">{strings.bookings}</a></li>
-                            </div>}
+                                <div>
+                                    <li><span className="glyphicon glyphicon-music"></span><a
+                                        href="/works">{strings.works}</a></li>
+                                    <li><span className="glyphicon glyphicon-list-alt"></span><a
+                                        href="/users">{strings.users}</a></li>
+                                    <li><span className="glyphicon glyphicon-map-marker"></span><a
+                                        href="/places">{strings.places}</a></li>
+                                    <li><span className="glyphicon glyphicon-tags"></span><a
+                                        href="/roles">{strings.roles}</a></li>
+                                    <li><span className="glyphicon glyphicon-calendar"></span><a
+                                        href="/calendar">{strings.bookings}</a></li>
+                                </div>}
 
                             {/*<li data-toggle="collapse" data-target="#products" className="collapsed active">*/}
                             {/*<a href="#">Admin-valikko <span*/}

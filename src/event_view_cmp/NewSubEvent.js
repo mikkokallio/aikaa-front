@@ -22,17 +22,16 @@ class NewSubEvent extends React.Component {
 
     handleCreateClick = (event) => {
         //event.preventDefault();
-        axios.post('/api/subevents', {name: this.state.name, begin: this.state.begin, ending: this.state.ending,
-            placeId: this.state.placeId, eventId: this.props.eventid, type: this.state.type, workId: this.state.workId})
+        axios.post('/api/subevents', {
+            name: this.state.name, begin: this.state.begin, ending: this.state.ending,
+            placeId: this.state.placeId, eventId: this.props.eventid, type: this.state.type, workId: this.state.workId
+        })
             .then(res => {
                 this.props.callBack();
                 this.setState({
                     name: '', begin: '', ending: '',
                     placeId: '', type: '', workId: ''
                 });
-            })
-            .then((res) => {
-                console.log(this.state);
             });
     };
 

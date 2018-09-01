@@ -27,6 +27,10 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
 class App extends Component {
     state = { mode: localStorage.getItem("mode") };
 
+    handleModeChange = () => {
+        this.setState({mode: localStorage.getItem("mode")});
+    }
+
     render() {
         return (
             <Router>
@@ -43,7 +47,8 @@ class App extends Component {
                                 <Route path="/profile/" component={Profile} />
                                 <Route path="/schedule/" component={Schedule} />
                                 {this.state.mode === 'unknown' &&
-                                    <Route path="/signin/" component={SignIn} />
+                                    <Route path="/signin/" render={(props) =>
+                                        (<SignIn {...props} callBack={this.handleModeChange} />)} />
                                 }
                                 {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN') && <div>
                                     <Route path="/roles/" component={Roles} />
