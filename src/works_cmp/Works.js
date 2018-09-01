@@ -15,8 +15,6 @@ class Works extends React.Component {
                 </div>
                 <p>-Listaa filtteröidyt teokset?</p>
                 <WorksList data={this.state.json}/>
-                {/*Alla oleva varmaankin vaaditaan jollekin tasolle jos haluaa mennä juuri tiettyyn workkiin!*/}
-                {/*{this.state.json.map((data, index) => <Work {...this.props} id={this.state.json.id} key={index} data={data}/>)}*/}
             </div>
         )}
 

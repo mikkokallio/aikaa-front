@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class NewEvent extends React.Component {
+class EditWork extends React.Component {
     state= { name: ''};
     handleCreateClick= (event) => {
         //event.preventDefault();
@@ -23,3 +23,5 @@ class NewEvent extends React.Component {
         );
     }
 }
+
+export default EditWork;

@@ -14,7 +14,8 @@ const strings = new LocalizedStrings({
         events: "Tapahtumat",
         places: "Paikat",
         roles: "Roolit",
-        bookings: "Varaukset"
+        bookings: "Varaukset",
+        works: "Teokset"
     },
     sv: {
         signin: "Inloggning",
@@ -85,6 +86,8 @@ class SideNav extends React.Component {
                             </div>}
                             {(this.props.mode === 'admin' || this.props.mode === 'superadmin') &&
                             <div>
+                                <li><span className="glyphicon glyphicon-music"></span><a
+                                    href="/works">{strings.works}</a></li>
                                 <li><span className="glyphicon glyphicon-list-alt"></span><a
                                     href="/users">{strings.users}</a></li>
                                 <li><span className="glyphicon glyphicon-map-marker"></span><a
