@@ -35,6 +35,7 @@ class Profile extends React.Component {
     };
     handleRoleChange = (event) => {
         this.setState({selected: event.target.value})
+        console.log(this.state.selected);
     };
     handleUpdateClick= (event) => {
         event.preventDefault();
@@ -47,6 +48,7 @@ class Profile extends React.Component {
 handleCreateClick= (event) => {
         axios.post('/api/userrole/3/'+this.state.selected)
             .then(res => {
+                this.load();
 //                 this.props.callBack();
             });
     };
@@ -59,13 +61,12 @@ handleCreateClick= (event) => {
         console.log(this.state.user);
         return (
             <div className="boxx">
-                <h1>Profiili / Profil</h1>
+                <h1>Profiili</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit tarkastella ja muokata
                     käyttäjäprofiilisi
                     tietoja, mukaanlukien roolejasi, joiden avulla järjestäjät voivat sijoittaa sinut kokoonpanoihin.
-                    Voit myös hallinnoida asetuksia
-                    kuten että näetkö eri näkymissä tällaisia info-bokseja. Tähdellä merkityt tiedot ovat pakollisia. Esikatselusta näet miten järjestäjät ja muut käyttäjät näkevät sinut.
+                    Tähdellä merkityt tiedot ovat pakollisia.
                 </div>
                 <p>Formin pitää varoittaa ja estää tyhjien kenttien lähetys! Ainakin nimi on tällainen.</p>
                 <img src=""/>
@@ -106,17 +107,19 @@ handleCreateClick= (event) => {
                     <tr><td colSpan={3}>{this.state.user.roles?this.state.user.roles.map((line, index) => <Role key={index} data={line}/>):'Lataa...'}</td>
                     </tr>
                     <tr><td>
-                        <div style={{display:'inline-block'}}><select placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}>
+                        <div style={{display:'inline-block'}}><select style={{width:'160px'}} value={this.state.categoryId} onChange={this.handleCategoryChange}>
+                            <option disabled selected value> -- kategoria -- </option>
                             {this.state.categories.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
                         </select></div></td>
-                        <td><div><select placeholder="rooli" value={this.state.role} onChange={this.handleRoleChange}>
+                        <td><div><select style={{width:'160px'}} value={this.state.role} onChange={this.handleRoleChange}>
+                            <option disabled selected value> -- rooli -- </option>
                             {this.state.shortList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
                         </select></div>
                     </td>
                     <td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
                     </tbody>
                 </table>
-                <p>Esikatselu</p>
+                {/*<p>Esikatselu</p>*/}
                 {/*<User data={this.state}/>*/}
             </div>
         )

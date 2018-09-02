@@ -54,7 +54,7 @@ class NewSubEvent extends React.Component {
     render() {
         return (
             <tr>
-                <td><span className="glyphicon glyphicon-flag"></span><input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange} /></td>
+                <td><span className="glyphicon glyphicon-flag"></span><span> </span><input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange} /></td>
                 <td><input type="text" placeholder="tyyppi" value={this.state.type} onChange={this.handleTypeChange} /></td>
                 <td><input type="datetime-local" placeholder="alkaa" value={this.state.begin} onChange={this.handleBeginChange} /></td>
                 <td><input type="datetime-local" placeholder="loppuu" value={this.state.ending} onChange={this.handleEndChange} /></td>
