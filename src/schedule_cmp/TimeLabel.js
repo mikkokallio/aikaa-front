@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Slot.css';
+import './Schedule.css';
 
 
 class TimeLabel extends React.Component {

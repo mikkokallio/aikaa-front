@@ -23,18 +23,20 @@ class Schedule extends React.Component {
 
     render() {
         return (
-            <div className="boxx">
+            <div className="boxx" style={{whiteSpace:'nowrap',maxWidth:'99%'}}>
                 <h1>{strings.heading}</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> {strings.description}
                 </div>
                 <p>JS-kalenteri, joka värikoodaa päivät sen mukaan mitä agendalla on.</p>
                 <p><input type="date" placeholder="Valitse päivä"></input></p>
+                <div className="boxx">
                 <div id="times" style={{display:'inline-block'}}>
                     <div className="header">{strings.time}</div>
                     {this.state.labels.map((data, index) => <TimeLabel key={index} data={data}/>)}
                 </div>
                 <Week user="6" />
+                </div>
             </div>
         )
     }

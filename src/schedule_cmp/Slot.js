@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Slot.css';
+import './Schedule.css';
 
 
 class Slot extends React.Component {
