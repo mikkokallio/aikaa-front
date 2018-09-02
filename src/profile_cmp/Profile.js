@@ -3,7 +3,7 @@ import axios from "axios/index";
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
 import Role from '../roles_cmp/Role';
-import User from "./User";
+import User from "../users_cmp/User";
 import RolesList from "./RolesList";
 
 class Profile extends React.Component {

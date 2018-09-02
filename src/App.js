@@ -13,23 +13,23 @@ import Main from './main_cmp/Main';
 import Events from "./events_list_cmp/Events";
 import Roles from "./roles_cmp/Roles";
 import Places from "./places_cmp/Places";
-import Profile from "./users_cmp/Profile";
+import Profile from "./profile_cmp/Profile";
 import Schedule from "./schedule_cmp/Schedule";
 import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
 import Works from "./works_cmp/Works";
 import EditWork from "./works_cmp/EditWork";
 import SignIn from "./sign_in_cmp/SignIn";
+import Booking from "./booking_cmp/Booking";
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
 
-//`Bearer ${token}`;
 class App extends Component {
     state = { mode: localStorage.getItem("mode") };
 
     handleModeChange = () => {
         this.setState({ mode: localStorage.getItem("mode") });
-    }
+    };
 
     render() {
         return (
@@ -54,6 +54,7 @@ class App extends Component {
                                     <Route path="/roles/" component={Roles} />
                                     <Route path="/places/" component={Places} />
                                     <Route path="/users/" component={Users} />
+                                    <Route path="/booking/" component={Booking} />
                                     <Route exact path="/works/" component={Works} />
                                     <Route path="/works/:id" render={(props) =>
                                         (<EditWork {...props} />)} />
