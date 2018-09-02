@@ -43,7 +43,7 @@ class EditWork extends React.Component {
         this.setState({ name: event.target.value });
     };
     handleRoleChange = (event) => {
-        let newList = this.state.newList ? this.state.newList : [];//otetaan joko olemassaoleva roleList(tullut apista ja päivittyy lisättäessä) tai aloitetaan uusi;
+        let newList = this.state.newRoles ? this.state.newRoles : [];//otetaan joko olemassaoleva roleList(tullut apista ja päivittyy lisättäessä) tai aloitetaan uusi;
         newList.push(event.target.value);//lisätään lisättävien roolien listalle valitun roolin numero
         let chosenList = this.state.chosenRoles ? this.state.chosenRoles : [];//tämä lista on näkymää varten
         chosenList.push(this.state.allRoles.find(role => role.id === Number(event.target.value)));//valittu rooli lisätään myös näkymään
