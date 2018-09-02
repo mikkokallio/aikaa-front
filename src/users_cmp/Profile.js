@@ -6,37 +6,57 @@ import Role from '../roles_cmp/Role';
 import User from "./User";
 
 class Profile extends React.Component {
-    state = {categories: [], roleList: [], user: []};
+    state = {selected:'', categories: [], roleList: [], shortList: [], user: []};
 
     handleNameChange = (event) => {
-        this.setState({user:{name: event.target.value}});
+        this.setState({user: { ...this.state.user, name: event.target.value}})
     };
     handleEmailChange = (event) => {
-        this.setState({user:{email: event.target.value}});
+        this.setState({user: { ...this.state.user, email: event.target.value}})
     };
     handlePhoneChange= (event) => {
-        this.setState({user:{phonenumber: event.target.value}});
+        this.setState({user: { ...this.state.user, phonenumber: event.target.value}})
     };
     handlePicChange = (event) => {
-        this.setState({user:{picurl: event.target.value}});
+        this.setState({user: { ...this.state.user, picurl: event.target.value}})
     };
     handleAddressChange = (event) => {
         //this.setState({user:{addressId: event.target.value}});
     };
-    // handleRoleChange = (event) => {
-    //     this.setState({roleId: event.target.value});
-    // };
+    handleCategoryChange = (event) => {
+        //this.setState({selected: event.target.value});
+        var roles=this.state.roleList;
+        var shortList = [];
+        for (var i = 0; i < roles.length; i++) {
+            if (roles[i].categoryId==event.target.value) shortList.push(roles[i]);
+        }
+        console.log(shortList);
+        this.setState({shortList: shortList});
+    };
+    handleRoleChange = (event) => {
+        this.setState({selected: event.target.value})
+    };
     handleUpdateClick= (event) => {
-        //event.preventDefault();
-        axios.put('/api/users/1', { user:this.state.user })
+        event.preventDefault();
+        axios.put('/api/users/3', this.state.user)
             .then(res => {
-                this.props.callBack();
+                //this.props.callBack();
             });
     };
 
+handleCreateClick= (event) => {
+        axios.post('/api/userrole/3/'+this.state.selected)
+            .then(res => {
+//                 this.props.callBack();
+            });
+    };
+    handleRevertClick= (event) => {
+        //event.preventDefault();
+        this.load();
+    };
 
     render() {
-        console.log(this.state.user.roles);
+        console.log(this.state.user);
         return (
             <div className="boxx">
                 <h1>Profiili / Profil</h1>
@@ -70,55 +90,46 @@ class Profile extends React.Component {
                     <tr><td>Katuosoite</td>
                         <td><input type="text" placeholder="" value={this.state.user.addressId} onChange={this.handleAddressChange}/></td>
                     </tr>
+                    <tr>
+                        <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
+                                                   value="Talleta"/>
+                        </td>
+                        <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru"/></td></tr>
+                    </tbody>
+                </table>
+
+                <table className="boxx table-striped">
+                    <thead>
+                    <tr><th colSpan={3}><span className="glyphicon glyphicon-tags"></span><span> </span>Roolit</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td colSpan={3}>{this.state.user.roles?this.state.user.roles.map((line, index) => <Role key={index} data={line}/>):'Lataa...'}</td>
+                    </tr>
+                    <tr><td>
+                        <div style={{display:'inline-block'}}><select placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}>
+                            {this.state.categories.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                        </select></div></td>
+                        <td><div><select placeholder="rooli" value={this.state.role} onChange={this.handleRoleChange}>
+                            {this.state.shortList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                        </select></div>
+                    </td>
+                    <td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
                     </tbody>
                 </table>
                 <p>Esikatselu</p>
                 {/*<User data={this.state}/>*/}
-                <span className="glyphicon glyphicon-flag"></span>
-                {/*id: 14, userLevel: 1,*/}
-                {/*roles: [*/}
-                    {/*id: 18,*/}
-                    {/*name: "SuperAdmin",*/}
-                    {/*category: "Tukihenkilöstö",*/}
-                    {/*categoryId: 9*/}
-                {/*googleid: "110922832614819859477",*/}
-                {/*userLevelAsString: [*/}
-                {/*"ROLE_USER",*/}
-                {/*"ROLE_ADMIN",*/}
-                {/*"ROLE_SUPERADMIN"*/}
-
-                <p>Roolit: Tänne + nappi</p>
-                {this.state.user.roles?this.state.user.roles.map((line, index) => <Role key={index} data={line}/>):'Lataa...'}
-
-                <div style={{display:'inline-block'}}><select placeholder="luokka" value={this.state.categoryId} onChange={this.handleCategoryChange}>
-                    {this.state.categories.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
-                </select></div>
-
-                <div><select placeholder="rooli" value={this.state.placeId} onChange={this.handleRoleChange}>
-                {this.state.roleList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
-                </select></div>
-
-                <Row>
-                    <Col xs={2} md={2}><input className="btn btn-primary" type="submit"
-                                              value="Talleta Muutokset"/></Col>
-                    <Col xs={2} md={2}><input className="btn btn-warning" type="submit" value="Peru Muutokset"/></Col>
-                </Row>
             </div>
         )
     }
 
     componentDidMount() {
         this.load();
+        this.handleCategoryChange();
     }
 
     load = () => {
         this.setState({isLoading: true});
-        axios.get('/api/roles')
-            .then(response => {
-                const roleList = response.data;
-                this.setState({roleList});
-            });
-        axios.get('/api/users/1')
+        axios.get('/api/users/3')
             .then(response => {
                 const user = response.data;
                 this.setState({user});
@@ -128,19 +139,12 @@ class Profile extends React.Component {
                 const categories = response.data;
                 this.setState({categories});
             });
+        axios.get('/api/roles')
+            .then(response => {
+                const roleList = response.data;
+                this.setState({roleList});
+            });
     }
-
 }
 
 export default Profile;
-
-////
-//     handleCreateClick= (event) => {
-//         //event.preventDefault();
-//         axios.post('/api/subevents', { name:this.state.name, begin:this.state.begin, ending:this.state.ending,
-//         placeId:this.state.placeId, eventId:this.props.event, type:this.state.type, workId:this.state.workId})
-//             .then(res => {
-//                 this.props.callBack();
-//             });
-//     };
-//
