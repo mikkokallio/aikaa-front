@@ -3,7 +3,7 @@ import axios from 'axios';
 import Role from '../roles_cmp/Role';
 
 class EditWork extends React.Component {
-    state = { allRoles: [], chosenRoles: [] };
+    state = { allRoles: [], chosenRoles: [], newRoles: [] };//all: kaikki olemasaolevat roolit; chosen: kaikki valitut; new: nyt lisättävät roolit
 
     componentDidMount() {
         this.load();
@@ -15,9 +15,14 @@ class EditWork extends React.Component {
             .then(response => {
                 const json = response.data;
                 this.setState(json);//täällä sisällä "roleList", joka sisältää teoksen roolit
-                let chosenList = this.state.roleList?this.state.roleList:[];
-                this.setState({chosenRoles : chosenList});
-                console.log("chosenRoles", this.state.chosenRoles) 
+                let chosenList = this.state.roleList? this.state.roleList : [];
+                this.setState({ chosenRoles: chosenList });
+                // console.log("chosenRoles", this.state.chosenRoles)
+                // console.log(this.state.roleList[0].name);
+                // if (chosenList.length === 0 && this.state.roleList[0].name) {
+                //     chosenList = this.state.roleList;
+                //     console.log(chosenList);
+                // }
             });
         axios.get('/api/roles')//kaikki olemassaolevat roolit eli allRoles
             .then(response => {
@@ -29,7 +34,7 @@ class EditWork extends React.Component {
 
     handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
         //event.preventDefault();
-        axios.post('/api/workroles/'+this.state.id, this.state.roleList)
+        axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
             .then(res => {
                 this.setState(this.state);
             });
@@ -38,15 +43,14 @@ class EditWork extends React.Component {
         this.setState({ name: event.target.value });
     };
     handleRoleChange = (event) => {
-        let roleList = [];
-        roleList.push(event.target.value);
-        let chosenList = this.state.chosenRoles?this.state.chosenRoles:[];
-        chosenList.push(this.state.allRoles.filter((role)=>role.id===event.target.value));
-        this.setState({ roleList: roleList, chosenRoles: chosenList });
+        let newList = this.state.newList ? this.state.newList : [];//otetaan joko olemassaoleva roleList(tullut apista ja päivittyy lisättäessä) tai aloitetaan uusi;
+        newList.push(event.target.value);//lisätään lisättävien roolien listalle valitun roolin numero
+        let chosenList = this.state.chosenRoles ? this.state.chosenRoles : [];//tämä lista on näkymää varten
+        chosenList.push(this.state.allRoles.find(role => role.id === Number(event.target.value)));//valittu rooli lisätään myös näkymään
+        this.setState({newRoles: newList, chosenRoles: chosenList});//päivitetään tilaan uudet listat
     };
 
     render() {
-        console.log(this.props);
         return (
             <div className="boxx">
                 <h1>Muokkaa teosta</h1>
@@ -74,9 +78,9 @@ class EditWork extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={line.id} data={line} />) : 'LOADING, oh my!'}
+                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} />) : 'LOADING, oh my!'}
                 <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
-                    {this.state.allRoles.map((data, index) => <option value={data.id} label={data.name} data={data} />)}
+                    {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
                 </select></div>
 
                 <tr>
