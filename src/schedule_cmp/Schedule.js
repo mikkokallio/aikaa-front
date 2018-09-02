@@ -22,13 +22,13 @@ class Schedule extends React.Component {
     state = {labels: []};
 
     render() {
+        if (localStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
         return (
             <div className="boxx" style={{whiteSpace:'nowrap',maxWidth:'99%'}}>
                 <h1>{strings.heading}</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> {strings.description}
                 </div>
-                <p>JS-kalenteri, joka värikoodaa päivät sen mukaan mitä agendalla on.</p>
                 <p><input type="date" placeholder="Valitse päivä"></input></p>
                 <div className="boxx">
                 <div id="times" style={{display:'inline-block'}}>
