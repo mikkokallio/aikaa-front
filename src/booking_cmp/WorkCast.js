@@ -45,7 +45,8 @@ class WorkCast extends React.Component {
     load = () => {
         this.setState({isLoading: true});
         // axios.get('/api/works/1')
-        axios.get('/api/works/'+this.props.workId)
+        console.log(this.props.workid);
+        axios.get('/api/works/'+this.props.workid)
             .then(response => {
                 const work = response.data;
                 this.setState({work});
