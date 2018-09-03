@@ -68,16 +68,16 @@ class SideNav extends React.Component {
         return (
             <div className="wrapper">
                 <div className="nav-side-menu">
-                    <div className="brand"><span className="redeye glyphicon glyphicon-eye-open"></span> Red-I</div>
+                    <div className="brand"><span className="redeye glyphicon glyphicon-eye-open"></span> Aikaa</div>
                     <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
                     <div className="menu-list">
                         <ul id="menu-content" className="menu-content collapse out">
                             {(this.props.mode === 'unknown') &&
-                                <li><span className="glyphicon glyphicon-dashboard"></span><a
+                                <li><span className="glyphicon glyphicon-log-in"></span><a
                                     href="/signin">{strings.signin}</a></li>
                             }
                             {(this.props.mode === 'ROLE_USER' || this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') && <div>
-                                <li onClick={this.handleSignOut}><span className="glyphicon glyphicon-dashboard" ></span><a
+                                <li onClick={this.handleSignOut}><span className="glyphicon glyphicon-log-out" ></span><a
                                     href="/">{strings.signout}</a></li>
                                 <li><span className="glyphicon glyphicon-dashboard"></span><a
                                     href="/">{strings.front}</a></li>

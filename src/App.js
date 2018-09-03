@@ -21,7 +21,6 @@ import Works from "./works_cmp/Works";
 import EditWork from "./works_cmp/EditWork";
 import EditSubEvent from "./event_view_cmp/EditSubEvent";
 import SignIn from "./sign_in_cmp/SignIn";
-import Booking from "./booking_cmp/Booking";
 
 axios.defaults.headers.common['Authorization'] = sessionStorage.getItem("token");
 
@@ -56,7 +55,6 @@ class App extends Component {
                                     <Route path="/roles/" component={Roles} />
                                     <Route path="/places/" component={Places} />
                                     <Route path="/users/" component={Users} />
-                                    <Route path="/booking/" component={Booking} />
                                     <Route exact path="/works/" component={Works} />
                                     <Route path="/subevents/:id" render={(props) =>
                                         (<EditSubEvent {...props} />)} />

@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import Role from '../roles_cmp/Role';
-import Booking from '../booking_cmp/Booking';
+import WorkCast from "../booking_cmp/WorkCast";
 
 class EditSubEvent extends React.Component {
-    state = {bookings: [], event: [], places: [], works: []};
+    state = {bookings: [], event: [], places: [], works: [], name: '', begin: '', ending: '',
+    placeId: '', type: '', workId: ''};
 
     componentDidMount() {
         this.load();
@@ -38,15 +39,27 @@ class EditSubEvent extends React.Component {
             });
     };
 
+    //         name: this.state.name, begin: this.state.begin, ending: this.state.ending,
+    //         placeId: this.state.placeId, eventId: this.props.eventid, type: this.state.type, workId: this.state.workId
+    //     })
+    //         .then(res => {
+    //             this.props.callBack();
+    //             this.setState({
+    //                 name: '', begin: '', ending: '',
+    //                 placeId: '', type: '', workId: ''
+    //             });
+    //         });
+    // };
+
+
     handleUpdateClick = (event) => {
-        axios.put('/api/works/' + this.state.id, {
-            work: this.state.work, composer: this.state.composer, musicians: this.state.musicians,
-            durationInMinutes: this.state.durationInMinutes, instrumentation: this.state.instrumentation
+        axios.put('/api/subevents/' + this.state.id, {
+            name: this.state.name, type: this.state.type, begin: this.state.begin,
+            ending: this.state.ending, placeId: this.state.placeId, workId: this.state.workId, eventId: this.state.eventId
         })
             .then(res => {
                 // this.props.callBack();
                 this.load();
-                //               this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
             });
     };
     handleRevertClick = (event) => {
@@ -64,12 +77,12 @@ class EditSubEvent extends React.Component {
     handleEndChange = (event) => {
         this.setState({ending: event.target.value});
     };
-    // handleInstChange = (event) => {
-    //     this.setState({ instrumentation: event.target.value });
-    // };
-    // handleInstChange = (event) => {
-    //     this.setState({ instrumentation: event.target.value });
-    // };
+    handlePlaceChange = (event) => {
+        this.setState({ placeId: event.target.value });
+    };
+    handleWorkChange = (event) => {
+        this.setState({ workId: event.target.value });
+    };
 
     render() {
         console.log("State: "+this.state);
@@ -109,21 +122,22 @@ class EditSubEvent extends React.Component {
                         <td>
                             <select placeholder="sijainti" value={this.state.placeId} onChange={this.handlePlaceChange}>
                                 <option key={0} value={0} label={"Valitse paikka"} data={"Ei valittu"}/>
-                                {this.state.places.map((data, index) => <option key={data.id} value={data.id}
-                                                                                label={data.name} data={data}/>)}
+                                {this.state.places.map((data, index) =>
+                                    <option key={data.id} value={data.id} label={data.name} data={data}
+                                    selected={this.state.placeId===data.id&&'selected'}/>)}
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Teos</td>
                         <td>
-                            {/*<select placeholder="sijainti" value={this.state.placeId} onChange={this.handlePlaceChange}>*/}
-                            {/*<option key={0} value={0} label={"Valitse paikka"} data={"Ei valittu"}/>*/}
-                            {/*{this.state.json.map((data, index) => <option key={data.id} value={data.id}*/}
-                            {/*label={data.name} data={data}/>)}*/}
-                            {/*</select>*/}
+                            <select placeholder="sijainti" value={this.state.placeId} onChange={this.handleWorkChange}>
+                            <option key={0} value={0} label={"Valitse paikka"} data={"Ei valittu"}/>
+                                {this.state.event.works&&this.state.event.works.map((data, index) => <option key={data.id} value={data.id}
+                            label={data.name} data={data}/>)}
+                            </select>
 
-                            <input type="text" placeholder="" value={this.state.placeId}
+                            <input type="text" placeholder="" value={this.state.workId}
                                    onChange={this.handleWorkChange}/>
                         </td>
                     </tr>
@@ -136,7 +150,8 @@ class EditSubEvent extends React.Component {
                     </tr>
                     </tbody>
                 </table>
-                <Booking {...this.props} data={this.state.works} eventid={this.state.id} callBack={this.load}/>
+                <WorkCast {...this.props} workId={this.state.workId} />
+                {/*<Booking {...this.props} data={this.state.works} eventid={this.state.id} callBack={this.load}/>*/}
             </div>
         )
             ;
