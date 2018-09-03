@@ -30,17 +30,26 @@ class EditSubEvent extends React.Component {
         axios.get('/api/places')
             .then(response => {
                 const places = response.data;
-                this.setState({places: places });
+                this.setState({ places: places });
             });
     };
 
-    // handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
-    //     //event.preventDefault();
-    //     axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
-    //         .then(res => {
-    //             this.setState(this.state);
-    //         });
-    // };
+    handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
+        //event.preventDefault();
+        axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
+            .then(res => {
+                this.setState(this.state);
+            });
+    };
+
+    updateCast = (event, cast) => {
+        console.log("klikattu (funktio on kommenteissa)", event);
+        console.log("cast", cast);
+        // axios.post('/api/bookings/' + this.state.id, sessionStorage.getItem("castMap"))
+        //     .then(res => {
+        //         this.load();
+        //     });
+    }
 
     handleUpdateClick = (event) => {
         axios.put('/api/subevents/' + this.state.id, {
@@ -138,7 +147,7 @@ class EditSubEvent extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                {this.state.workid&&<WorkCast {...this.props} workid={this.state.workid} />}
+                {this.state.workid && <WorkCast {...this.props} callBack={this.updateCast} workid={this.state.workid} />}
             </div>
         );
     }
