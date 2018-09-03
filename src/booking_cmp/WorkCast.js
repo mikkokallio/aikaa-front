@@ -21,7 +21,6 @@ class WorkCast extends React.Component {
     };
 
     render () {
-        //console.log(this.state);
         return (
                      <table className="boxx table-striped">
                          <thead>
@@ -45,11 +44,13 @@ class WorkCast extends React.Component {
     load = () => {
         this.setState({isLoading: true});
         // axios.get('/api/works/1')
+        console.log(this.props);
         console.log(this.props.workid);
         axios.get('/api/works/'+this.props.workid)
             .then(response => {
                 const work = response.data;
                 this.setState({work});
+                console.log("Tämä on work: ",work);
             });
         axios.get('/api/users')
             .then(response => {
