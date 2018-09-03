@@ -80,6 +80,7 @@ class EditWork extends React.Component {
     };
 
     render() {
+        console.log(this.props.selectedCast);
         return (
             <div className="boxx">
                 <h1>Muokkaa teosta</h1>

@@ -6,7 +6,7 @@ import WorkCast from "../booking_cmp/WorkCast";
 class EditSubEvent extends React.Component {
     state = {
         bookings: [], event: [], places: [], works: [], name: '', begin: '', ending: '',
-        eventid: '', placeid: '', type: '', workid: ''
+        eventid: '', placeid: '', type: '', workid: '', selectedCast: []
     };
 
     componentDidMount() {
@@ -32,6 +32,10 @@ class EditSubEvent extends React.Component {
                 const places = response.data;
                 this.setState({ places: places });
             });
+        axios.get('/api/bookings'+this.props.location.pathname)
+        .then(response =>{
+            this.setState({selectedCast:response.data});
+        }) 
     };
 
     handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
@@ -42,13 +46,14 @@ class EditSubEvent extends React.Component {
             });
     };
 
-    updateCast = (event, cast) => {
-        console.log("klikattu (funktio on kommenteissa)", event);
-        console.log("cast", cast);
-        // axios.post('/api/bookings/' + this.state.id, sessionStorage.getItem("castMap"))
-        //     .then(res => {
-        //         this.load();
-        //     });
+    updateCast = (cast) => {
+        for (let role of cast) {
+            axios.post('/api/bookings?subeventid='+this.state.id+'&userid='+ role.userid + '&workroleid=' + role.roleid)
+                .then(res => {
+                    console.log("lisätty subeventcast");
+                });
+        }
+        this.load();
     }
 
     handleUpdateClick = (event) => {
@@ -147,7 +152,7 @@ class EditSubEvent extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                {this.state.workid && <WorkCast {...this.props} callBack={this.updateCast} workid={this.state.workid} />}
+                {this.state.workid && <WorkCast {...this.props} selectedCast={this.state.selectedCast} callBack={this.updateCast} workid={this.state.workid} />}
             </div>
         );
     }

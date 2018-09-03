@@ -5,13 +5,11 @@ import CastEntry from "./CastEntry";
 class WorkCast extends React.Component {
     state = { work: [], users: [], chosenCast: [] };
 
-    handleUpdateClick = (event) => {
-        console.log("this.state", this.state );
-        this.props.callBack(this.state.work.id, this.state.chosenCast);
+    handleUpdateClick = () => {
+        this.props.callBack(this.state.chosenCast);
     };
 
     handleAddCast = (event) => {
-        console.log(event);
         let cast = this.state.chosenCast;
         cast.push(event);
         this.setState({chosenCast: cast});
@@ -21,21 +19,20 @@ class WorkCast extends React.Component {
     };
 
     render() {
-        console.log(this.state.work);
-        console.log(this.state.users);
         let updateCast = this.props.callBack;
+        let selectedCast = this.props.selectedCast;
         return (
             <table className="boxx table-striped">
                 <thead>
                     <tr><th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>Roolitukset: {this.state.work.work}</th></tr>
                 </thead>
                 <tbody>
-                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.id} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
+                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.id} selectedCast={selectedCast} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
                     <tr>
                         <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
                             value="Talleta" />
                         </td>
-                        <td><input className="btn btn-warning" type="submit" onClick={updateCast} value="Peru" /></td></tr>
+                        <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td></tr>
                 </tbody>
             </table>
         )
