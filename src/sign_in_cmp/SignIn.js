@@ -10,17 +10,20 @@ class SignIn extends React.Component {
 
     handleCreateClick = (event) => {
         //event.preventDefault();
-        localStorage.removeItem("token");
-        console.log("token removed", localStorage.getItem("token"));
-        localStorage.setItem("mode", "unknown");
-        console.log("mode removed", localStorage.getItem("mode"));
+        sessionStorage.removeItem("token");
+        console.log("token removed", sessionStorage.getItem("token"));
+        sessionStorage.setItem("mode", "unknown");
+        console.log("mode removed", sessionStorage.getItem("mode"));
         axios.post('/signin', { username: this.state.username, password: this.state.password })
             .then(res => {
                 let token = res.data;
-                localStorage.setItem("token", "Bearer " + token);
+                console.log(res.data);
+                sessionStorage.setItem("token", "Bearer " + token);
                 var decoded = jwt.decode(res.data, { complete: true });
-                localStorage.setItem("mode", decoded.payload.auth[0].authority);
-                console.log("mode sisäänkirjauduttua ", localStorage.getItem("mode"));
+                sessionStorage.setItem("mode", decoded.payload.auth[0].authority);
+                console.log("mode sisäänkirjauduttua ", sessionStorage.getItem("mode"));
+                sessionStorage.setItem("id", decoded.payload.id);
+                console.log("id sisäänkirjauduttua ", sessionStorage.getItem("id"));
             })
             .then(res => {
                 console.log(this.props);

@@ -37,33 +37,33 @@ const strings = new LocalizedStrings({
 class SideNav extends React.Component {
 
     setLanguageToSwedish = () => {
-        localStorage.setItem("language", "sv");
+        sessionStorage.setItem("language", "sv");
         this.setState({});
     };
 
     setLanguageToFinnish = () => {
-        localStorage.setItem("language", "fi");
+        sessionStorage.setItem("language", "fi");
         this.setState({});
     };
 
     setMode = (mode) => {
-        localStorage.setItem("mode", mode);
+        sessionStorage.setItem("mode", mode);
         this.setState();
     };
 
     handleSignOut = () => {
         this.setMode("unknown");
-        localStorage.setItem("token", "");
-        console.log("mode ",localStorage.getItem("mode"));
-        console.log("token ",localStorage.getItem("token"));
+        sessionStorage.setItem("token", "");
+        console.log("mode ",sessionStorage.getItem("mode"));
+        console.log("token ",sessionStorage.getItem("token"));
         console.log(this.props.mode);
         this.setState();
     }
 
 
     render() {
-        console.log(localStorage.getItem('token'));
-        if (localStorage.getItem("language") !== null) strings.setLanguage(localStorage.getItem("language"));
+        console.log(sessionStorage.getItem('token'));
+        if (sessionStorage.getItem("language") !== null) strings.setLanguage(sessionStorage.getItem("language"));
 
         return (
             <div className="wrapper">
