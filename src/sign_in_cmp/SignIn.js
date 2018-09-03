@@ -41,29 +41,41 @@ class SignIn extends React.Component {
 
     loadHomePage = () => {
         this.props.history.push('/');
-    }
+    };
 
     render() {
         return (
             <div className="boxx">
-                <h1>Sisäänkirjautuminen / Inloggning</h1>
+                <h1>Sisäänkirjautuminen</h1>
                 <div className="alert alert-info">
-                    <span className="glyphicon glyphicon-info-sign"></span> Syötä alle käyttäjätunnuksesi (muotoa?) ja salasanasi kirjautuaksesi
+                    <span className="glyphicon glyphicon-info-sign"></span> Syötä alle käyttäjätunnuksesi ja salasanasi kirjautuaksesi
                     sisään.
                 </div>
-                <p>Formi antaa palautetta virheellisestä syötteestä?</p>
-                <Row>
-                    <Col xs={2} md={2}>Nimi</Col>
-                    <Col xs={2} md={2}><input type="text" placeholder="nimi" value={this.state.username} onChange={this.handleNameChange} /></Col>
-                </Row>
-                <Row>
-                    <Col xs={2} md={2}>Salasana</Col>
-                    <Col xs={2} md={2}><input type="password" placeholder="salasana" value={this.state.password} onChange={this.handlePswdChange} /></Col>
-                </Row>
-                <Row>
-                    <Col xs={2} md={2}><input className="btn btn-primary" type="submit"
-                        value="Kirjaudu Sisään" onClick={this.handleCreateClick} /></Col>
-                </Row>
+                <table className="boxx table-striped">
+                    <thead>
+                    <tr>
+                        <th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>
+                            Sisäänkirjautumistiedot
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Nimi</td>
+                        <td><input type="text" placeholder="nimi" value={this.state.username} onChange={this.handleNameChange} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Salasana</td>
+                        <td><input type="password" placeholder="salasana" value={this.state.password} onChange={this.handlePswdChange} /></td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}><input className="btn btn-primary" type="submit"
+                                   value="Kirjaudu Sisään" onClick={this.handleCreateClick} />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div >
         )
     }

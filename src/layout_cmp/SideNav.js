@@ -114,12 +114,12 @@ class SideNav extends React.Component {
                             {/*<ul className="sub-menu collapse" id="products">*/}
                             {/*<li className="active"><a href="#">Admin-asetukset</a></li>*/}
                             {/*</ul>*/}
-                            {/* <li>
-                                <a href="#" onClick={() => this.setMode('unknown')}>unknown</a>/
-                                <a href="#" onClick={() => this.setMode('ROLE_USER')}>user</a>/
-                                <a href="#" onClick={() => this.setMode('ROLE_ADMIN')}>admin</a>/
-                                <a href="#" onClick={() => this.setMode('ROLE_SUPERADMIN')}>superadmin</a>
-                            </li> */}
+                             {/*<li>*/}
+                                {/*<a href="#" onClick={() => this.setMode('unknown')}>unknown</a>/*/}
+                                {/*<a href="#" onClick={() => this.setMode('ROLE_USER')}>user</a>/*/}
+                                {/*<a href="#" onClick={() => this.setMode('ROLE_ADMIN')}>admin</a>/*/}
+                                {/*<a href="#" onClick={() => this.setMode('ROLE_SUPERADMIN')}>superadmin</a>*/}
+                            {/*</li>*/}
                         </ul>
                     </div>
                 </div>
