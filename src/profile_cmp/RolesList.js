@@ -38,7 +38,7 @@ class RolesList extends React.Component {
                     <tr><td>
                         <div style={{display:'inline-block'}}><select style={{width:'160px'}} value={this.state.categoryId} onChange={this.handleCategoryChange}>
                             <option disabled selected value> -- kategoria -- </option>
-                            {this.state.categories.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                            {this.state.categories.map((data, index) => <option key={index} value={data.id} label={data.name} data={data}/>)}
                         </select></div></td>
                         <td><div><select style={{width:'160px'}} value={this.state.role} onChange={this.handleRoleChange}>
                             <option disabled selected value> -- rooli -- </option>
