@@ -41,12 +41,14 @@ class EditWork extends React.Component {
     };
 
     handleUpdateClick = (event) => {
-        axios.put('/api/works/'+this.state.id, { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
-            durationInMinutes:this.state.durationInMinutes, instrumentation:this.state.instrumentation})
+        axios.put('/api/works/' + this.state.id, {
+            work: this.state.work, composer: this.state.composer, musicians: this.state.musicians,
+            durationInMinutes: this.state.durationInMinutes, instrumentation: this.state.instrumentation
+        })
             .then(res => {
                 // this.props.callBack();
                 this.load();
- //               this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
+                //               this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
             });
     };
     handleWorkNameChange = (event) => {
@@ -111,16 +113,18 @@ class EditWork extends React.Component {
                 <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
                     {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
                 </select></div>
-
-                <tr>
-                    {/* <td><span className="glyphicon glyphicon-music"></span>
-                        <input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange} />
-                    </td> */}
-                    <td colSpan="2">
-                        <div className="circle" onClick={this.handleCreateClick.bind(this)}><span
-                            className="glyphicon glyphicon-plus"></span></div>Päivitä teoksen roolit 
-                    </td>
-                </tr>
+                <table>
+                    <tbody>
+                        <tr>
+                            {/* <td><span className="glyphicon glyphicon-music"></span>
+                        <input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange} /></td> */}
+                            <td colSpan="2">
+                                <div className="circle" onClick={this.handleCreateClick.bind(this)}><span
+                                    className="glyphicon glyphicon-plus"></span></div>Päivitä teoksen roolit
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div >
 
         );
