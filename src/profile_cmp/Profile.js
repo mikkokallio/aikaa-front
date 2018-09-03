@@ -85,10 +85,12 @@ class Profile extends React.Component {
     componentDidMount() {
         this.load();
     }
-
     load = () => {
         this.setState({isLoading: true});
-        axios.get('/api/users/3')
+        // Tänne OMAN id:n kautta myös pelkällä profile -osoitteella!!!
+        var path = this.props.location.pathname.replace("profile","users");
+        console.log(path);
+        axios.get('/api'+path)
             .then(response => {
                 const user = response.data;
                 this.setState({user});

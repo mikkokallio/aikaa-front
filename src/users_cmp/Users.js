@@ -21,11 +21,10 @@ class Schedule extends React.Component {
                 <p>Täältä linkki jokaisesta profiili-kortista itse profiiliin, joka vastaa Profile-palikkaa.</p>
                 <Row>
                     {this.state.json.map((line, index) =>
-                        <User key={index} data={line}/>)}
+                        <User {...this.props} key={index} data={line}/>)}
                 </Row>
             </div>
         )
-
     }
 
     componentDidMount() {

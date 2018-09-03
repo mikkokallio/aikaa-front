@@ -19,6 +19,7 @@ import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
 import Works from "./works_cmp/Works";
 import EditWork from "./works_cmp/EditWork";
+import EditSubEvent from "./event_view_cmp/EditSubEvent";
 import SignIn from "./sign_in_cmp/SignIn";
 import Booking from "./booking_cmp/Booking";
 
@@ -44,18 +45,21 @@ class App extends Component {
                                 <Route exact path="/events/" component={Events} />
                                 <Route path="/events/:id" render={(props) =>
                                     (<Event {...props} />)} />
-                                <Route path="/profile/" component={Profile} />
+                                <Route exact path="/profile/" component={Profile} />
                                 <Route path="/schedule/" component={Schedule} />
                                 {this.state.mode === 'unknown' &&
                                     <Route path="/signin/" render={(props) =>
                                         (<SignIn {...props} callBack={this.handleModeChange} />)} />
                                 }
                                 {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN') && <div>
+                                    <Route path="/profile/" component={Profile} />
                                     <Route path="/roles/" component={Roles} />
                                     <Route path="/places/" component={Places} />
                                     <Route path="/users/" component={Users} />
                                     <Route path="/booking/" component={Booking} />
                                     <Route exact path="/works/" component={Works} />
+                                    <Route path="/subevents/:id" render={(props) =>
+                                        (<EditSubEvent {...props} />)} />
                                     <Route path="/works/:id" render={(props) =>
                                         (<EditWork {...props} />)} />
                                 </div>}

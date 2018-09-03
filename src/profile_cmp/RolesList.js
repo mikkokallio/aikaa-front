@@ -18,6 +18,7 @@ class RolesList extends React.Component {
         this.setState({selected: event.target.value})
         console.log(this.state.selected);
     };
+    //TODO: Tämän pitää olla kontekstisidonnainen: lisää/poista/yms riippuen siitä missä näkymässä ollaan!
     handleAddClick= (event) => {
         axios.post('/api/userrole/3/'+this.state.selected)
             .then(res => {

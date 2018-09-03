@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Role from '../roles_cmp/Role';
+import RolesList from '../profile_cmp/RolesList';
 
 class EditWork extends React.Component {
     state = { allRoles: [], chosenRoles: [], newRoles: [] };//all: kaikki olemasaolevat roolit; chosen: kaikki valitut; new: nyt lisättävät roolit
@@ -49,6 +50,9 @@ class EditWork extends React.Component {
  //               this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
             });
     };
+    handleRevertClick = (event) => {
+        this.load();
+    };
     handleWorkNameChange = (event) => {
         this.setState({ work: event.target.value });
     };
@@ -83,30 +87,31 @@ class EditWork extends React.Component {
                 </div>
                 <table className="boxx table-striped">
                     <thead>
-                        <tr><th colSpan={2}><span className="glyphicon glyphicon-music"></span><span> </span>{this.state.work}</th>
-                            <th><input type="text" placeholder="" value={this.state.work} onChange={this.handleWorkNameChange} /></th></tr>
+                        <tr><th colSpan={2}><span className="glyphicon glyphicon-music"></span><span> </span>
+                            <input type="text" placeholder="" value={this.state.work} onChange={this.handleWorkNameChange} /></th></tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Säveltäjä</td>
-                            <td>{this.state.composer}</td>
                             <td><input type="text" placeholder="" value={this.state.composer} onChange={this.handleComposerChange} /></td>
                         </tr>
                         <tr><td>Kesto</td>
-                            <td>{this.state.durationInMinutes}</td>
                             <td><input style={{ width: '20px' }} type="text" placeholder="" value={this.state.durationInMinutes} onChange={this.handleDurChange} /></td>
                         </tr>
                         <tr><td>Muusikot</td>
-                            <td>{this.state.musicians}</td>
                             <td><input style={{ width: '20px' }} type="text" placeholder="" value={this.state.musicians} onChange={this.handleMusChange} /></td>
                         </tr>
                         <tr><td>Instrumentaatio</td>
-                            <td>{this.state.instrumentation}</td>
                             <td><input type="text" placeholder="" value={this.state.instrumentation} onChange={this.handleInstChange} /></td>
                         </tr>
-                        <tr><td colSpan="2"><div className="circle" onClick={this.handleUpdateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div> Päivitä tiedot </td></tr>
+                        <tr>
+                            <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
+                                       value="Talleta"/>
+                            </td>
+                            <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru"/></td></tr>
                     </tbody>
                 </table>
+                {/*<RolesList user={this.state.roleList} callBack={this.load}/>*/}
                 {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} />) : 'LOADING, oh my!'}
                 <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
                     {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
@@ -122,7 +127,6 @@ class EditWork extends React.Component {
                     </td>
                 </tr>
             </div >
-
         );
     }
 }
