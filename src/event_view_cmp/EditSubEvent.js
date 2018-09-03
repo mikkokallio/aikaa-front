@@ -141,11 +141,10 @@ class EditSubEvent extends React.Component {
                     </tr>
                     </tbody>
                 </table>
-                <WorkCast {...this.props} workid={this.state.workid}/>
+                <WorkCast {...this.props} workid={this.state.workid&&this.state.workid}/>
             </div>
         );
     }
 }
 
 export default EditSubEvent;
-//                 <td><div className="circle" onClick={this.handleCreateClick.bind(this)}><span className="glyphicon glyphicon-plus"></span></div></td></tr>
