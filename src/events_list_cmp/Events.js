@@ -12,15 +12,13 @@ class Events extends React.Component {
 
     return (
         <div className="boxx">
-            <h1>Tapahtumat / Evenemang</h1>
+            <h1>Tapahtumat</h1>
             <div className="alert alert-info">
-                <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit tarkastella ja hallita tapahtumia ja niihin liittyviä
-                aktiviteetteja (/tapahtumien osat).
+                <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä näet listauksen tapahtumista ja siirtyä muokkaamaan niiden osia valitsemalla <span className="glyphicon glyphicon-edit"></span>.
             </div>
-            <p>-Listaa filtteröidyt tapahtumat?</p>
             <table className="boxx table-striped">
                 <thead>
-                <tr><th>Tapahtuma</th><th>Osat</th><th>Säveltäjät</th></tr>
+                <tr><th>Tapahtuma</th><th>Osat</th><th></th></tr>
                 </thead>
                 <tbody>
             {this.state.json.map((data, index) => <EventListing {...this.props} id={this.state.json.id} key={index} data={data}/>)}
