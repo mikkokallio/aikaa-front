@@ -23,13 +23,13 @@ import EditSubEvent from "./event_view_cmp/EditSubEvent";
 import SignIn from "./sign_in_cmp/SignIn";
 import Booking from "./booking_cmp/Booking";
 
-axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+axios.defaults.headers.common['Authorization'] = sessionStorage.getItem("token");
 
 class App extends Component {
-    state = { mode: localStorage.getItem("mode") };
+    state = { mode: sessionStorage.getItem("mode") };
 
     handleModeChange = () => {
-        this.setState({ mode: localStorage.getItem("mode") });
+        this.setState({ mode: sessionStorage.getItem("mode") });
     };
 
     render() {
