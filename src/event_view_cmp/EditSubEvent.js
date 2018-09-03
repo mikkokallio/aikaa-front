@@ -76,8 +76,8 @@ class EditSubEvent extends React.Component {
     };
 
     render() {
-        console.log("State: " + this.state);
-        console.log(this.state.event.works);
+        console.log("State: ", + this.state);
+        console.log("event",this.state);
         return (
             <div className="boxx">
                 <h1>Muokkaa tapahtuman osaa</h1>

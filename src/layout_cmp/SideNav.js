@@ -78,12 +78,12 @@ class SideNav extends React.Component {
                             {(this.props.mode === 'ROLE_USER' || this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') && <div>
                                 <li onClick={this.handleSignOut}><span className="glyphicon glyphicon-log-out" ></span><a
                                     href="/">{strings.signout}</a></li>
-                                <li><span className="glyphicon glyphicon-dashboard"></span><a
-                                    href="/">{strings.front}</a></li>
+                                {/* <li><span className="glyphicon glyphicon-dashboard"></span><a
+                                    href="/">{strings.front}</a></li> */}
                                 <li><span className="glyphicon glyphicon-user"></span><a
                                     href="/profile">{strings.profile}</a></li>
-                                <li><span className="glyphicon glyphicon-comment"></span><a
-                                    href="/messages">{strings.messages}</a></li>
+                                {/* <li><span className="glyphicon glyphicon-comment"></span><a
+                                    href="/messages">{strings.messages}</a></li> */}
                                 <li><span className="glyphicon glyphicon-time"></span><a
                                     href="/schedule">{strings.schedule}</a></li>
                                 <li><span className="glyphicon glyphicon-flag"></span><a href="/events">{strings.events}</a>
@@ -99,8 +99,8 @@ class SideNav extends React.Component {
                                         href="/places">{strings.places}</a></li>
                                     <li><span className="glyphicon glyphicon-tags"></span><a
                                         href="/roles">{strings.roles}</a></li>
-                                    <li><span className="glyphicon glyphicon-calendar"></span><a
-                                        href="/calendar">{strings.bookings}</a></li>
+                                    {/* <li><span className="glyphicon glyphicon-calendar"></span><a
+                                        href="/calendar">{strings.bookings}</a></li> */}
                                 </div>}
 
                             {/*<li data-toggle="collapse" data-target="#products" className="collapsed active">*/}
@@ -114,12 +114,12 @@ class SideNav extends React.Component {
                             {/*<ul className="sub-menu collapse" id="products">*/}
                             {/*<li className="active"><a href="#">Admin-asetukset</a></li>*/}
                             {/*</ul>*/}
-                            <li>
+                            {/* <li>
                                 <a href="#" onClick={() => this.setMode('unknown')}>unknown</a>/
                                 <a href="#" onClick={() => this.setMode('ROLE_USER')}>user</a>/
                                 <a href="#" onClick={() => this.setMode('ROLE_ADMIN')}>admin</a>/
                                 <a href="#" onClick={() => this.setMode('ROLE_SUPERADMIN')}>superadmin</a>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

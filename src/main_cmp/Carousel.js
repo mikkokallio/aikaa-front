@@ -18,7 +18,7 @@ const strings = new LocalizedStrings({
 class Carousel extends React.Component {
 
     render() {
-        if (localStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
+        if (sessionStorage.getItem("language")!==null) strings.setLanguage(sessionStorage.getItem("language"));
 
         function shuffle(a) {
             for (let i = a.length - 1; i > 0; i--) {
