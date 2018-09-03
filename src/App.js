@@ -32,6 +32,7 @@ class App extends Component {
     };
 
     render() {
+        console.log("this.props.mode",this.props.mode);
         return (
             <Router>
                 <div className="App">
@@ -46,7 +47,7 @@ class App extends Component {
                                     (<Event {...props} />)} />
                                 <Route exact path="/profile/" component={Profile} />
                                 <Route path="/schedule/" component={Schedule} />
-                                {this.state.mode === 'unknown' &&
+                                {(this.state.mode === 'unknown' || this.state.mode == undefined) &&
                                     <Route path="/signin/" render={(props) =>
                                         (<SignIn {...props} callBack={this.handleModeChange} />)} />
                                 }
