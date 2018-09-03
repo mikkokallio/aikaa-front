@@ -3,38 +3,39 @@ import axios from "axios/index";
 import CastEntry from "./CastEntry";
 
 class WorkCast extends React.Component {
-    state = {work:[],users:[]};
+    state = { work: [], users: [] };
 
     handleUpdateClick = (event) => {
-        // axios.put('/api/works/' + this.state.id, {
+        console.log("this.state", this.state );
+        // axios.put('/api/bookings' + this.state.id, {
         //     work: this.state.work, composer: this.state.composer, musicians: this.state.musicians,
         //     durationInMinutes: this.state.durationInMinutes, instrumentation: this.state.instrumentation
         // })
         //     .then(res => {
-        //         // this.props.callBack();
         //         this.load();
-        //         //               this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
         //     });
     };
     handleRevertClick = (event) => {
         this.load();
     };
 
-    render () {
+    render() {
+        console.log(this.state.work);
+        console.log(this.state.users);
         return (
-                     <table className="boxx table-striped">
-                         <thead>
-                         <tr><th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>Roolitukset: {this.state.work.work}</th></tr>
-                         </thead>
-                         <tbody>
-                             {this.state.work.roleList&&this.state.work.roleList.map((data, index) => <CastEntry key={index} users={this.state.users} data={data}/>)}
-                         <tr>
-                             <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
-                                        value="Talleta"/>
-                             </td>
-                             <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru"/></td></tr>
-                         </tbody>
-                     </table>
+            <table className="boxx table-striped">
+                <thead>
+                    <tr><th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>Roolitukset: {this.state.work.work}</th></tr>
+                </thead>
+                <tbody>
+                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={index} users={this.state.users} data={data} />)}
+                    <tr>
+                        <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
+                            value="Talleta" />
+                        </td>
+                        <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td></tr>
+                </tbody>
+            </table>
         )
     }
     componentDidMount() {
@@ -42,20 +43,16 @@ class WorkCast extends React.Component {
     }
 
     load = () => {
-        this.setState({isLoading: true});
-        // axios.get('/api/works/1')
-        console.log(this.props);
-        console.log(this.props.workid);
-        axios.get('/api/works/'+this.props.workid)
+        this.setState({ isLoading: true });
+        axios.get('/api/works/' + this.props.workid)
             .then(response => {
                 const work = response.data;
-                this.setState({work});
-                console.log("Tämä on work: ",work);
+                this.setState({ work });
             });
         axios.get('/api/users')
             .then(response => {
                 const users = response.data;
-                this.setState({users});
+                this.setState({ users });
             });
     }
 }

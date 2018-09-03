@@ -32,7 +32,6 @@ class App extends Component {
     };
 
     render() {
-        console.log("this.props.mode",this.props.mode);
         return (
             <Router>
                 <div className="App">
@@ -51,7 +50,7 @@ class App extends Component {
                                     <Route path="/signin/" render={(props) =>
                                         (<SignIn {...props} callBack={this.handleModeChange} />)} />
                                 }
-                                {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN') && <div>
+                                {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN')&&<div>
                                     <Route path="/profile/" component={Profile} />
                                     <Route path="/roles/" component={Roles} />
                                     <Route path="/places/" component={Places} />
