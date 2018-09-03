@@ -21,7 +21,7 @@ class WorkCast extends React.Component {
     };
 
     render () {
-        console.log(this.state);
+        //console.log(this.state);
         return (
                      <table className="boxx table-striped">
                          <thead>

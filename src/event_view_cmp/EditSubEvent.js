@@ -17,17 +17,17 @@ class EditSubEvent extends React.Component {
             .then(response => {
                 const json = response.data;
                 this.setState(json);
+                axios.get('/api/events/'+this.state.eventid)
+                    .then(response => {
+                        const event = response.data;
+                        this.setState({event});
+                        console.log("Tämä on event: "+event);
+                    });
             });
         axios.get('/api/places')
             .then(response => {
                 const places = response.data;
                 this.setState({places});
-            });
-        axios.get('/api/events/'+this.state.eventid)
-            .then(response => {
-                const event = response.data;
-                this.setState({event});
-                console.log(event);
             });
     };
 
@@ -39,23 +39,10 @@ class EditSubEvent extends React.Component {
             });
     };
 
-    //         name: this.state.name, begin: this.state.begin, ending: this.state.ending,
-    //         placeId: this.state.placeId, eventId: this.props.eventid, type: this.state.type, workId: this.state.workId
-    //     })
-    //         .then(res => {
-    //             this.props.callBack();
-    //             this.setState({
-    //                 name: '', begin: '', ending: '',
-    //                 placeId: '', type: '', workId: ''
-    //             });
-    //         });
-    // };
-
-
     handleUpdateClick = (event) => {
         axios.put('/api/subevents/' + this.state.id, {
-            name: this.state.name, type: this.state.type, begin: this.state.begin,
-            ending: this.state.ending, placeId: this.state.placeId, workId: this.state.workId, eventId: this.state.eventId
+            name: this.state.name, begin: this.state.begin, ending: this.state.ending,
+            placeId: this.state.placeId, eventId: this.state.eventid, type: this.state.type, workId: this.state.workId
         })
             .then(res => {
                 // this.props.callBack();
@@ -86,6 +73,7 @@ class EditSubEvent extends React.Component {
 
     render() {
         console.log("State: "+this.state);
+        console.log(this.state.event.works);
         return (
             <div className="boxx">
                 <h1>Muokkaa tapahtuman osaa</h1>
@@ -132,9 +120,9 @@ class EditSubEvent extends React.Component {
                         <td>Teos</td>
                         <td>
                             <select placeholder="sijainti" value={this.state.placeId} onChange={this.handleWorkChange}>
-                            <option key={0} value={0} label={"Valitse paikka"} data={"Ei valittu"}/>
+                            <option key={0} value={0} label={"Valitse teos"} data={"Ei valittu"}/>
                                 {this.state.event.works&&this.state.event.works.map((data, index) => <option key={data.id} value={data.id}
-                            label={data.name} data={data}/>)}
+                            label={data.work} data={data}/>)}
                             </select>
 
                             <input type="text" placeholder="" value={this.state.workId}

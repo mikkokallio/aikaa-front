@@ -6,26 +6,26 @@ class CastEntry extends React.Component {
 
     handleUserChange = (event) => {
         this.setState({selected: event.target.value});
-        console.log(this.state.selected);
+        //console.log(this.state.selected);
     };
     createShortList = (event) => {
         var users = this.props.users;
         var shortList = [];
-        console.log(this.props.users.length);
+        //console.log(this.props.users.length);
         for (var i = 0; i < users.length; i++) {
             if (users[i].roles.contains(this.props.data.name)) shortList.push(users[i]);
-            console.log(users[i] + " " + this.props.data.name);
+            //console.log(users[i] + " " + this.props.data.name);
         }
-        console.log(shortList);
+        //console.log(shortList);
         this.setState({shortList: shortList});
     };
 
     render() {
-        console.log(this.state);
-        console.log(this.props.users);
+        //console.log(this.state);
+        //console.log(this.props.users);
         var users = this.props.users;
         var shortList = [];
-        console.log(this.props.users.length);
+        //console.log(this.props.users.length);
         for (var i = 0; i < users.length; i++) {
             for (var j = 0; j < users[i].roles.length; j++) {
                 // console.log("Tyypin roolit: "+users[i].roles[j].id);
@@ -33,7 +33,7 @@ class CastEntry extends React.Component {
                 if (users[i].roles[j].id == this.props.data.id) shortList.push(users[i]);
             }
         }
-        console.log(shortList);
+        //console.log(shortList);
         return (
             <tr>
                 <td>{this.props.data.name}</td>
