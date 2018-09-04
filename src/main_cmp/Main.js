@@ -5,7 +5,6 @@ import axios from "axios/index";
 class Main extends React.Component {
     state = {json:[]};
     render () {
-        console.log(this.state.json);
 
     return (
         <div>

@@ -26,7 +26,6 @@ class SignIn extends React.Component {
                 console.log("id sisäänkirjauduttua ", sessionStorage.getItem("id"));
             })
             .then(res => {
-                console.log(this.props);
                 this.props.callBack();
                 this.loadHomePage();
             });

@@ -20,21 +20,27 @@ class RolesList extends React.Component {
     };
     //TODO: Tämän pitää olla kontekstisidonnainen: lisää/poista/yms riippuen siitä missä näkymässä ollaan!
     handleAddClick= (event) => {
-        axios.post('/api/userrole/3/'+this.state.selected)
+        // console.log("RolesListin state",this.state);
+        // console.log("RolesListin props.user.id",this.props.user.id);
+        axios.post('/api/userrole/'+ this.props.user.id+'/'+this.state.selected)
             .then(res => {
                 this.props.callBack();
             });
     };
 
+    handleRoleRemoval=(id, workid) => {
+        this.props.callBackRemove(id, workid);
+        this.props.callBack();
+    }
+
     render() {
-        console.log(this.state.user);
         return (
                 <table className="boxx table-striped">
                     <thead>
                     <tr><th colSpan={3}><span className="glyphicon glyphicon-tags"></span><span> </span>Roolit</th></tr>
                     </thead>
                     <tbody>
-                    <tr><td colSpan={3}>{this.props.user.roles?this.props.user.roles.map((line, index) => <Role key={index} data={line}/>):'Lataa...'}</td>
+                    <tr><td colSpan={3}>{this.props.user.roles?this.props.user.roles.map((line, index) => <Role key={index} callBack={this.handleRoleRemoval} data={line}/>):'Lataa...'}</td>
                     </tr>
                     <tr><td>
                         <div style={{display:'inline-block'}}><select style={{width:'160px'}} value={this.state.categoryId} onChange={this.handleCategoryChange}>

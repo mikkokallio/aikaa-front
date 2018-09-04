@@ -35,6 +35,7 @@ class EditWork extends React.Component {
 
     handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
         //event.preventDefault();
+        console.log(this.state.newRoles);
         axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
             .then(res => {
                 this.setState(this.state);
@@ -52,6 +53,14 @@ class EditWork extends React.Component {
                 //               this.setState({work: '', composer: '', durationInMinutes: '', musicians: '', instrumentation: ''});
             });
     };
+
+    removeRoleFromWork = (id, workroleid) => {
+        axios.delete('/api/workroles/'+workroleid)
+        .then(res => {
+            console.log("remove roles from work",res);
+            this.setState(this.state);
+        })
+    }
     handleRevertClick = (event) => {
         this.load();
     };
@@ -115,7 +124,7 @@ class EditWork extends React.Component {
                     </tbody>
                 </table>
                 {/*<RolesList user={this.state.roleList} callBack={this.load}/>*/}
-                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} />) : 'LOADING, oh my!'}
+                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.removeRoleFromWork}/>) : 'LOADING, oh my!'}
                 <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
                     {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
                 </select></div>

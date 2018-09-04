@@ -38,8 +38,16 @@ class Profile extends React.Component {
         this.load();
     };
 
+    removeRoleFromUser = (event) => {
+        axios.delete('/api/userrole/' + this.state.user.id +'/' + event)
+        .then(res => {
+            console.log("remove roles from work",res);
+            this.setState(this.state);
+        })
+        this.load();
+    }
+
     render() {
-        console.log(this.state.user);
         return (
             <div className="boxx">
                 <h1>Profiili</h1>
@@ -79,7 +87,7 @@ class Profile extends React.Component {
                             <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td></tr>
                     </tbody>
                 </table>
-                <RolesList user={this.state.user} callBack={this.load} />
+                <RolesList user={this.state.user} callBackRemove={this.removeRoleFromUser} callBack={this.load} />
             </div>
         )
     }

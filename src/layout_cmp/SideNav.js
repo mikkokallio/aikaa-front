@@ -61,7 +61,6 @@ class SideNav extends React.Component {
 
 
     render() {
-        console.log(sessionStorage.getItem('token'));
         if (sessionStorage.getItem("language") !== null) strings.setLanguage(sessionStorage.getItem("language"));
 
         return (
