@@ -5,8 +5,6 @@ var year,month,day;
 
 class Week extends React.Component {
 
-    componentDidMount () {
-    }
     render() {
         console.log("Week says: ",this.props);
         return (

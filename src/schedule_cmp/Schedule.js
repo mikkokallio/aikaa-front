@@ -24,13 +24,11 @@ class Schedule extends React.Component {
     state = {labels: [], monday:''};
 
     prevWeek = () => {
-        // Lisää viikkoa yhdellä. Tarkista meneekö vuosi yli.
         date.setDate(date.getDate() - 8);
         sessionStorage.setItem("monday",date);
         this.setState({});
     };
     nextWeek = () => {
-        // Vähennä viikkoa yhdellä. Tarkista meneekö vuosi yli.
         date.setDate(date.getDate() + 6);
         sessionStorage.setItem("monday",date);
         this.setState({});

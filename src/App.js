@@ -19,7 +19,7 @@ import Users from "./users_cmp/Users";
 import Event from "./event_view_cmp/Event";
 import Works from "./works_cmp/Works";
 import EditWork from "./works_cmp/EditWork";
-import EditSubEvent from "./event_view_cmp/EditSubEvent";
+import EditSubEvent from "./subevent_edit_cmp/EditSubEvent";
 import SignIn from "./sign_in_cmp/SignIn";
 
 axios.defaults.headers.common['Authorization'] = sessionStorage.getItem("token");
