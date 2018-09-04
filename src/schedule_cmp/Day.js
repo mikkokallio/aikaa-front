@@ -8,8 +8,7 @@ class Day extends React.Component {
     render() {
         return (
             <div id="day" style={{display:'inline-block'}}>
-                <div className="header">{this.props.day}</div>
-                <div className="header">{this.props.label}</div>
+                <div className="header">{this.props.label} {this.props.shortDate}</div>
                 {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
             </div>
         )

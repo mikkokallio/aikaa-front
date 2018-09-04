@@ -44,6 +44,8 @@ class Schedule extends React.Component {
                     <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit hallinnoida
                     järjestelmän käyttäjiä.
                 </div>
+                {this.state.json.map((line, index) =>
+                    <User {...this.props} key={index} data={line}/>)}
                 <div className="boxx"><img src={user} alt="Avatar" className="avatar"/>
                     <div style={{display: 'inline-block', marginLeft: '1em', width: '12em'}}>
                         <input type="text" placeholder="nimi" value={this.state.name}
@@ -61,8 +63,6 @@ class Schedule extends React.Component {
                         className="glyphicon glyphicon-plus"></span></div>
                     <td></td>
                 </div>
-                {this.state.json.map((line, index) =>
-                    <User {...this.props} key={index} data={line}/>)}
             </div>
         )
     }

@@ -7,11 +7,10 @@ class Works extends React.Component {
     render() {
         return (
             <div className="boxx">
-                <h1>Teokset / ??</h1>
+                <h1>Teokset</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit lisätä ja muokata teoksia.
                 </div>
-                <p>-Listaa filtteröidyt teokset?</p>
                 <WorksList {...this.props} data={this.state.json} />
             </div>
         )
