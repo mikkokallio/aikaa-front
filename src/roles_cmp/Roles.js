@@ -18,11 +18,9 @@ class Roles extends React.Component {
     };
 
     removeRoleFromDatabase = (id, workroleid) => {
-        console.log("id",id);
         axios.delete('/api/roles/'+id)
             .then(response => {
-                console.log(response);
-                
+                this.load();
             });
     };
 
@@ -40,7 +38,7 @@ class Roles extends React.Component {
                 <p>Update, delete. Muuta toiminnallisuutta ei tarvita tänne.</p>
                 <p>Rooleja voi poistaa helposti, mutta pitää olla varmistusdialogi.</p>
                 <Row>
-                    {this.state.json.map((data, index) => <Role callBack={this.load} id={data.id} key={data.id} data={data} callBack={this.removeRoleFromDatabase}/>)}
+                    {this.state.json.map((data, index) => <Role callBack={this.load} id={data.id} key={data.id} data={data} callBackRemove={this.removeRoleFromDatabase}/>)}
                     <NewRole callBack={this.load}/>
                 </Row>
             </div>

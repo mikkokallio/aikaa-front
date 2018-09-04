@@ -18,12 +18,6 @@ class EditWork extends React.Component {
                 this.setState(json);//täällä sisällä "roleList", joka sisältää teoksen roolit
                 let chosenList = this.state.roleList ? this.state.roleList : [];
                 this.setState({ chosenRoles: chosenList });
-                // console.log("chosenRoles", this.state.chosenRoles)
-                // console.log(this.state.roleList[0].name);
-                // if (chosenList.length === 0 && this.state.roleList[0].name) {
-                //     chosenList = this.state.roleList;
-                //     console.log(chosenList);
-                // }
             });
         axios.get('/api/roles')//kaikki olemassaolevat roolit eli allRoles
             .then(response => {
@@ -35,7 +29,6 @@ class EditWork extends React.Component {
 
     handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
         //event.preventDefault();
-        console.log(this.state.newRoles);
         axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
             .then(res => {
                 this.setState(this.state);
@@ -57,8 +50,8 @@ class EditWork extends React.Component {
     removeRoleFromWork = (id, workroleid) => {
         axios.delete('/api/workroles/'+workroleid)
         .then(res => {
-            console.log("remove roles from work",res);
             this.setState(this.state);
+            this.load();
         })
     }
     handleRevertClick = (event) => {
@@ -89,7 +82,6 @@ class EditWork extends React.Component {
     };
 
     render() {
-        console.log(this.props.selectedCast);
         return (
             <div className="boxx">
                 <h1>Muokkaa teosta</h1>
@@ -124,7 +116,7 @@ class EditWork extends React.Component {
                     </tbody>
                 </table>
                 {/*<RolesList user={this.state.roleList} callBack={this.load}/>*/}
-                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.removeRoleFromWork}/>) : 'LOADING, oh my!'}
+                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.load} callBackRemove={this.removeRoleFromWork}/>) : 'LOADING, oh my!'}
                 <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
                     {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
                 </select></div>
