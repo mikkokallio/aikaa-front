@@ -50,7 +50,7 @@ class EditSubEvent extends React.Component {
         for (let role of cast) {
             axios.post('/api/bookings?subeventid='+this.state.id+'&userid='+ role.userid + '&workroleid=' + role.roleid)
                 .then(res => {
-                    console.log("lisätty subeventcast");
+                    
                 });
         }
         this.load();
