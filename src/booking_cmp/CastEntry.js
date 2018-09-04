@@ -5,14 +5,15 @@ class CastEntry extends React.Component {
     state = { selected: '', shortList: [] };
 
     handleUserChange = (event) => {
-        this.findSelected(event.target.value);
+        console.log(event.target.id);
         let roleid = event.target.id;
         let userid = event.target.value;
         let castMember = { 'roleid': roleid, 'userid': userid };
+        console.log(castMember);
         this.props.callBack(castMember);
         this.setState(this.state);
     };
-    
+
     createShortList = (event) => {
         var users = this.props.users;
         var shortList = [];
@@ -20,21 +21,17 @@ class CastEntry extends React.Component {
             if (users[i].roles.contains(this.props.data.name)) shortList.push(users[i]);
         }
         this.setState({ shortList: shortList });
-        console.log("tämä", shortList);
     };
 
     findSelected = (id) => {
         let selected = this.props.users.find(user => user.id == id);
-        console.log(selected);
         this.setState({ selected: selected });
     }
 
     findCastPersonnel = (workroleid) => {
-        console.log("lähetetty workroleid", workroleid);
         if (this.props.selectedCast.length > 0) {
             let personnel = this.props.selectedCast ? this.props.selectedCast.find(cast => cast.workroleid == workroleid):'';
-            console.log(personnel? personnel.username: "Ei valittu");
-            return personnel? personnel.username: "Ei valittu";
+            return personnel? personnel: "Ei valittu";
         } else {
             return "Ei valittu";
         }
@@ -48,21 +45,25 @@ class CastEntry extends React.Component {
                 if (users[i].roles[j].id == this.props.data.id) shortList.push(users[i]);
             }
         }
-        console.log(this.props.selectedCast);//tässä on jo valmiiksi valitut. Saisiko nämä näkymään valittuina?
-        console.log(this.props.data.workroleId)
         let musician = this.findCastPersonnel(this.props.data.workroleId);
-        console.log(musician);
         return (
             <tr>
                 <td>{this.props.data.name}</td>
+                <td>{musician.username}</td>
                 <td><select id={this.props.data.workroleId} style={{ width: '160px' }} value={this.state.selected} onChange={this.handleUserChange}>
-                    <option key={musician?musician.id:0} value={musician?musician.workroleId:0} label={"Valitse muusikko"} data={musician} />
-                    {shortList.map((data, index) => <option key={data.workroleId} value={data.workroleId} label={data.name} data={data} />)} )
+                    <option key={0} value={0} label={"Valitse muusikko"} data={"Ei valittu"} />
+                    {shortList.map((data, index) => <option key={data.id} value={data.id} label={data.name} data={data} />)} )
                 </select>
                 </td>
             </tr>
         )
     }
+    // <select placeholder="teos" value={this.state.workid} onChange={this.handleWorkChange}>
+    //                     <option key={0} value={0} label={"Valitse teos"} data={"Ei valittu"}/>
+    //                     {this.state.works && this.state.works.map((data, index) => <option
+    //                         key={data.id} value={data.id}
+    //                         label={data.work} data={data} selected={this.state.workid == data.id && 'selected'}/>)}
+    //                 </select>
 
     componentDidMount() {
         //this.createShortList();
