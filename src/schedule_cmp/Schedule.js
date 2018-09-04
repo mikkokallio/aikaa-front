@@ -19,23 +19,56 @@ const strings = new LocalizedStrings({
 });
 
 class Schedule extends React.Component {
-    state = {labels: []};
+    state = {labels: [], monday:''};
+
+    prevWeek = () => {
+        // Lisää viikkoa yhdellä. Tarkista meneekö vuosi yli.
+    };
+    nextWeek = () => {
+        // Vähennä viikkoa yhdellä. Tarkista meneekö vuosi yli.
+    };
+    handleMonthChange = (event) => {
+        this.setState({ month: event.target.value });
+    };
+    handleEmailChange = (event) => {
+        this.setState({ year: event.target.value });
+    };
+
 
     render() {
-        if (localStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
+        if (sessionStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
+        var id = sessionStorage.getItem("id");
+        id = 6;
+        var date = new Date();
+        var day = date.getDay(), diff = date.getDate() - day + (day == 0 ? -6:1);
+        date = new Date(date.setDate(diff));
+
+        // console.log("Day of month: ",dt.getDate());
+        // console.log("Day of week: ",dt.getDay());
+        // console.log("Month: ",dt.getMonth());
+        console.log(date);
+        // var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+            // return new Date(date.setDate(diff));
+
         return (
             <div className="boxx" style={{whiteSpace:'nowrap',maxWidth:'99%'}}>
                 <h1>{strings.heading}</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> {strings.description}
                 </div>
-                <p><input type="date" placeholder="Valitse päivä"></input></p>
+                <div style={{display:'block',margin:'0 auto'}} >
+                    <input className="btn btn-primary" type="submit"
+                            value="Edellinen viikko" onClick={this.prevWeek} /> Viikko <
+                    input style={{width:'20px'}} type="text" value={this.state.month} onChange={this.handleMonthChange}></input>
+                    Vuosi <input style={{width:'40px'}} value={this.state.year} onChange={this.handleEmailChange}/><span> </span>
+                     <input className="btn btn-primary" type="submit"
+                           value="Seuraava viikko" onClick={this.nextWeek} /></div>
                 <div className="boxx">
                 <div id="times" style={{display:'inline-block'}}>
                     <div className="header">{strings.time}</div>
                     {this.state.labels.map((data, index) => <TimeLabel key={index} data={data}/>)}
                 </div>
-                <Week user="6" />
+                <Week monday={date} user={id} />
                 </div>
             </div>
         )
