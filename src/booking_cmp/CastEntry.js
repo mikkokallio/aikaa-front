@@ -5,13 +5,13 @@ class CastEntry extends React.Component {
     state = { selected: '', shortList: [] };
 
     handleUserChange = (event) => {
-        console.log(event);
+        console.log(event.target.id);
         let roleid = event.target.id;
         let userid = event.target.value;
         let castMember = { 'roleid': roleid, 'userid': userid };
         console.log(castMember);
-        // this.props.callBack(castMember);
-        // this.setState(this.state);
+        this.props.callBack(castMember);
+        this.setState(this.state);
     };
 
     createShortList = (event) => {
@@ -52,12 +52,18 @@ class CastEntry extends React.Component {
                 <td>{musician.username}</td>
                 <td><select id={this.props.data.workroleId} style={{ width: '160px' }} value={this.state.selected} onChange={this.handleUserChange}>
                     <option key={0} value={0} label={"Valitse muusikko"} data={"Ei valittu"} />
-                    {shortList.map((data, index) => <option key={data.workroleId} id={data.id} value={data.workroleId} label={data.name} data={data} />)} )
+                    {shortList.map((data, index) => <option key={data.id} value={data.id} label={data.name} data={data} />)} )
                 </select>
                 </td>
             </tr>
         )
     }
+    // <select placeholder="teos" value={this.state.workid} onChange={this.handleWorkChange}>
+    //                     <option key={0} value={0} label={"Valitse teos"} data={"Ei valittu"}/>
+    //                     {this.state.works && this.state.works.map((data, index) => <option
+    //                         key={data.id} value={data.id}
+    //                         label={data.work} data={data} selected={this.state.workid == data.id && 'selected'}/>)}
+    //                 </select>
 
     componentDidMount() {
         //this.createShortList();
