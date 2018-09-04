@@ -9,8 +9,6 @@ class Week extends React.Component {
     }
     render() {
         console.log("Week says: ",this.props);
-        // if (this.props.monday) {
-        // }
         return (
             <div style={{display:'inline-block'}}>
                 <Day user={this.props.user} day={this.props.dates[0]} shortDate={this.props.shortDates[0]} label="ma"/>

@@ -16,8 +16,8 @@
     border-right: #BBB 1px solid;
     background-color: white;
     padding:0px 5px;
-    -webkit-transition: 2s; /* Safari */
-    transition: 2s;
+    -webkit-transition: 0.5s; /* Safari */
+    transition: 0.5s;
     height:10px;
     text-shadow: 1px 1px #fff;
 }
