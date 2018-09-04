@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-class NewWork extends React.Component {
+class AddWork extends React.Component {
     state = {workid: '',works:[]};
     handleAddClick = (event) => {
         let requestparam = '';
         if (this.props.eventid) {
-        requestparam += '?event=true&eventid='+this.props.eventid;
+        requestparam += this.props.eventid +'/works/'+this.state.workid;
         }
-        axios.post('/api/works'+requestparam, { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
-            durationInMinutes:this.state.durationInMinutes, instrumentation:this.state.instrumentation})
+        axios.post('/api/events/'+requestparam)
             .then(res => {
+                console.log(res);
                 this.props.callBack();
                 this.setState({workid: ''});
             });
@@ -32,7 +32,7 @@ class NewWork extends React.Component {
                     </select>
                 </td>
                 <td colSpan="2">
-                    <div className="circle" onClick={this.handleCreateClick}><span
+                    <div className="circle" onClick={this.handleAddClick}><span
                         className="glyphicon glyphicon-plus"></span></div>
                 </td>
             </tr>);
@@ -51,4 +51,4 @@ class NewWork extends React.Component {
     }
 }
 
-export default NewWork;
+export default AddWork;

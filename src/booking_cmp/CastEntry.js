@@ -12,6 +12,7 @@ class CastEntry extends React.Component {
         this.props.callBack(castMember);
         this.setState(this.state);
     };
+    
     createShortList = (event) => {
         var users = this.props.users;
         var shortList = [];
