@@ -100,9 +100,7 @@ class Profile extends React.Component {
         var path = this.props.location.pathname.replace("profile", "users");
         if (path.length===6) {
             path += "/" + sessionStorage.getItem("id");
-            console.log(path);
         }
-        console.log(path);
         axios.get('/api/' + path)
             .then(response => {
                 const user = response.data;

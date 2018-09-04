@@ -6,7 +6,8 @@ import axios from "axios/index";
 class Role extends React.Component {
 
     remove = (event) => {
-        this.props.callBack(event.target.id, this.props.data.workroleId);
+        this.props.callBackRemove(event.target.id, this.props.data.workroleId);
+        this.props.callBack();
         //console.log("click!");
         //console.log(this.props.data.id);
         //var elem = document.getElementById(this.props.data.id);
