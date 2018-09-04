@@ -21,6 +21,7 @@ import Works from "./works_cmp/Works";
 import EditWork from "./works_cmp/EditWork";
 import EditSubEvent from "./subevent_edit_cmp/EditSubEvent";
 import SignIn from "./sign_in_cmp/SignIn";
+import GroupView from "./schedule_cmp/GroupView";
 
 axios.defaults.headers.common['Authorization'] = sessionStorage.getItem("token");
 
@@ -46,6 +47,7 @@ class App extends Component {
                                     (<Event {...props} />)} />
                                 <Route exact path="/profile/" component={Profile} />
                                 <Route path="/schedule/" component={Schedule} />
+                                <Route path="/groupview/" component={GroupView} />
                                 {(this.state.mode === 'unknown' || this.state.mode == undefined) &&
                                     <Route path="/signin/" render={(props) =>
                                         (<SignIn {...props} callBack={this.handleModeChange} />)} />

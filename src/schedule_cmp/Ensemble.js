@@ -6,11 +6,9 @@ class Ensemble extends React.Component {
     render() {
         return (
             <div style={{display:'inline-block'}}>
-                // Day - paikka
-                <Day user={this.props.place} day={this.props.day} label="paikan nimi"/>
-                // Day - x määrä usereita
+                <Day user={this.props.placeid} day={this.props.date} label="place"/>
                 {this.props.users.map((data, index) =>
-                    <Day {...this.props} key={index} data={data} user={this.props.user} day={this.props.day} label={this.props.name}/>)}
+                    <Day {...this.props} key={index} data={data} user={data} day={this.props.date} label=""/>)}
             </div>
         )
     }

@@ -8,12 +8,11 @@ class WorkCast extends React.Component {
     handleUpdateClick = () => {
         this.props.callBack(this.state.chosenCast);
     };
-
     handleAddCast = (event) => {
         let cast = this.state.chosenCast;
         cast.push(event);
         this.setState({chosenCast: cast});
-    }
+    };
     handleRevertClick = (event) => {
         this.load();
     };
@@ -29,11 +28,11 @@ class WorkCast extends React.Component {
                 <tbody>
                     {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.workroleid} selectedCast={selectedCast} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
                     <tr>
-                        <td></td>
                         <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
                             value="Talleta" />
                         </td>
-                        <td colSpan={3}><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td></tr>
+                        <td colSpan={2}><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td>
+                    </tr>
                 </tbody>
             </table>
         )

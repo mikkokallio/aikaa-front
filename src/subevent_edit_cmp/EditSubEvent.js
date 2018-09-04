@@ -87,6 +87,10 @@ class EditSubEvent extends React.Component {
     handleWorkChange = (event) => {
         this.setState({ workid: event.target.value });
     };
+    openGroupView = (evt) => {
+        const url = '/groupview?placeid='+this.state.placeid+'&subeventid='+this.state.id;
+        this.props.history.push(url);
+    };
 
     render() {
         return (
@@ -148,7 +152,8 @@ class EditSubEvent extends React.Component {
                                 value="Talleta" />
                             </td>
                             <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick}
-                                value="Peru" /></td>
+                                value="Peru" /><input style={{float:'right'}} className="btn btn-info" type="submit" onClick={this.openGroupView}
+                                                      value="Aikataulut" /></td>
                         </tr>
                     </tbody>
                 </table>
