@@ -2,11 +2,16 @@ import React from 'react';
 import axios from "axios/index";
 
 class CastEntry extends React.Component {
-    state = {selected: '', shortList: []};
+    state = { selected: '', shortList: [] };
 
     handleUserChange = (event) => {
-        this.setState({selected: event.target.value});
-        //console.log(this.state.selected);
+        this.findSelected(event.target.value);
+        let roleid = event.target.id;
+        let userid = event.target.value;
+        let castMember = { 'roleid': roleid, 'userid': userid };
+        this.props.callBack(castMember);
+        console.log("selected", this.state.selected);
+        this.setState(this.state);
     };
     createShortList = (event) => {
         var users = this.props.users;
@@ -16,9 +21,15 @@ class CastEntry extends React.Component {
             if (users[i].roles.contains(this.props.data.name)) shortList.push(users[i]);
             //console.log(users[i] + " " + this.props.data.name);
         }
-        //console.log(shortList);
-        this.setState({shortList: shortList});
+        this.setState({ shortList: shortList });
+        console.log("tämä", shortList);
     };
+
+    findSelected = (id) => {
+        let selected = this.props.users.find(user => user.id == id);
+        console.log(selected);
+        this.setState({ selected: selected });
+    }
 
     render() {
         //console.log(this.state);
@@ -34,12 +45,14 @@ class CastEntry extends React.Component {
             }
         }
         //console.log(shortList);
+        console.log(this.props.selectedCast);//tässä on jo valmiiksi valitut. Saisiko nämä näkymään valittuina?
+
         return (
             <tr>
                 <td>{this.props.data.name}</td>
-                <td><select style={{width: '160px'}} value={this.state.selected} onChange={this.handleUserChange}>
-                    <option selected value> -- muusikko --</option>
-                    {shortList.map((data, index) => <option value={data.id} label={data.name} data={data}/>)}
+                <td><select id={this.props.data.workroleId} style={{ width: '160px' }} value={this.state.selected} onChange={this.handleUserChange}>
+                    <option key={0} value={0} label={"Valitse muusikko"} data={"Ei valittu"} />
+                    {shortList.map((data, index) => <option key={data.id} value={data.id} label={data.name} data={data} />)} )
                 </select>
                 </td>
             </tr>

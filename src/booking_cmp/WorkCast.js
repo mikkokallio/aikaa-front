@@ -3,32 +3,31 @@ import axios from "axios/index";
 import CastEntry from "./CastEntry";
 
 class WorkCast extends React.Component {
-    state = { work: [], users: [] };
+    state = { work: [], users: [], chosenCast: [] };
 
-    handleUpdateClick = (event) => {
-        console.log("this.state", this.state );
-        // axios.put('/api/bookings' + this.state.id, {
-        //     work: this.state.work, composer: this.state.composer, musicians: this.state.musicians,
-        //     durationInMinutes: this.state.durationInMinutes, instrumentation: this.state.instrumentation
-        // })
-        //     .then(res => {
-        //         this.load();
-        //     });
+    handleUpdateClick = () => {
+        this.props.callBack(this.state.chosenCast);
     };
+
+    handleAddCast = (event) => {
+        let cast = this.state.chosenCast;
+        cast.push(event);
+        this.setState({chosenCast: cast});
+    }
     handleRevertClick = (event) => {
         this.load();
     };
 
     render() {
-        console.log(this.state.work);
-        console.log(this.state.users);
+        let updateCast = this.props.callBack;
+        let selectedCast = this.props.selectedCast;
         return (
             <table className="boxx table-striped">
                 <thead>
                     <tr><th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>Roolitukset: {this.state.work.work}</th></tr>
                 </thead>
                 <tbody>
-                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={index} users={this.state.users} data={data} />)}
+                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.id} selectedCast={selectedCast} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
                     <tr>
                         <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
                             value="Talleta" />

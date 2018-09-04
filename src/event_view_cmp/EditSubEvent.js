@@ -6,7 +6,7 @@ import WorkCast from "../booking_cmp/WorkCast";
 class EditSubEvent extends React.Component {
     state = {
         bookings: [], event: [], places: [], works: [], name: '', begin: '', ending: '',
-        eventid: '', placeid: '', type: '', workid: ''
+        eventid: '', placeid: '', type: '', workid: '', selectedCast: []
     };
 
     componentDidMount() {
@@ -30,17 +30,31 @@ class EditSubEvent extends React.Component {
         axios.get('/api/places')
             .then(response => {
                 const places = response.data;
-                this.setState({places: places });
+                this.setState({ places: places });
+            });
+        axios.get('/api/bookings'+this.props.location.pathname)
+        .then(response =>{
+            this.setState({selectedCast:response.data});
+        }) 
+    };
+
+    handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
+        //event.preventDefault();
+        axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
+            .then(res => {
+                this.setState(this.state);
             });
     };
 
-    // handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
-    //     //event.preventDefault();
-    //     axios.post('/api/workroles/' + this.state.id, this.state.newRoles)
-    //         .then(res => {
-    //             this.setState(this.state);
-    //         });
-    // };
+    updateCast = (cast) => {
+        for (let role of cast) {
+            axios.post('/api/bookings?subeventid='+this.state.id+'&userid='+ role.userid + '&workroleid=' + role.roleid)
+                .then(res => {
+                    console.log("lisätty subeventcast");
+                });
+        }
+        this.load();
+    }
 
     handleUpdateClick = (event) => {
         axios.put('/api/subevents/' + this.state.id, {
@@ -138,7 +152,7 @@ class EditSubEvent extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                {this.state.workid&&<WorkCast {...this.props} workid={this.state.workid} />}
+                {this.state.workid && <WorkCast {...this.props} selectedCast={this.state.selectedCast} callBack={this.updateCast} workid={this.state.workid} />}
             </div>
         );
     }
