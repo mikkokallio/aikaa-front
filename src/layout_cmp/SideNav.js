@@ -57,8 +57,7 @@ class SideNav extends React.Component {
         console.log("mode ",sessionStorage.getItem("mode"));
         console.log("token ",sessionStorage.getItem("token"));
         this.setState();
-    }
-
+    };
 
     render() {
         if (sessionStorage.getItem("language") !== null) strings.setLanguage(sessionStorage.getItem("language"));
@@ -66,7 +65,7 @@ class SideNav extends React.Component {
         return (
             <div className="wrapper">
                 <div className="nav-side-menu">
-                    <div className="brand"><span className="redeye glyphicon glyphicon-eye-open"></span> Aikaa</div>
+                    <div className="brand"><span className="redeye glyphicon glyphicon-music"></span> Aikaa</div>
                     <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
                     <div className="menu-list">
                         <ul id="menu-content" className="menu-content collapse out">

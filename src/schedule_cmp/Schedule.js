@@ -44,7 +44,7 @@ class Schedule extends React.Component {
     render() {
         if (sessionStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
         var id = sessionStorage.getItem("id");
-        id = 6;
+        id = 1;
         sessionStorage.removeItem("monday");
        // var date = Date.parse(sessionStorage.getItem("monday"));
        console.log(date);
@@ -52,6 +52,7 @@ class Schedule extends React.Component {
         // if (isNaN(date)) {
             console.log("Showing this week!");
             var date = new Date();
+            var date = new Date('2019-08-09T00:00:00');
         // }
         var day = date.getDay(), diff = date.getDate() - day + (day == 0 ? -6:1);
         date = new Date(date.setDate(diff));
