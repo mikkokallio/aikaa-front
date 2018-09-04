@@ -8,6 +8,7 @@ class Day extends React.Component {
     render() {
         return (
             <div id="day" style={{display:'inline-block'}}>
+                <div className="header">{this.props.day}</div>
                 <div className="header">{this.props.label}</div>
                 {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
             </div>
@@ -42,7 +43,7 @@ class Day extends React.Component {
             .then(response => {
                 const json = response.data;
                 this.setState({json});
-                console.log(json);
+                //console.log(json);
 
                 // Fill the day's slot array with emptiness...
                 var entry = {id:0,text:''};
@@ -59,12 +60,12 @@ class Day extends React.Component {
                             text = json[i].type;
                         }
                         if (x===ending-1) boxClass+=' last';
-                        console.log(start+","+ending+","+x+","+boxClass);
+                        //console.log(start+","+ending+","+x+","+boxClass);
 
                         slots[x] = {id:json[i].id,text:text,box:boxClass};
                     }
                 }
-                console.log(slots);
+                //console.log(slots);
                 // Showing only slots after 7 am and before 11 pm
                 slots.splice(0, 28);
                 slots.splice(63,5);

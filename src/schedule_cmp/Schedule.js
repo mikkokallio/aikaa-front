@@ -19,23 +19,52 @@ const strings = new LocalizedStrings({
 });
 
 class Schedule extends React.Component {
-    state = {labels: []};
+    state = {labels: [], monday:''};
+
+    prevWeek = () => {
+        // Lisää viikkoa yhdellä. Tarkista meneekö vuosi yli.
+    };
+    nextWeek = () => {
+        // Vähennä viikkoa yhdellä. Tarkista meneekö vuosi yli.
+    };
+    handleDateChange = (event) => {
+        sessionStorage.setItem("monday",event.target.value);
+        console.log(sessionStorage.getItem("monday"));
+        this.setState({});
+    };
 
     render() {
-        if (localStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
+        if (sessionStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
+        var id = sessionStorage.getItem("id");
+        id = 6;
+//        var date = sessionStorage.getItem("monday");
+        var date = '';
+        if (date.length===0) {
+            console.log("Showing this week!");
+            var date = new Date();
+        }
+        var day = date.getDay(), diff = date.getDate() - day + (day == 0 ? -6:1);
+        date = new Date(date.setDate(diff));
+        console.log(date);
+
         return (
             <div className="boxx" style={{whiteSpace:'nowrap',maxWidth:'99%'}}>
                 <h1>{strings.heading}</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> {strings.description}
                 </div>
-                <p><input type="date" placeholder="Valitse päivä"></input></p>
+                <div style={{display:'block',margin:'0 auto'}} >
+                    <input className="btn btn-primary" type="submit"
+                            value="Edellinen viikko" onClick={this.prevWeek} />
+                    <div style={{width:'60%',display:'inline-block'}}><input type="date" label="Hae pvm" style={{display:'block',margin:'0 auto'}} value={this.state.year} onChange={this.handleDateChange}/></div>
+                    <input style={{float:'right'}} className="btn btn-primary" type="submit"
+                           value="Seuraava viikko" onClick={this.nextWeek} /></div>
                 <div className="boxx">
                 <div id="times" style={{display:'inline-block'}}>
                     <div className="header">{strings.time}</div>
                     {this.state.labels.map((data, index) => <TimeLabel key={index} data={data}/>)}
                 </div>
-                <Week user="6" />
+                <Week monday={date} user={id} />
                 </div>
             </div>
         )

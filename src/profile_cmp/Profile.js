@@ -58,7 +58,6 @@ class Profile extends React.Component {
                     Tähdellä merkityt tiedot ovat pakollisia.
                 </div>
                 {/*TODO: Formin pitää varoittaa ja estää tyhjien kenttien lähetys! Ainakin nimi on tällainen.*/}
-                {/*<img src=""/>*/}
                 <table className="boxx table-striped">
                     <thead>
                         <tr><th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>Käyttäjätietojen muokkaus</th></tr>
@@ -100,7 +99,7 @@ class Profile extends React.Component {
         // Tänne OMAN id:n kautta myös pelkällä profile -osoitteella!!!
         var path = this.props.location.pathname.replace("profile", "users");
         if (path.length===6) {
-            path += "/" + sessionStorage.getItem("id")
+            path += "/" + sessionStorage.getItem("id");
             console.log(path);
         }
         console.log(path);
