@@ -24,14 +24,12 @@ class Schedule extends React.Component {
     state = {labels: [], monday:''};
 
     prevWeek = () => {
-        // Lisää viikkoa yhdellä. Tarkista meneekö vuosi yli.
-        date.setDate(date.getDate() - 7);
+        date.setDate(date.getDate() - 8);
         sessionStorage.setItem("monday",date);
         this.setState({});
     };
     nextWeek = () => {
-        // Vähennä viikkoa yhdellä. Tarkista meneekö vuosi yli.
-        date.setDate(date.getDate() + 7);
+        date.setDate(date.getDate() + 6);
         sessionStorage.setItem("monday",date);
         this.setState({});
     };
@@ -45,27 +43,26 @@ class Schedule extends React.Component {
         if (sessionStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
         var id = sessionStorage.getItem("id");
         id = 1;
-        sessionStorage.removeItem("monday");
-       // var date = Date.parse(sessionStorage.getItem("monday"));
-       console.log(date);
-       var date = '';
-        // if (isNaN(date)) {
+        if (sessionStorage.getItem("monday")===null) {
             console.log("Showing this week!");
-            var date = new Date();
-            var date = new Date('2019-08-09T00:00:00');
-        // }
+            date = new Date();
+        } else {
+            date = new Date(sessionStorage.getItem("monday").replace("/","-"));
+        }
         var day = date.getDay(), diff = date.getDate() - day + (day == 0 ? -6:1);
         date = new Date(date.setDate(diff));
         console.log(date);
 
         var dates = [];
+        var shortDates = [];
         for (var d = 0; d < 7; d++) {
             var yyyy = date.getFullYear();
-            var month = date.getMonth();
+            var month = date.getMonth()+1;
             var mm = (month.toString().length===1?"0"+month:month);
             var day = date.getDate();
             var dd = (day.toString().length===1?"0"+day:day);
             dates[d] = yyyy+"-"+mm+"-"+dd;
+            shortDates[d] = day+"."+month;
             date.setDate(date.getDate() + 1);
         }
 
@@ -86,7 +83,7 @@ class Schedule extends React.Component {
                     <div className="header">{strings.time}</div>
                     {this.state.labels.map((data, index) => <TimeLabel key={index} data={data}/>)}
                 </div>
-                <Week dates={dates} user={id} />
+                <Week dates={dates} shortDates={shortDates} user={id} />
                 </div>
             </div>
         )

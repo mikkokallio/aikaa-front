@@ -8,11 +8,16 @@ class Day extends React.Component {
     render() {
         return (
             <div id="day" style={{display:'inline-block'}}>
-                <div className="header">{this.props.day}</div>
-                <div className="header">{this.props.label}</div>
+                <div className="header">{this.props.label} {this.props.shortDate}</div>
                 {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
             </div>
         )
+    }
+
+    componentDidUpdate (nextProps) {
+        if(this.props !== nextProps) {
+            this.load();
+        }
     }
 
     // Converts hh:mm:ss to an integer in a 96-slot calendar of 15-minute slots
@@ -38,6 +43,10 @@ class Day extends React.Component {
     }
 
     componentDidMount() {
+        this.load();
+    }
+
+    load = () => {
         this.setState({isLoading: true});
         axios.get('/api/bookings/day/user/'+this.props.user+'?day='+this.props.day)
             .then(response => {

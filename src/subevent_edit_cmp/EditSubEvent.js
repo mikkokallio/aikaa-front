@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Role from '../roles_cmp/Role';
-import WorkCast from "../booking_cmp/WorkCast";
+import WorkCast from "./WorkCast";
 
 class EditSubEvent extends React.Component {
     state = {

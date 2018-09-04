@@ -21,13 +21,11 @@ class Places extends React.Component {
 
         return (
             <div className="boxx">
-                <h1>Paikat / Platser</h1>
+                <h1>Paikat</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> Tässä näkymässä voit tarkastella
                     järjestelmään tallennettuja tapahtumapaikkoja sekä lisätä, poistaa ja muokata niitä.
                 </div>
-                <p>Tähän voisi tulla vaikka karttanäkymä mukaan. Mahdollista lisätä kuva?</p>
-                <p>Add, update, delete. Muuta toiminnallisuutta ei tarvita tänne.</p>
                 <Row>
                     {this.state.json.map((data, index) => <Place callBack={this.load} key={index} data={data}/>)}
                     <NewPlace callBack={this.load}/>
