@@ -18,14 +18,22 @@ const strings = new LocalizedStrings({
     }
 });
 
+var date;
+
 class Schedule extends React.Component {
     state = {labels: [], monday:''};
 
     prevWeek = () => {
         // Lisää viikkoa yhdellä. Tarkista meneekö vuosi yli.
+        date.setDate(date.getDate() - 7);
+        sessionStorage.setItem("monday",date);
+        this.setState({});
     };
     nextWeek = () => {
         // Vähennä viikkoa yhdellä. Tarkista meneekö vuosi yli.
+        date.setDate(date.getDate() + 7);
+        sessionStorage.setItem("monday",date);
+        this.setState({});
     };
     handleDateChange = (event) => {
         sessionStorage.setItem("monday",event.target.value);
@@ -37,15 +45,28 @@ class Schedule extends React.Component {
         if (sessionStorage.getItem("language")!==null) strings.setLanguage(localStorage.getItem("language"));
         var id = sessionStorage.getItem("id");
         id = 6;
-//        var date = sessionStorage.getItem("monday");
-        var date = '';
-        if (date.length===0) {
+        sessionStorage.removeItem("monday");
+       // var date = Date.parse(sessionStorage.getItem("monday"));
+       console.log(date);
+       var date = '';
+        // if (isNaN(date)) {
             console.log("Showing this week!");
             var date = new Date();
-        }
+        // }
         var day = date.getDay(), diff = date.getDate() - day + (day == 0 ? -6:1);
         date = new Date(date.setDate(diff));
         console.log(date);
+
+        var dates = [];
+        for (var d = 0; d < 7; d++) {
+            var yyyy = date.getFullYear();
+            var month = date.getMonth();
+            var mm = (month.toString().length===1?"0"+month:month);
+            var day = date.getDate();
+            var dd = (day.toString().length===1?"0"+day:day);
+            dates[d] = yyyy+"-"+mm+"-"+dd;
+            date.setDate(date.getDate() + 1);
+        }
 
         return (
             <div className="boxx" style={{whiteSpace:'nowrap',maxWidth:'99%'}}>
@@ -64,7 +85,7 @@ class Schedule extends React.Component {
                     <div className="header">{strings.time}</div>
                     {this.state.labels.map((data, index) => <TimeLabel key={index} data={data}/>)}
                 </div>
-                <Week monday={date} user={id} />
+                <Week dates={dates} user={id} />
                 </div>
             </div>
         )

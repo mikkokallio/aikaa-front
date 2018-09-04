@@ -135,7 +135,7 @@ class EditSubEvent extends React.Component {
                         <tr>
                             <td>Teos</td>
                             <td>
-                                <select placeholder="sijainti" value={this.state.workid} onChange={this.handleWorkChange}>
+                                <select placeholder="teos" value={this.state.workid} onChange={this.handleWorkChange}>
                                     <option key={0} value={0} label={"Valitse teos"} data={"Ei valittu"} />
                                     {this.state.event.works && this.state.event.works.map((data, index) => <option
                                         key={data.id} value={data.id}
