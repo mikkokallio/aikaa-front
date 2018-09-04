@@ -28,6 +28,17 @@ class CastEntry extends React.Component {
         this.setState({ selected: selected });
     }
 
+    findCastPersonnel = (workroleid) => {
+        console.log("lähetetty workroleid", workroleid);
+        if (this.props.selectedCast.length > 0) {
+            let personnel = this.props.selectedCast ? this.props.selectedCast.find(cast => cast.workroleid == workroleid):'';
+            console.log(personnel? personnel.username: "Ei valittu");
+            return personnel? personnel.username: "Ei valittu";
+        } else {
+            return "Ei valittu";
+        }
+    }
+
     render() {
         var users = this.props.users;
         var shortList = [];
@@ -36,14 +47,16 @@ class CastEntry extends React.Component {
                 if (users[i].roles[j].id == this.props.data.id) shortList.push(users[i]);
             }
         }
-        // console.log(this.props.selectedCast);//tässä on jo valmiiksi valitut. Saisiko nämä näkymään valittuina?
-
+        console.log(this.props.selectedCast);//tässä on jo valmiiksi valitut. Saisiko nämä näkymään valittuina?
+        console.log(this.props.data.workroleId)
+        let musician = this.findCastPersonnel(this.props.data.workroleId);
+        console.log(musician);
         return (
             <tr>
                 <td>{this.props.data.name}</td>
                 <td><select id={this.props.data.workroleId} style={{ width: '160px' }} value={this.state.selected} onChange={this.handleUserChange}>
-                    <option key={0} value={0} label={"Valitse muusikko"} data={"Ei valittu"} />
-                    {shortList.map((data, index) => <option key={data.id} value={data.id} label={data.name} data={data} />)} )
+                    <option key={musician?musician.id:0} value={musician?musician.workroleId:0} label={"Valitse muusikko"} data={musician} />
+                    {shortList.map((data, index) => <option key={data.workroleId} value={data.workroleId} label={data.name} data={data} />)} )
                 </select>
                 </td>
             </tr>

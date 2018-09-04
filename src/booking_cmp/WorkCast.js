@@ -27,7 +27,7 @@ class WorkCast extends React.Component {
                     <tr><th colSpan={2}><span className="glyphicon glyphicon-user"></span><span> </span>Roolitukset: {this.state.work.work}</th></tr>
                 </thead>
                 <tbody>
-                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.id} selectedCast={selectedCast} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
+                    {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.workroleid} selectedCast={selectedCast} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
                     <tr>
                         <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
                             value="Talleta" />
