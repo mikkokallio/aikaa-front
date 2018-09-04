@@ -116,7 +116,7 @@ class EditWork extends React.Component {
                     </tbody>
                 </table>
                 {/*<RolesList user={this.state.roleList} callBack={this.load}/>*/}
-                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.removeRoleFromWork}/>) : 'LOADING, oh my!'}
+                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.load} callBackRemove={this.removeRoleFromWork}/>) : 'LOADING, oh my!'}
                 <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
                     {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
                 </select></div>
