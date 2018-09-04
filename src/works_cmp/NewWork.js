@@ -8,6 +8,8 @@ class NewWork extends React.Component {
         let requestparam = '';
 		if (this.props.eventid) {
 			requestparam += '?event=true&eventid='+this.props.eventid;
+        } else {
+            requestparam += '?event=false';
         }
         axios.post('/api/works'+requestparam, { work:this.state.work, composer:this.state.composer, musicians:this.state.musicians,
             durationInMinutes:this.state.durationInMinutes, instrumentation:this.state.instrumentation})

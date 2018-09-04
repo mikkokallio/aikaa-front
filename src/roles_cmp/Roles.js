@@ -25,7 +25,6 @@ class Roles extends React.Component {
     };
 
     render () {
-        console.log(this.state.json);
         return (
             <div className="boxx">
                 <h1>Roolit</h1>

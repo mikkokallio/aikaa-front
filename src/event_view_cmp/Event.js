@@ -20,7 +20,7 @@ class Event extends React.Component {
                 const json = response.data;
                 for (var i = 0; i < json.subEvents.length; i++) {
                     json.subEvents[i].begin =json.subEvents[i].begin.replace("T"," ");
-                    json.subEvents[i].ending =json.subEvents[i].begin.replace("T"," ");
+                    json.subEvents[i].ending =json.subEvents[i].ending.replace("T"," ");
                 }
                 this.setState({json});
             });

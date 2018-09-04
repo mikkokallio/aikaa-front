@@ -6,11 +6,11 @@ class NewRole extends React.Component {
     state= { json: [], name: '', categoryId: ''};
     handleCreateClick= (event) => {
         //event.preventDefault();
-
         axios.post('/api/roles', { name:this.state.name, categoryId:this.state.categoryId })
             .then(res => {
                 this.props.callBack();
             });
+            this.setState({name: '', categoryId: ''});
     };
     handleNameChange= (event) => {
         this.setState({name: event.target.value});

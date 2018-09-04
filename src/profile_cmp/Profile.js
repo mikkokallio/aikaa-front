@@ -27,6 +27,9 @@ class Profile extends React.Component {
     handleUpdateClick = (event) => {
         event.preventDefault();
         var path = this.props.location.pathname.replace("profile", "users");
+        if (path.length===6) {
+            path += "/" + sessionStorage.getItem("id");
+        }
         console.log(path);
         axios.put('/api' + path, this.state.user)
             .then(res => {

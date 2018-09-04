@@ -5,11 +5,9 @@ class CastEntry extends React.Component {
     state = { selected: '', shortList: [] };
 
     handleUserChange = (event) => {
-        console.log(event.target.id);
         let roleid = event.target.id;
         let userid = event.target.value;
         let castMember = { 'roleid': roleid, 'userid': userid };
-        console.log(castMember);
         this.props.callBack(castMember);
         this.setState(this.state);
     };

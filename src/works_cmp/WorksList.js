@@ -12,7 +12,7 @@ class WorksList extends React.Component {
                 <tr><th>Teos</th><th>Säveltäjä</th><th>Kesto</th><th>Muusikot</th><th>Instrumentaatio</th><th/></tr>
                 </thead>
                 <tbody>{this.props.data&&this.props.data.map((data, index) => <Work {...this.props} key={index} data={data}/>)}
-                <AddWork {...this.props} callBack={this.props.callBack} eventid={this.props.eventid}/>
+                {this.props.location.pathname!='/works' &&<AddWork {...this.props} callBack={this.props.callBack} eventid={this.props.eventid}/>}
                 <NewWork {...this.props} callBack={this.props.callBack} eventid={this.props.eventid}/>
                 </tbody>
             </table>
