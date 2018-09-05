@@ -89,8 +89,9 @@
 
 .absence {
     background: #f7edd9;
+    color:darkred;
     background: -moz-linear-gradient(left, #f7edd9 0%, #f0deb9 100%);
     background: -webkit-linear-gradient(left, #f7edd9 0%, #f0deb9 100%);
-    background: linear-gradient(to right, #f7edd9 0%, #f0deb9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to right, #f7ab97 0%, #f09c77 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7edd9', endColorstr='#f0deb9', GradientType=1); /* IE6-9 */
 }
