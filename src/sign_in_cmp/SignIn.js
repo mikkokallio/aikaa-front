@@ -32,6 +32,11 @@ class SignIn extends React.Component {
     handlePswdChange = (event) => {
         this.setState({ password: event.target.value });
     };
+    handleKeyPress = (event) => {
+        if (event.key==="Enter") {
+            this.handleCreateClick(event);
+        }
+    };
 
     loadHomePage = () => {
         this.props.history.push('/');
@@ -39,7 +44,7 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div className="boxx">
+            <div className="boxx" onKeyPress={this.handleKeyPress}>
                 <h1>Sisäänkirjautuminen</h1>
                 <div className="alert alert-info">
                     <span className="glyphicon glyphicon-info-sign"></span> Syötä alle käyttäjätunnuksesi ja salasanasi kirjautuaksesi
