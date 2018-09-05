@@ -10,8 +10,8 @@ class Day extends React.Component {
         return (
             <div id="day" style={{display: 'inline-block'}}>
                 {!this.props.label&&<img src={this.state.picurl ? this.state.picurl : user} alt="Avatar" className="avatar" />}
-                <div className="header">{this.props.label ? this.props.label : (this.state.json[0]&&this.state.json[0].username)}</div>
-                {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
+                <div className="header">{this.props.label ? (this.props.label==="place" ? (this.state.json[0]&&this.state.json[0].placename) : this.props.label) : (this.state.json[0]&&this.state.json[0].username)}</div>
+                {this.state.slots.map((data, index) => <Slot {...this.props} key={index} data={data}/>)}
             </div>
         )
     }
@@ -73,7 +73,7 @@ class Day extends React.Component {
                             text = json[i].type;
                         }
                         if (x === ending - 1) boxClass += ' last';
-                        slots[x] = {id: json[i].id, eventid: json[i].eventid, text: text, box: boxClass};
+                        slots[x] = {id: json[i].subeventid, eventid: json[i].eventid, text: text, box: boxClass};
                     }
                 }
                 // Showing only slots after 7 am and before 11 pm

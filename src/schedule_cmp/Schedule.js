@@ -49,7 +49,6 @@ class Schedule extends React.Component {
         }
         var day = date.getDay(), diff = date.getDate() - day + (day == 0 ? -6 : 1);
         date = new Date(date.setDate(diff));
-        console.log(date);
 
         var dates = [];
         var shortDates = [];
@@ -81,7 +80,7 @@ class Schedule extends React.Component {
                            value="Seuraava viikko" onClick={this.nextWeek}/></div>
                 <div className="boxx">
                     <TimeLabels/>
-                    <Week dates={dates} shortDates={shortDates} user={id}/>
+                    <Week {...this.props} dates={dates} shortDates={shortDates} user={id}/>
                 </div>
             </div>
         )

@@ -32,6 +32,7 @@ class Schedule extends React.Component {
             date = new Date(sessionStorage.getItem("theDay").replace("/", "-"));
         }
         console.log(this.state);
+        console.log(this.props);
 
         var shortDate = '';
         var yyyy = date.getFullYear();
@@ -62,7 +63,7 @@ class Schedule extends React.Component {
                 <div className="boxx">
                     <p style={{textAlign:'center'}}>{shortDate}</p>
                     <TimeLabels/>
-                    <Ensemble date={date} placeid={this.state.placeid} users={this.state.users}/>
+                    <Ensemble {...this.props} date={date} placeid={this.state.placeid} users={this.state.users}/>
                 </div>
             </div>
         )

@@ -1,58 +1,61 @@
 .header {
     text-align: center;
     font-weight: bold;
-    width:90px;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .timeSlot {
-    color:white;
-    width:90px;
+    color: white;
+    width: 90px;
 }
+
 .timeSlot::after {
-    content:".";
-    visibility:hidden;
+    content: ".";
+    visibility: hidden;
 }
 
 .timeTable {
     border-right: #BBB 1px solid;
     background-color: white;
-    padding:0px 5px;
+    padding: 0px 5px;
     -webkit-transition: 0.5s; /* Safari */
     transition: 0.5s;
-    height:10px;
+    height: 10px;
     text-shadow: 1px 1px #fff;
 }
 
 .timeLabel {
-    width:70px;
+    width: 70px;
     text-align: center;
 }
 
 .timeLabel:nth-child(2n+1) {
     /*visibility: hidden;*/
 }
-.timeTable:nth-child(4n+2){
+
+.timeTable:nth-child(4n+2) {
     border-top: #BBB 1px solid;
 }
-.timeTable.first:nth-child(4n+2),.timeTable.middle:nth-child(4n+2){
+
+.timeTable.first:nth-child(4n+2), .timeTable.middle:nth-child(4n+2) {
     border-top: #9acfea 1px solid;
 }
 
 .first, .last, .middle {
     border-left: #9acfea 1px solid;
     border-right: #9acfea 1px solid !important;
-    background-color:lightblue;
-    color:#31708f;
-    background-image: -webkit-linear-gradient(left,#d9edf7 0,#b9def0 100%);
-    background-image: -o-linear-gradient(left,#d9edf7 0,#b9def0 100%);
-    background-image: -webkit-gradient(linear,left top,right top,from(#d9edf7),to(#b9def0));
-    background-image: linear-gradient(to right,#d9edf7 0,#b9def0 100%);
+    background-color: lightblue;
+    color: #31708f;
+    background-image: -webkit-linear-gradient(left, #d9edf7 0, #b9def0 100%);
+    background-image: -o-linear-gradient(left, #d9edf7 0, #b9def0 100%);
+    background-image: -webkit-gradient(linear, left top, right top, from(#d9edf7), to(#b9def0));
+    background-image: linear-gradient(to right, #d9edf7 0, #b9def0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
-    -webkit-box-shadow: inset -1px 0px 0px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset -1px 0px 0px 0px rgba(0,0,0,0.75);
-    box-shadow: inset -1px 0px 0px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: inset -1px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset -1px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset -1px 0px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
 .first {
@@ -64,6 +67,7 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .last {
     border-bottom: #9acfea 1px solid;
     -webkit-border-bottom-left-radius: 5px;
@@ -72,15 +76,15 @@
     -moz-border-radius-bottomright: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    -webkit-box-shadow: inset -1px -1px 0px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset -1px -1px 0px 0px rgba(0,0,0,0.75);
-    box-shadow: inset -1px -1px 0px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: inset -1px -1px 0px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset -1px -1px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset -1px -1px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
 .absence {
-    background: #efc5ca; /* Old browsers */
-background: -moz-linear-gradient(left, #efc5ca 0%, #d24b5a 50%, #ba2737 51%, #f18e99 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, #efc5ca 0%,#d24b5a 50%,#ba2737 51%,#f18e99 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, #efc5ca 0%,#d24b5a 50%,#ba2737 51%,#f18e99 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efc5ca', endColorstr='#f18e99',GradientType=1 ); /* IE6-9 */
+    background: #f7edd9;
+    background: -moz-linear-gradient(left, #f7edd9 0%, #f0deb9 100%);
+    background: -webkit-linear-gradient(left, #f7edd9 0%, #f0deb9 100%);
+    background: linear-gradient(to right, #f7edd9 0%, #f0deb9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7edd9', endColorstr='#f0deb9', GradientType=1); /* IE6-9 */
 }
