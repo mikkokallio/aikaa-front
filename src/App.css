@@ -123,26 +123,29 @@ li span.glyphicon {
     vertical-align:middle;
 }
 
-.role1 {
-    background-color: azure;
+.role1 { /* Sopraano */
+    background-color: #FFDFDF;
 }
-.role2 {
-    background-color: bisque;
+.role2 { /* Mezzosopraano */
+    background-color: #FFBBBB;
 }
-.role3 {
-    background-color: coral;
+.role3 { /* Tenori */
+    background-color: #C9EAF3;
 }
-.role4 {
-    background-color: darkkhaki;
+.role4 { /* Baritoni */
+    background-color: #A5DBEB;
 }
-.role5 {
-    background-color: lightblue;
+.role5 { /* Piano */
+    background-color: #A5FF8A;
 }
-.role6 {
-    background-color: floralwhite;
+.role6 { /* Basso */
+    background-color: #7BCAE1;
 }
-.role7 {
-    background-color: greenyellow;
+.role7 { /* Tukihenkilöstö */
+    background-color: #FFF284;
+}
+.role8 { /* Muut */
+    background-color: #FFE099;
 }
 
 .role.fadeout {

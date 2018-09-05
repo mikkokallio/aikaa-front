@@ -88,7 +88,7 @@ class EditSubEvent extends React.Component {
         this.setState({ workid: event.target.value });
     };
     openGroupView = (evt) => {
-        const url = '/groupview?placeid=' + this.state.placeid + '&subeventid=' + this.state.id;
+        const url = '/groupview?placeid='+this.state.placeid+'&subeventid='+this.state.id+'&begin='+this.state.begin+'&ending='+this.state.ending;
         this.props.history.push(url);
     };
 
