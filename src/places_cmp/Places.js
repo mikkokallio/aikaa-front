@@ -17,8 +17,6 @@ class Places extends React.Component {
     }
 
     render() {
-        console.log(this.state.json);
-
         return (
             <div className="boxx">
                 <h1>Paikat</h1>
@@ -27,7 +25,9 @@ class Places extends React.Component {
                     järjestelmään tallennettuja tapahtumapaikkoja sekä lisätä, poistaa ja muokata niitä.
                 </div>
                 <Row>
-                    {this.state.json.map((data, index) => <Place callBack={this.load} key={index} data={data}/>)}
+                    {this.state.json.map((data, index) => data.id!=999999999&&<Place callBack={this.load} key={index} data={data}/>)}
+                </Row>
+                <Row>
                     <NewPlace callBack={this.load}/>
                 </Row>
             </div>

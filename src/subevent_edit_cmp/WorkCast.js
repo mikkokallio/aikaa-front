@@ -48,7 +48,7 @@ class WorkCast extends React.Component {
                 const work = response.data;
                 this.setState({ work });
             });
-        axios.get('/api/users')
+        axios.get('/api/bookings/free/'+this.props.subeventid)
             .then(response => {
                 const users = response.data;
                 this.setState({ users });

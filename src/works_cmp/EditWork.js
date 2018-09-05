@@ -4,7 +4,7 @@ import Role from '../roles_cmp/Role';
 import RolesList from '../profile_cmp/RolesList';
 
 class EditWork extends React.Component {
-    state = { allRoles: [], chosenRoles: [], newRoles: [] };//all: kaikki olemasaolevat roolit; chosen: kaikki valitut; new: nyt lisättävät roolit
+    state = { allRoles: [], chosenRoles: [], newRoles: [], categories: [], shortList: [] };//all: kaikki olemasaolevat roolit; chosen: kaikki valitut; new: nyt lisättävät roolit
 
     componentDidMount() {
         this.load();
@@ -24,7 +24,21 @@ class EditWork extends React.Component {
                 const allRoles = response.data;
                 this.setState({ allRoles: allRoles });
             });
+        axios.get('/api/rolecategories')
+            .then(response => {
+                const categories = response.data;
+                this.setState({ categories: categories });
+            });
 
+    };
+
+    handleCategoryChange = (event) => {
+        var roles = this.state.allRoles;
+        var shortList = [];
+        for (var i = 0; i < roles.length; i++) {
+            if (roles[i].categoryId == event.target.value) shortList.push(roles[i]);
+        }
+        this.setState({ shortList: shortList });
     };
 
     handleCreateClick = (event) => {// tässä lisätään pelkästään roolit
@@ -48,11 +62,11 @@ class EditWork extends React.Component {
     };
 
     removeRoleFromWork = (id, workroleid) => {
-        axios.delete('/api/workroles/'+workroleid)
-        .then(res => {
-            this.setState(this.state);
-            this.load();
-        })
+        axios.delete('/api/workroles/' + workroleid)
+            .then(res => {
+                this.setState(this.state);
+                this.load();
+            })
     }
     handleRevertClick = (event) => {
         this.load();
@@ -110,28 +124,38 @@ class EditWork extends React.Component {
                         </tr>
                         <tr>
                             <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
-                                       value="Talleta"/>
+                                value="Talleta" />
                             </td>
-                            <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru"/></td></tr>
+                            <td><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td></tr>
+                    </tbody>
+                </table>
+                <table className="boxx table-striped">
+                    <thead>
+                        <tr><th colSpan={3}><span className="glyphicon glyphicon-tags"></span><span> </span>Roolit</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colSpan={3}>{this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.load} callBackRemove={this.removeRoleFromWork} />) : 'Lataa...'}</td>
+                        </tr>
+                        <tr><td>
+                            <div style={{ display: 'inline-block' }}><select style={{ width: '160px' }} value={this.state.categoryId} onChange={this.handleCategoryChange}>
+                                <option disabled selected value> -- kategoria -- </option>
+                                {this.state.categories.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
+                            </select></div>
+                            <div><select style={{ width: '160px' }} value={this.state.role} onChange={this.handleRoleChange}>
+                                <option disabled selected value> -- rooli -- </option>
+                                {this.state.shortList.map((data, index) => <option value={data.id} label={data.name} data={data} />)}
+                            </select></div>
+                        </td></tr>
+                        <tr><td>
+                            <input className="btn btn-primary" type="submit" onClick={this.handleCreateClick.bind(this)}
+                                value="Talleta" /></td></tr>
                     </tbody>
                 </table>
                 {/*<RolesList user={this.state.roleList} callBack={this.load}/>*/}
-                {this.state.chosenRoles ? this.state.chosenRoles.map((line, index) => <Role key={index} data={line} callBack={this.load} callBackRemove={this.removeRoleFromWork}/>) : 'LOADING, oh my!'}
-                <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
+                {/* <div><select placeholder="rooli" value={this.state.roleId} onChange={this.handleRoleChange}>
+                    <option key={0} value={0} label={"Valitse rooli"} data={"Ei valittu"} />
                     {this.state.allRoles.map((data, index) => <option key={index} value={data.id} label={data.name} data={data} />)}
-                </select></div>
-                <table>
-                    <tbody>
-                        <tr>
-                            {/* <td><span className="glyphicon glyphicon-music"></span>
-                        <input type="text" placeholder="nimi" value={this.state.name} onChange={this.handleNameChange} /></td> */}
-                            <td colSpan="2">
-                                <div className="circle" onClick={this.handleCreateClick.bind(this)}><span
-                                    className="glyphicon glyphicon-plus"></span></div>Päivitä teoksen roolit
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                </select></div> */}
             </div >
         );
     }
