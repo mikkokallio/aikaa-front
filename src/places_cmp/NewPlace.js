@@ -59,12 +59,13 @@ class NewPlace extends React.Component {
 
     render() {
         return (
-            <Col xs={4} md={4} className="boxx alert alert-warning"><span className="glyphicon glyphicon-tag"></span>
+            <Col xs={4} md={4} className="boxx alert alert-warning">
+            <p><span className="glyphicon glyphicon-tag"></span>Lisää paikkoja</p>
                 <input type="text" style={{ width: '200px' }} placeholder="nimi" value={this.state.name}
-                    onChange={this.handleNameChange} />
+                    onChange={this.handleNameChange} /><br></br>
                 <input type="text" style={{ width: '200px' }} placeholder="katuosoite"
                     value={this.state.streetAddress}
-                    onChange={this.handleStreetChange} />
+                    onChange={this.handleStreetChange} /><br></br>
                 <input type="text" style={{ width: '100px' }} placeholder="postinumero" value={this.state.postcode}
                     onChange={this.handleZipChange} />
                 <input type="text" style={{ width: '150px' }} placeholder="kaupunki" value={this.state.city}
