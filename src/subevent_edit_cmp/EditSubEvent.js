@@ -157,7 +157,7 @@ class EditSubEvent extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                {this.state.workid && <WorkCast {...this.props} selectedCast={this.state.selectedCast} callBack={this.updateCast} workid={this.state.workid} />}
+                {this.state.workid && <WorkCast {...this.props} selectedCast={this.state.selectedCast} callBack={this.updateCast} workid={this.state.workid} subeventid={this.state.id} />}
             </div>
         );
     }
