@@ -19,15 +19,17 @@ class Event extends React.Component {
             .then(response => {
                 const json = response.data;
                 for (var i = 0; i < json.subEvents.length; i++) {
-                    json.subEvents[i].begin =json.subEvents[i].begin.replace("T"," ");
-                    if(json.subEvents[i].ending) json.subEvents[i].ending =json.subEvents[i].ending.replace("T"," ");
+                    json.subEvents[i].begin = this.stringManipulation(json.subEvents[i].begin);
+                    if(json.subEvents[i].ending) json.subEvents[i].ending = this.stringManipulation(json.subEvents[i].ending);
                 }
                 this.setState({json});
             });
     };
 
-    stringManipulation = () => {
-        // juukeli
+    stringManipulation = (input) => {
+        var str =input.split(/[-T:]/);
+        var timeStamp = str[2]+"."+str[1]+"."+str[0]+", klo "+str[3]+":"+str[4];
+        return timeStamp;
     };
 
     render() {
