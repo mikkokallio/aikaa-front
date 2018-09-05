@@ -70,33 +70,33 @@ class SideNav extends React.Component {
                     <div className="menu-list">
                         <ul id="menu-content" className="menu-content collapse out">
                             {(this.props.mode === 'unknown'|| this.props.mode == undefined) &&
-                                <li><span className="glyphicon glyphicon-log-in"></span><a
-                                    href="/signin">{strings.signin}</a></li>
+                                <li><a
+                                    href="/signin"><span className="glyphicon glyphicon-log-in"></span> {strings.signin}</a></li>
                             }
                             {(this.props.mode === 'ROLE_USER' || this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') && <div>
-                                <li onClick={this.handleSignOut}><span className="glyphicon glyphicon-log-out" ></span><a
-                                    href="/">{strings.signout}</a></li>
+                                <li onClick={this.handleSignOut}><a
+                                    href="/"><span className="glyphicon glyphicon-log-out" ></span> {strings.signout}</a></li>
                                 {/* <li><span className="glyphicon glyphicon-dashboard"></span><a
                                     href="/">{strings.front}</a></li> */}
-                                <li><span className="glyphicon glyphicon-user"></span><a
-                                    href="/profile">{strings.profile}</a></li>
+                                <li><a
+                                    href="/profile"><span className="glyphicon glyphicon-user"></span> {strings.profile}</a></li>
                                 {/* <li><span className="glyphicon glyphicon-comment"></span><a
                                     href="/messages">{strings.messages}</a></li> */}
-                                <li><span className="glyphicon glyphicon-time"></span><a
-                                    href="/schedule">{strings.schedule}</a></li>
-                                <li><span className="glyphicon glyphicon-flag"></span><a href="/events">{strings.events}</a>
+                                <li><a
+                                    href="/schedule"><span className="glyphicon glyphicon-time"></span> {strings.schedule}</a></li>
+                                <li><a href="/events"><span className="glyphicon glyphicon-flag"></span> {strings.events}</a>
                                 </li>
                             </div>}
                             {(this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') &&
                                 <div>
-                                    <li><span className="glyphicon glyphicon-music"></span><a
-                                        href="/works">{strings.works}</a></li>
-                                    <li><span className="glyphicon glyphicon-list-alt"></span><a
-                                        href="/users">{strings.users}</a></li>
-                                    <li><span className="glyphicon glyphicon-map-marker"></span><a
-                                        href="/places">{strings.places}</a></li>
-                                    <li><span className="glyphicon glyphicon-tags"></span><a
-                                        href="/roles">{strings.roles}</a></li>
+                                    <li><a
+                                        href="/works"><span className="glyphicon glyphicon-music"></span> {strings.works}</a></li>
+                                    <li><a
+                                        href="/users"><span className="glyphicon glyphicon-list-alt"></span> {strings.users}</a></li>
+                                    <li><a
+                                        href="/places"><span className="glyphicon glyphicon-map-marker"></span> {strings.places}</a></li>
+                                    <li><a
+                                        href="/roles"><span className="glyphicon glyphicon-tags"></span> {strings.roles}</a></li>
                                     {/* <li><span className="glyphicon glyphicon-calendar"></span><a
                                         href="/calendar">{strings.bookings}</a></li> */}
                                 </div>}
@@ -106,17 +106,17 @@ class SideNav extends React.Component {
                             {/*className="glyphicon glyphicon-chevron-down"></span></a>*/}
                             {/*</li>*/}
                             {/*<li><a href="#" onClick={signOut}>Kirjaudu ulos</a></li>*/}
-                            <li><a href="#" onClick={this.setLanguageToFinnish}>Fi</a>
-                                / <a href="#" onClick={this.setLanguageToSwedish}>Sv</a>
+                            <li style={{textAlign:'center'}}><a href="#" onClick={this.setLanguageToFinnish}>FI </a>
+                                /<a href="#" onClick={this.setLanguageToSwedish}> SV</a>
                             </li>
                             {/*<ul className="sub-menu collapse" id="products">*/}
                             {/*<li className="active"><a href="#">Admin-asetukset</a></li>*/}
                             {/*</ul>*/}
-                             <li>
+                             <li style={{textAlign:'center'}}>
                                 <a href="#" onClick={() => this.setMode('unknown')}>unknown</a>/
                                 <a href="#" onClick={() => this.setMode('ROLE_USER')}>user</a>/
                                 <a href="#" onClick={() => this.setMode('ROLE_ADMIN')}>admin</a>/
-                                <a href="#" onClick={() => this.setMode('ROLE_SUPERADMIN')}>superadmin</a>
+                                <a href="#" onClick={() => this.setMode('ROLE_SUPERADMIN')}>super</a>
                             </li>
                         </ul>
                     </div>
