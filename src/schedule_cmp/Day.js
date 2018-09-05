@@ -7,8 +7,6 @@ class Day extends React.Component {
     state = {json: [], slots: [{id: '', text: '', box: ''}]};
 
     render() {
-        console.log("tämä",this.state.json);
-        console.log("slots", this.state.slots);
         return (
             <div id="day" style={{display: 'inline-block'}}>
                 {!this.props.label&&<img src={this.state.picurl ? this.state.picurl : user} alt="Avatar" className="avatar" />}
