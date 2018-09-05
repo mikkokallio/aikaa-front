@@ -6,6 +6,12 @@
     text-overflow: ellipsis;
 }
 
+.floating {
+    position:fixed;
+    margin-left:15px;
+    margin-top:-60px;
+}
+
 .timeSlot {
     color: white;
     width: 90px;
@@ -31,15 +37,15 @@
     text-align: center;
 }
 
-.timeLabel:nth-child(2n+1) {
+.timeLabel:nth-of-type(2n+1) {
     /*visibility: hidden;*/
 }
 
-.timeTable:nth-child(4n+2) {
+.timeTable:nth-of-type(4n+2) {
     border-top: #BBB 1px solid;
 }
 
-.timeTable.first:nth-child(4n+2), .timeTable.middle:nth-child(4n+2) {
+.timeTable.first:nth-of-type(4n+2), .timeTable.middle:nth-of-type(4n+2) {
     border-top: #9acfea 1px solid;
 }
 
