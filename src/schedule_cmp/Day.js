@@ -7,7 +7,8 @@ class Day extends React.Component {
     state = {json: [], slots: [{id: '', text: '', box: ''}]};
 
     render() {
-        console.log(this.state);
+        console.log("tämä",this.state.json);
+        console.log("slots", this.state.slots);
         return (
             <div id="day" style={{display: 'inline-block'}}>
                 {!this.props.label&&<img src={this.state.picurl ? this.state.picurl : user} alt="Avatar" className="avatar" />}
@@ -74,7 +75,7 @@ class Day extends React.Component {
                             text = json[i].type;
                         }
                         if (x === ending - 1) boxClass += ' last';
-                        slots[x] = {id: json[i].id, text: text, box: boxClass};
+                        slots[x] = {id: json[i].id, eventid: json[i].eventid, text: text, box: boxClass};
                     }
                 }
                 // Showing only slots after 7 am and before 11 pm

@@ -76,3 +76,11 @@
     -moz-box-shadow: inset -1px -1px 0px 0px rgba(0,0,0,0.75);
     box-shadow: inset -1px -1px 0px 0px rgba(0,0,0,0.75);
 }
+
+.absence {
+    background: #efc5ca; /* Old browsers */
+background: -moz-linear-gradient(left, #efc5ca 0%, #d24b5a 50%, #ba2737 51%, #f18e99 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #efc5ca 0%,#d24b5a 50%,#ba2737 51%,#f18e99 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #efc5ca 0%,#d24b5a 50%,#ba2737 51%,#f18e99 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efc5ca', endColorstr='#f18e99',GradientType=1 ); /* IE6-9 */
+}
