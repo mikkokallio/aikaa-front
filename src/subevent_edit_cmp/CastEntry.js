@@ -48,11 +48,12 @@ class CastEntry extends React.Component {
             <tr>
                 <td>{this.props.data.name}</td>
                 <td>{musician.username}</td>
-                <td><select id={this.props.data.workroleId} style={{ width: '160px' }} value={this.state.selected} onChange={this.handleUserChange}>
+                {(sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") === 'ROLE_SUPERADMIN')
+                        && <td><select id={this.props.data.workroleId} style={{ width: '160px' }} value={this.state.selected} onChange={this.handleUserChange}>
                     <option key={0} value={0} label={"Valitse muusikko"} data={"Ei valittu"} />
                     {shortList.map((data, index) => <option key={data.id} value={data.id} label={data.name} data={data} />)} )
                 </select>
-                </td>
+                </td>}
             </tr>
         )
     }

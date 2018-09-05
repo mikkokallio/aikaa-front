@@ -46,14 +46,16 @@ class App extends Component {
                                 <Route path="/events/:id" render={(props) =>
                                     (<Event {...props} />)} />
                                 <Route exact path="/profile/" component={Profile} />
+                                <Route path="/subevents/:id" render={(props) =>
+                                    (<EditSubEvent {...props} />)} />
                                 <Route path="/schedule/" component={Schedule} />
                                 <Route path="/groupview/" render={(props) =>
-                                    (<GroupView {...props} /> )} />
+                                    (<GroupView {...props} />)} />
                                 {(this.state.mode === 'unknown' || this.state.mode == undefined) &&
                                     <Route path="/signin/" render={(props) =>
                                         (<SignIn {...props} callBack={this.handleModeChange} />)} />
                                 }
-                                {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN')&&<div>
+                                {(this.state.mode === 'ROLE_ADMIN' || this.state.mode === 'ROLE_SUPERADMIN') && <div>
                                     <Route path="/profile/" component={Profile} />
                                     <Route path="/roles/" component={Roles} />
                                     <Route path="/places/" component={Places} />
