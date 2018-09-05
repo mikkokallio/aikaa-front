@@ -62,7 +62,7 @@ class Schedule extends React.Component {
                 <div className="boxx">
                     <p style={{textAlign:'center'}}>{shortDate}</p>
                     <TimeLabels/>
-                    <Ensemble date={date} placeid={this.state.placeid} users={this.state.users}/>
+                    <Ensemble {...this.props} date={date} placeid={this.state.placeid} users={this.state.users}/>
                 </div>
             </div>
         )
