@@ -32,6 +32,7 @@ class Schedule extends React.Component {
             date = new Date(sessionStorage.getItem("theDay").replace("/", "-"));
         }
         console.log(this.state);
+        console.log(this.props);
 
         var shortDate = '';
         var yyyy = date.getFullYear();
