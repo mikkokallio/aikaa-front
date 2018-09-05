@@ -81,7 +81,7 @@ class Schedule extends React.Component {
                            value="Seuraava viikko" onClick={this.nextWeek}/></div>
                 <div className="boxx">
                     <TimeLabels/>
-                    <Week dates={dates} shortDates={shortDates} user={id}/>
+                    <Week {...this.props} dates={dates} shortDates={shortDates} user={id}/>
                 </div>
             </div>
         )

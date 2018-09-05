@@ -12,7 +12,7 @@ class Day extends React.Component {
             <div id="day" style={{display: 'inline-block'}}>
                 {!this.props.label&&<img src={this.state.picurl ? this.state.picurl : user} alt="Avatar" className="avatar" />}
                 <div className="header">{this.props.label ? this.props.label : (this.state.json[0]&&this.state.json[0].username)}</div>
-                {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
+                {this.state.slots.map((data, index) => <Slot {...this.props} key={index} data={data}/>)}
             </div>
         )
     }
