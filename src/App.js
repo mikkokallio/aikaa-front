@@ -47,7 +47,8 @@ class App extends Component {
                                     (<Event {...props} />)} />
                                 <Route exact path="/profile/" component={Profile} />
                                 <Route path="/schedule/" component={Schedule} />
-                                <Route path="/groupview/" component={GroupView} />
+                                <Route path="/groupview/" render={(props) =>
+                                    (<GroupView {...props} /> )} />
                                 {(this.state.mode === 'unknown' || this.state.mode == undefined) &&
                                     <Route path="/signin/" render={(props) =>
                                         (<SignIn {...props} callBack={this.handleModeChange} />)} />

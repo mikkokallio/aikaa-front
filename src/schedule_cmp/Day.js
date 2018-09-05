@@ -7,7 +7,7 @@ class Day extends React.Component {
     state = {json: [], slots: [{id: '', text: '', box: ''}]};
 
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         return (
             <div id="day" style={{display: 'inline-block'}}>
                 {!this.props.label&&<img src={this.state.picurl ? this.state.picurl : user} alt="Avatar" className="avatar" />}
@@ -57,7 +57,6 @@ class Day extends React.Component {
             .then(response => {
                 const json = response.data;
                 this.setState({json});
-                console.log(json);
                 if (this.props.label==='' && this.props.name) this.setState({name: this.props.name});
 
                 // Fill the day's slot array with emptiness...
@@ -75,12 +74,9 @@ class Day extends React.Component {
                             text = json[i].type;
                         }
                         if (x === ending - 1) boxClass += ' last';
-                        //console.log(start+","+ending+","+x+","+boxClass);
-
                         slots[x] = {id: json[i].id, text: text, box: boxClass};
                     }
                 }
-                //console.log(slots);
                 // Showing only slots after 7 am and before 11 pm
                 slots.splice(0, 28);
                 slots.splice(63, 5);
