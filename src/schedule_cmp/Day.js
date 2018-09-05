@@ -7,11 +7,11 @@ class Day extends React.Component {
     state = {json: [], slots: [{id: '', text: '', box: ''}]};
 
     render() {
-        //console.log(this.props);
+        console.log(this.state);
         return (
             <div id="day" style={{display: 'inline-block'}}>
                 {!this.props.label&&<img src={this.state.picurl ? this.state.picurl : user} alt="Avatar" className="avatar" />}
-                <div className="header">{this.props.label ? this.props.label : this.props.user.name}</div>
+                <div className="header">{this.props.label ? this.props.label : (this.state.json[0]&&this.state.json[0].username)}</div>
                 {this.state.slots.map((data, index) => <Slot key={index} data={data}/>)}
             </div>
         )

@@ -6,15 +6,15 @@ import axios from "axios/index";
 var date;
 
 class Schedule extends React.Component {
-    state = {placeid: '', subeventid: '', users: [], theDay: ''};
+    state = {date:'', placeid: '', subeventid: '', users: [], theDay: ''};
 
     prevDay = () => {
-        date.setDate(date.getDate() - 1);
+        date.setDate(date.getDate() - 2);
         sessionStorage.setItem("theDay", date);
         this.setState({});
     };
     nextDay = () => {
-        date.setDate(date.getDate() + 1);
+        date.setDate(date.getDate() + 8);
         sessionStorage.setItem("theDay", date);
         this.setState({});
     };

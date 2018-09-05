@@ -26,6 +26,10 @@ class Event extends React.Component {
             });
     };
 
+    stringManipulation = () => {
+        // juukeli
+    };
+
     render() {
         return (
             <div className="boxx">
