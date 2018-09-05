@@ -73,7 +73,7 @@ class SideNav extends React.Component {
                                 <li><span className="glyphicon glyphicon-log-in"></span><a
                                     href="/signin">{strings.signin}</a></li>
                             }
-                            {(this.props.mode === 'ROLE_USER' || this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') && <div>
+                            {(sessionStorage.getItem("mode") === 'ROLE_USER' || sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") === 'ROLE_SUPERADMIN') && <div>
                                 <li onClick={this.handleSignOut}><span className="glyphicon glyphicon-log-out" ></span><a
                                     href="/">{strings.signout}</a></li>
                                 {/* <li><span className="glyphicon glyphicon-dashboard"></span><a
@@ -87,7 +87,7 @@ class SideNav extends React.Component {
                                 <li><span className="glyphicon glyphicon-flag"></span><a href="/events">{strings.events}</a>
                                 </li>
                             </div>}
-                            {(this.props.mode === 'ROLE_ADMIN' || this.props.mode === 'ROLE_SUPERADMIN') &&
+                            {(sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") === 'ROLE_SUPERADMIN') &&
                                 <div>
                                     <li><span className="glyphicon glyphicon-music"></span><a
                                         href="/works">{strings.works}</a></li>
