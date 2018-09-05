@@ -65,7 +65,7 @@ class SignIn extends React.Component {
                     </tr>
                     <tr>
                         <td colSpan={2}><input className="btn btn-primary" type="submit"
-                                   value="Kirjaudu Sisään" onClick={this.handleCreateClick} />
+                                   value="Kirjaudu sisään" onClick={this.handleCreateClick} />
                         </td>
                     </tr>
                     </tbody>

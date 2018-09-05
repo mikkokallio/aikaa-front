@@ -27,12 +27,13 @@ class WorkCast extends React.Component {
                 </thead>
                 <tbody>
                     {this.state.work.roleList && this.state.work.roleList.map((data, index) => <CastEntry key={data.workroleid} selectedCast={selectedCast} callBack={this.handleAddCast} users={this.state.users} data={data} />)}
-                    <tr>
+                    {(sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") === 'ROLE_SUPERADMIN')
+                        && <tr>
                         <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
                             value="Talleta" />
                         </td>
                         <td colSpan={2}><input className="btn btn-warning" type="submit" onClick={this.handleRevertClick} value="Peru" /></td>
-                    </tr>
+                    </tr>}
                 </tbody>
             </table>
         )

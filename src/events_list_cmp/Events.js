@@ -20,7 +20,8 @@ class Events extends React.Component {
                     </thead>
                     <tbody>
                         {this.state.json.map((data, index) => <EventListing {...this.props} id={this.state.json.id} key={index} data={data} />)}
-                        <NewEvent {...this.props} callBack={this.load} />
+                        {(sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") ===
+                            'ROLE_SUPERADMIN') && <NewEvent {...this.props} callBack={this.load} />}
                     </tbody>
                 </table>
                 {/*<Event/>*/}

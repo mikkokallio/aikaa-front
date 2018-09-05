@@ -16,7 +16,8 @@ class Work extends React.Component {
                 <td>{this.props.data.durationInMinutes}</td>
                 <td>{this.props.data.musicians}</td>
                 <td>{this.props.data.instrumentation}</td>
-                <td><div className="circle" onClick={this.openWork}><span className="glyphicon glyphicon-edit"></span></div></td>
+                <td>{(sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") === 'ROLE_SUPERADMIN')
+                && <div className="circle" onClick={this.openWork}><span className="glyphicon glyphicon-edit"></span></div>}</td>
             </tr>
         )
     }

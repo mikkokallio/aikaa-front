@@ -24,10 +24,13 @@ class Profile extends React.Component {
     handleAddressChange = (event) => {
         //this.setState({user:{addressId: event.target.value}});
     };
+    handleLevelChange = (event) => {
+        this.setState({ user: { ...this.state.user, userLevel: event.target.value } })
+    };
     handleUpdateClick = (event) => {
         event.preventDefault();
         var path = this.props.location.pathname.replace("profile", "users");
-        if (path.length===6) {
+        if (path.length === 6) {
             path += "/" + sessionStorage.getItem("id");
         }
         console.log(path);
@@ -42,11 +45,11 @@ class Profile extends React.Component {
     };
 
     removeRoleFromUser = (event) => {
-        axios.delete('/api/userrole/' + this.state.user.id +'/' + event)
-        .then(res => {
-            console.log("remove roles from work",res);
-            this.setState(this.state);
-        })
+        axios.delete('/api/userrole/' + this.state.user.id + '/' + event)
+            .then(res => {
+                console.log("remove roles from work", res);
+                this.setState(this.state);
+            })
         this.load();
     }
 
@@ -82,6 +85,14 @@ class Profile extends React.Component {
                         <tr><td>Katuosoite</td>
                             <td><input type="text" placeholder="" value={this.state.user.addressId} onChange={this.handleAddressChange} /></td>
                         </tr>
+                        {(sessionStorage.getItem("mode") === 'ROLE_ADMIN' || sessionStorage.getItem("mode") === 'ROLE_SUPERADMIN') && <tr><td>Käyttäjätaso</td>
+                            <td>
+                                <select value={this.state.user.userLevel} onChange={this.handleLevelChange}>
+                                    <option label="käyttäjä" value="3" />
+                                    <option label="järjestäjä" value="2" />
+                                    <option label="ylläpitäjä" value="1" />
+                                </select></td>
+                        </tr>}
                         <tr>
                             <td><input className="btn btn-primary" type="submit" onClick={this.handleUpdateClick}
                                 value="Talleta" />
@@ -101,7 +112,7 @@ class Profile extends React.Component {
         this.setState({ isLoading: true });
         // Tänne OMAN id:n kautta myös pelkällä profile -osoitteella!!!
         var path = this.props.location.pathname.replace("profile", "users");
-        if (path.length===6) {
+        if (path.length === 6) {
             path += "/" + sessionStorage.getItem("id");
         }
         axios.get('/api/' + path)
