@@ -54,8 +54,8 @@ class SideNav extends React.Component {
     handleSignOut = () => {
         this.setMode("unknown");
         sessionStorage.setItem("token", "");
-        console.log("mode ",sessionStorage.getItem("mode"));
-        console.log("token ",sessionStorage.getItem("token"));
+        sessionStorage.setItem("mode", "unknown");
+        sessionStorage.removeItem("monday");
         this.setState();
     };
 
