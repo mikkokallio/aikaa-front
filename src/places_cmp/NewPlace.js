@@ -59,20 +59,20 @@ class NewPlace extends React.Component {
 
     render() {
         return (
-            <Col xs={4} md={4} className="boxx alert alert-warning">
-            <p><span className="glyphicon glyphicon-tag"></span>Lisää paikkoja</p>
+            <Col xs={3} md={3} className="boxx">
+            <p><span className="glyphicon glyphicon-map-marker"></span> Lisää paikka</p>
                 <input type="text" style={{ width: '200px' }} placeholder="nimi" value={this.state.name}
                     onChange={this.handleNameChange} /><br></br>
                 <input type="text" style={{ width: '200px' }} placeholder="katuosoite"
                     value={this.state.streetAddress}
                     onChange={this.handleStreetChange} /><br></br>
-                <input type="text" style={{ width: '100px' }} placeholder="postinumero" value={this.state.postcode}
+                <input type="text" style={{ width: '100px',marginRight:'10px' }} placeholder="postinumero" value={this.state.postcode}
                     onChange={this.handleZipChange} />
                 <input type="text" style={{ width: '150px' }} placeholder="kaupunki" value={this.state.city}
                     onChange={this.handleCityChange} />
                 <input type="text" style={{ width: '100px' }} placeholder="maa" value={this.state.country}
                     onChange={this.handleCountryChange} />
-                <input type="text" style={{ width: '300px' }} placeholder="kartan url" value={this.mapurl}
+                <input type="text" style={{ width: '260px' }} placeholder="kartan url" value={this.mapurl}
                     onChange={this.handleMapurlChange} />
                 <div className="circle" onClick={this.handleCreateClick.bind(this)}><span
                     className="glyphicon glyphicon-plus"></span></div>

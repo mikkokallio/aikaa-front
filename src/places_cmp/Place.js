@@ -13,7 +13,7 @@ class Place extends React.Component {
 
     render() {
         return (
-            <Col xs={4} md={4} className="boxx alert alert-success role" id={this.props.data.id}>
+            <Col xs={3} md={3} className="boxx" id={this.props.data.id}>
                 <span className="glyphicon glyphicon-map-marker"></span> {this.props.data.name}
                 <p>{this.props.data.address.streetAddress}</p>
                 <p>{this.props.data.address.postcode} {this.props.data.address.city}</p>
@@ -21,7 +21,7 @@ class Place extends React.Component {
                 <div className="circle" onClick={this.remove}><span className="glyphicon glyphicon-remove"></span></div>
                 <iframe title={"map"+this.props.data.id}
                     src={this.props.data.mapurl?this.props.data.mapurl:''}
-                    width="300" height="225" frameBorder="0" style={{border:0}} allowFullScreen></iframe>
+                    width="260" frameBorder="0" style={{border:0}} allowFullScreen></iframe>
             </Col>
         )
     }
