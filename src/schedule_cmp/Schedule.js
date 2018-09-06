@@ -40,7 +40,6 @@ class Schedule extends React.Component {
     render() {
         if (sessionStorage.getItem("language") !== null) strings.setLanguage(localStorage.getItem("language"));
         var id = sessionStorage.getItem("id");
-        id = 1;
         if (sessionStorage.getItem("monday") === null) {
             console.log("Showing this week!");
             date = new Date();

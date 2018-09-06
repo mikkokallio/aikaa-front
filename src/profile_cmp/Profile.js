@@ -49,9 +49,9 @@ class Profile extends React.Component {
             .then(res => {
                 console.log("remove roles from work", res);
                 this.setState(this.state);
-            })
+            });
         this.load();
-    }
+    };
 
     render() {
         return (
